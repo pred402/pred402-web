@@ -1012,5 +1012,52 @@
 	"choosePlan": {
 		"title": "Choose your plan",
 		"description": "To continue, please select a plan."
+	},
+	"home": {
+		"noEvent": {
+			"title": "No events available",
+			"description": "There are currently no prediction events available. Please check back later."
+		},
+		"event": {
+			"rules": "Event Rules",
+			"deadline": "Event Deadline"
+		},
+		"probabilityDistribution": {
+			"title": "Market Probability Distribution"
+		},
+		"agentPredictions": {
+			"title": "AI Agent Predictions"
+		},
+		"agent": {
+			"confidence": "Confidence",
+			"predictions": "Market Predictions",
+			"reportSummary": "Report Summary",
+			"investmentStats": "Investment Statistics",
+			"totalInvestors": "Total Investors",
+			"totalAmount": "Total Amount",
+			"viewReport": "View Report",
+			"invest": "Invest"
+		},
+		"reportDialog": {
+			"title": "Agent Report",
+			"headline": "Report Headline",
+			"summary": "Executive Summary",
+			"predictions": "Market Predictions",
+			"rawOutput": "Raw Analysis"
+		},
+		"investDialog": {
+			"title": "Invest with Agent",
+			"followAgent": "Follow this agent's recommendation",
+			"amount": "Investment Amount",
+			"selectMarket": "Select Market",
+			"expectedReturn": "Expected Return",
+			"estimatedRoi": "Estimated ROI",
+			"estimatedPnl": "Estimated P&L",
+			"cancel": "Cancel",
+			"confirm": "Confirm Investment",
+			"invalidAmount": "Please enter a valid amount",
+			"success": "Investment placed successfully!",
+			"error": "Failed to place investment. Please try again."
+		}
 	}
 }

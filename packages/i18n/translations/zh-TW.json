@@ -1,0 +1,405 @@
+{
+	"admin": {
+		"menu": {
+			"organizations": "組織",
+			"users": "用戶",
+			"events": "事件",
+			"markets": "市場",
+			"agents": "代理",
+			"reports": "報告",
+			"reportProbabilities": "概率",
+			"orders": "訂單",
+			"investments": "投資"
+		},
+		"common": {
+			"actions": {
+				"create": "創建",
+				"update": "更新",
+				"delete": "刪除",
+				"edit": "編輯",
+				"cancelEdit": "取消編輯"
+			},
+			"state": {
+				"loading": "載入中...",
+				"empty": "尚無記錄"
+			},
+			"messages": {
+				"jsonError": "JSON 無效，請檢查輸入"
+			},
+			"labels": {
+				"unknown": "不可用"
+			},
+			"confirmDelete": {
+				"title": "刪除記錄",
+				"message": "此操作將永久刪除記錄",
+				"confirm": "刪除"
+			}
+		},
+		"organizations": {
+			"backToList": "返回組織列表",
+			"confirmDelete": {
+				"confirm": "刪除",
+				"message": "確定要刪除此組織嗎？此操作無法撤銷。",
+				"title": "刪除組織"
+			},
+			"create": "創建",
+			"delete": "刪除",
+			"deleteOrganization": {
+				"deleted": "組織已成功刪除！",
+				"deleting": "正在刪除組織...",
+				"notDeleted": "組織刪除失敗。請重試。"
+			},
+			"edit": "編輯",
+			"form": {
+				"createTitle": "創建組織",
+				"name": "組織名稱",
+				"notifications": {
+					"error": "無法保存組織。請稍後再試。",
+					"success": "組織已保存。"
+				},
+				"save": "保存",
+				"updateTitle": "編輯組織"
+			},
+			"loading": "載入組織中...",
+			"membersCount": "{count} 個成員",
+			"search": "搜索組織...",
+			"title": "管理組織"
+		},
+		"title": "管理",
+		"users": {
+			"confirmDelete": {
+				"confirm": "刪除",
+				"message": "確定要刪除此用戶嗎？此操作無法撤銷。",
+				"title": "刪除用戶"
+			},
+			"delete": "刪除",
+			"deleteUser": {
+				"deleted": "用戶已成功刪除！",
+				"deleting": "正在刪除用戶...",
+				"notDeleted": "用戶刪除失敗。請重試。"
+			},
+			"emailVerified": {
+				"verified": "郵箱已驗證",
+				"waiting": "郵箱待驗證"
+			},
+			"impersonate": "模擬",
+			"impersonation": {
+				"impersonating": "正在模擬 {name}..."
+			},
+			"loading": "載入用戶中...",
+			"resendVerificationMail": {
+				"error": "無法重發驗證郵件。請重試。",
+				"submitting": "正在重發驗證郵件...",
+				"success": "驗證郵件已發送。",
+				"title": "重發驗證郵件"
+			},
+			"search": "搜索姓名或郵箱...",
+			"title": "管理用戶",
+			"assignAdminRole": "分配管理員角色",
+			"removeAdminRole": "移除管理員角色"
+		},
+		"agents": {
+			"title": "管理代理",
+			"fields": {
+				"slug": "標識",
+				"name": "名稱",
+				"description": "描述",
+				"avatarUrl": "頭像 URL",
+				"modelVendor": "模型廠商",
+				"modelName": "模型名稱",
+				"isActive": "狀態",
+				"metadata": "元數據"
+			},
+			"status": {
+				"active": "活躍",
+				"paused": "暫停"
+			},
+			"stats": "{reports} 報告 / {orders} 訂單 / {investments} 投資",
+			"tableTitle": "代理列表",
+			"searchPlaceholder": "搜索代理...",
+			"metrics": "{reports} 報告, {orders} 訂單, {investments} 投資",
+			"notifications": {
+				"created": "代理已創建！",
+				"updated": "代理已更新！",
+				"deleted": "代理已刪除！",
+				"error": "操作失敗。請重試。"
+			}
+		},
+		"events": {
+			"title": "管理事件",
+			"create": "創建事件",
+			"edit": "編輯事件",
+			"delete": "刪除事件",
+			"confirmDelete": {
+				"title": "刪除事件",
+				"message": "確定要刪除此事件嗎？此操作無法撤銷。"
+			},
+			"notifications": {
+				"created": "事件已創建！",
+				"updated": "事件已更新！",
+				"deleted": "事件已刪除！",
+				"error": "操作失敗。請重試。"
+			}
+		},
+		"markets": {
+			"title": "管理市場",
+			"create": "創建市場",
+			"edit": "編輯市場",
+			"delete": "刪除市場",
+			"confirmDelete": {
+				"title": "刪除市場",
+				"message": "確定要刪除此市場嗎？此操作無法撤銷。"
+			},
+			"notifications": {
+				"created": "市場已創建！",
+				"updated": "市場已更新！",
+				"deleted": "市場已刪除！",
+				"error": "操作失敗。請重試。"
+			}
+		},
+		"reports": {
+			"title": "管理報告",
+			"create": "創建報告",
+			"edit": "編輯報告",
+			"delete": "刪除報告",
+			"confirmDelete": {
+				"title": "刪除報告",
+				"message": "確定要刪除此報告嗎？此操作無法撤銷。"
+			},
+			"notifications": {
+				"created": "報告已創建！",
+				"updated": "報告已更新！",
+				"deleted": "報告已刪除！",
+				"error": "操作失敗。請重試。"
+			}
+		},
+		"reportProbabilities": {
+			"title": "管理概率",
+			"create": "創建概率",
+			"edit": "編輯概率",
+			"delete": "刪除概率",
+			"confirmDelete": {
+				"title": "刪除概率",
+				"message": "確定要刪除此概率嗎？此操作無法撤銷。"
+			},
+			"notifications": {
+				"created": "概率已創建！",
+				"updated": "概率已更新！",
+				"deleted": "概率已刪除！",
+				"error": "操作失敗。請重試。"
+			}
+		},
+		"orders": {
+			"title": "管理訂單",
+			"create": "創建訂單",
+			"edit": "編輯訂單",
+			"delete": "刪除訂單",
+			"confirmDelete": {
+				"title": "刪除訂單",
+				"message": "確定要刪除此訂單嗎？此操作無法撤銷。"
+			},
+			"notifications": {
+				"created": "訂單已創建！",
+				"updated": "訂單已更新！",
+				"deleted": "訂單已刪除！",
+				"error": "操作失敗。請重試。"
+			}
+		},
+		"investments": {
+			"title": "管理投資",
+			"create": "創建投資",
+			"edit": "編輯投資",
+			"delete": "刪除投資",
+			"confirmDelete": {
+				"title": "刪除投資",
+				"message": "確定要刪除此投資嗎？此操作無法撤銷。"
+			},
+			"notifications": {
+				"created": "投資已創建！",
+				"updated": "投資已更新！",
+				"deleted": "投資已刪除！",
+				"error": "操作失敗。請重試。"
+			}
+		}
+	},
+	"marketing": {
+		"nav": {
+			"home": "首頁",
+			"docs": "文檔",
+			"blog": "博客",
+			"changelog": "更新日誌",
+			"contact": "聯繫我們",
+			"legal": "法律",
+			"login": "登錄",
+			"signup": "註冊"
+		},
+		"footer": {
+			"description": "專業的預測市場平台。",
+			"links": {
+				"product": "產品",
+				"company": "公司",
+				"resources": "資源",
+				"legal": "法律"
+			}
+		}
+	},
+	"auth": {
+		"signIn": "登錄",
+		"signUp": "註冊",
+		"signOut": "登出",
+		"forgotPassword": "忘記密碼",
+		"resetPassword": "重置密碼",
+		"verifyEmail": "驗證郵箱",
+		"or": "或",
+		"createAccount": "創建帳戶",
+		"alreadyHaveAccount": "已有帳戶？",
+		"dontHaveAccount": "還沒有帳戶？",
+		"password": "密碼",
+		"confirmPassword": "確認密碼",
+		"email": "郵箱",
+		"name": "姓名",
+		"username": "用戶名",
+		"newPassword": "新密碼",
+		"currentPassword": "當前密碼",
+		"updatePassword": "更新密碼",
+		"changePassword": "更改密碼",
+		"twoFactor": "雙因素認證",
+		"enable2fa": "啟用雙因素認證",
+		"disable2fa": "禁用雙因素認證",
+		"backupCodes": "備份代碼",
+		"generateBackupCodes": "生成備份代碼",
+		"enter2faCode": "輸入雙因素認證代碼",
+		"sessions": "會話",
+		"devices": "設備",
+		"currentSession": "當前會話",
+		"revokeAllSessions": "撤銷所有會話",
+		"revokeSession": "撤銷會話",
+		"oauth": {
+			"github": "使用 GitHub 登錄",
+			"google": "使用 Google 登錄",
+			"passkey": "使用 Passkey 登錄"
+		}
+	},
+	"dashboard": {
+		"title": "儀表板",
+		"welcome": "歡迎回來，{name}！",
+		"quickStart": "快速開始"
+	},
+	"settings": {
+		"title": "設置",
+		"navigation": {
+			"general": "通用",
+			"security": "安全",
+			"billing": "計費",
+			"dangerZone": "危險區域"
+		},
+		"general": {
+			"title": "通用設置",
+			"language": "語言",
+			"timezone": "時區",
+			"dateFormat": "日期格式",
+			"currency": "貨幣"
+		},
+		"security": {
+			"title": "安全設置",
+			"password": "密碼",
+			"twoFactor": "雙因素認證",
+			"sessions": "活躍會話",
+			"devices": "設備",
+			"apiKeys": "API 密鑰"
+		},
+		"billing": {
+			"title": "計費設置",
+			"currentPlan": "當前計劃",
+			"usage": "使用情況",
+			"paymentMethod": "付款方式",
+			"invoices": "發票",
+			"upgrade": "升級",
+			"downgrade": "降級"
+		},
+		"dangerZone": {
+			"title": "危險區域",
+			"deleteAccount": "刪除帳戶",
+			"deleteAccountDescription": "此操作不可逆轉。請輸入您的郵箱以確認。",
+			"deleteAccountConfirm": "輸入郵箱以確認刪除"
+		}
+	},
+	"organizations": {
+		"title": "組織管理",
+		"create": "創建組織",
+		"select": "選擇組織",
+		"settings": "組織設置",
+		"members": "成員",
+		"billing": "計費",
+		"general": "通用",
+		"dangerZone": "危險區域"
+	},
+	"onboarding": {
+		"title": "歡迎加入我們",
+		"step1": {
+			"title": "選擇您的角色",
+			"individual": "個人",
+			"organization": "組織"
+		},
+		"step2": {
+			"title": "設置您的資料",
+			"name": "姓名",
+			"organizationName": "組織名稱"
+		},
+		"step3": {
+			"title": "完成",
+			"description": "您的帳戶已準備就緒！"
+		}
+	},
+	"choosePlan": {
+		"title": "選擇您的計劃",
+		"description": "請選擇一個計劃以繼續。"
+	},
+	"home": {
+		"noEvent": {
+			"title": "暫無事件",
+			"description": "當前沒有可用的預測事件，請稍後再試。"
+		},
+		"event": {
+			"rules": "事件規則",
+			"deadline": "截止日期"
+		},
+		"probabilityDistribution": {
+			"title": "市場概率分佈"
+		},
+		"agentPredictions": {
+			"title": "AI 代理預測"
+		},
+		"agent": {
+			"confidence": "信心度",
+			"predictions": "市場預測",
+			"reportSummary": "報告摘要",
+			"investmentStats": "投資統計",
+			"totalInvestors": "總投資人數",
+			"totalAmount": "總金額",
+			"viewReport": "查看報告",
+			"invest": "投資"
+		},
+		"reportDialog": {
+			"title": "代理報告",
+			"headline": "報告標題",
+			"summary": "執行摘要",
+			"predictions": "市場預測",
+			"rawOutput": "原始分析"
+		},
+		"investDialog": {
+			"title": "跟投代理",
+			"followAgent": "跟隨此代理的建議",
+			"amount": "投資金額",
+			"selectMarket": "選擇市場",
+			"expectedReturn": "預期收益",
+			"estimatedRoi": "預估 ROI",
+			"estimatedPnl": "預估 P&L",
+			"cancel": "取消",
+			"confirm": "確認投資",
+			"invalidAmount": "請輸入有效金額",
+			"success": "投資下單成功！",
+			"error": "投資下單失敗。請重試。"
+		}
+	}
+}

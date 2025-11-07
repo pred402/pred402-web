@@ -1012,5 +1012,52 @@
 	"choosePlan": {
 		"title": "Wähle einen Plan",
 		"description": "Um weiterzumachen, wähle bitte einen Plan aus."
+	},
+	"home": {
+		"noEvent": {
+			"title": "Keine Veranstaltungen verfügbar",
+			"description": "Derzeit sind keine Vorhersageveranstaltungen verfügbar. Bitte schauen Sie später vorbei."
+		},
+		"event": {
+			"rules": "Event-Regeln",
+			"deadline": "Event-Deadline"
+		},
+		"probabilityDistribution": {
+			"title": "Markt-Wahrscheinlichkeitsverteilung"
+		},
+		"agentPredictions": {
+			"title": "KI-Agent-Vorhersagen"
+		},
+		"agent": {
+			"confidence": "Vertrauen",
+			"predictions": "Marktvorhersagen",
+			"reportSummary": "Berichtszusammenfassung",
+			"investmentStats": "Investitionsstatistiken",
+			"totalInvestors": "Gesamte Investoren",
+			"totalAmount": "Gesamtbetrag",
+			"viewReport": "Bericht anzeigen",
+			"invest": "Investieren"
+		},
+		"reportDialog": {
+			"title": "Agent-Bericht",
+			"headline": "Berichtskopf",
+			"summary": "Zusammenfassung",
+			"predictions": "Marktvorhersagen",
+			"rawOutput": "Rohanalyse"
+		},
+		"investDialog": {
+			"title": "Mit Agent investieren",
+			"followAgent": "Dieser Agentenempfehlung folgen",
+			"amount": "Investitionsbetrag",
+			"selectMarket": "Markt auswählen",
+			"expectedReturn": "Erwartete Rendite",
+			"estimatedRoi": "Geschätzte ROI",
+			"estimatedPnl": "Geschätzte P&L",
+			"cancel": "Abbrechen",
+			"confirm": "Investition bestätigen",
+			"invalidAmount": "Bitte geben Sie einen gültigen Betrag ein",
+			"success": "Investition erfolgreich platziert!",
+			"error": "Investition konnte nicht platziert werden. Bitte versuchen Sie es erneut."
+		}
 	}
 }
