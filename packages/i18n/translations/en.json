@@ -2,7 +2,38 @@
 	"admin": {
 		"menu": {
 			"organizations": "Organizations",
-			"users": "Users"
+			"users": "Users",
+			"events": "Events",
+			"markets": "Markets",
+			"agents": "Agents",
+			"reports": "Reports",
+			"reportProbabilities": "Probabilities",
+			"orders": "Orders",
+			"investments": "Investments"
+		},
+		"common": {
+			"actions": {
+				"create": "Create",
+				"update": "Update",
+				"delete": "Delete",
+				"edit": "Edit",
+				"cancelEdit": "Cancel edit"
+			},
+			"state": {
+				"loading": "Loading records...",
+				"empty": "No records yet."
+			},
+			"messages": {
+				"jsonError": "Invalid JSON, please check your input."
+			},
+			"labels": {
+				"unknown": "Not available"
+			},
+			"confirmDelete": {
+				"title": "Delete record",
+				"message": "This action permanently removes the record.",
+				"confirm": "Delete"
+			}
 		},
 		"organizations": {
 			"backToList": "Back to organizations",
@@ -67,7 +98,166 @@
 			"assignAdminRole": "Assign admin role",
 			"removeAdminRole": "Remove admin role"
 		},
-		"description": "Manage your application."
+		"description": "Manage your application.",
+		"events": {
+			"title": "Prediction events",
+			"tableTitle": "Configured events",
+			"searchPlaceholder": "Filter by slug or category...",
+			"fields": {
+				"slug": "Slug",
+				"category": "Category",
+				"status": "Status",
+				"image": "Image URL",
+				"plannedEndAt": "Planned end",
+				"activatedAt": "Activated at",
+				"resolvedAt": "Resolved at",
+				"title": "Title JSON",
+				"rules": "Rules JSON",
+				"updatedAt": "Updated at"
+			},
+			"notifications": {
+				"created": "Event created.",
+				"updated": "Event updated.",
+				"deleted": "Event deleted.",
+				"error": "Could not save event."
+			}
+		},
+		"markets": {
+			"title": "Markets",
+			"tableTitle": "Markets overview",
+			"searchPlaceholder": "Filter by slug or status...",
+			"fields": {
+				"eventId": "Event ID",
+				"slug": "Slug",
+				"status": "Status",
+				"activatedAt": "Activated at",
+				"resolvedAt": "Resolved at",
+				"cancelledAt": "Cancelled at",
+				"totalTradeVolume": "Total volume",
+				"image": "Image URL",
+				"title": "Title JSON"
+			},
+			"notifications": {
+				"created": "Market created.",
+				"updated": "Market updated.",
+				"deleted": "Market deleted.",
+				"error": "Could not save market."
+			}
+		},
+		"agents": {
+			"title": "Agents",
+			"tableTitle": "LLM agents",
+			"searchPlaceholder": "Filter by name, slug or model...",
+			"fields": {
+				"slug": "Slug",
+				"name": "Name",
+				"description": "Description",
+				"avatarUrl": "Avatar URL",
+				"modelVendor": "Model vendor",
+				"modelName": "Model name",
+				"isActive": "Status",
+				"metadata": "Metadata JSON"
+			},
+			"status": {
+				"active": "Active",
+				"paused": "Paused"
+			},
+			"metrics": "{reports} reports · {orders} orders · {investments} investments",
+			"notifications": {
+				"created": "Agent created.",
+				"updated": "Agent updated.",
+				"deleted": "Agent deleted.",
+				"error": "Could not save agent."
+			}
+		},
+		"agentReports": {
+			"title": "Agent reports",
+			"tableTitle": "LLM reports",
+			"searchPlaceholder": "Filter by headline or summary...",
+			"fields": {
+				"agentId": "Agent ID",
+				"eventId": "Event ID",
+				"reportDate": "Report date",
+				"headline": "Headline",
+				"summary": "Summary",
+				"rawOutput": "Raw output JSON",
+				"confidence": "Confidence (%)",
+				"markets": "Markets"
+			},
+			"notifications": {
+				"created": "Report created.",
+				"updated": "Report updated.",
+				"deleted": "Report deleted.",
+				"error": "Could not save report."
+			}
+		},
+		"probabilities": {
+			"title": "Market probabilities",
+			"tableTitle": "Report probabilities",
+			"searchPlaceholder": "Filter by report ID or market ID...",
+			"fields": {
+				"reportId": "Report ID",
+				"marketId": "Market ID",
+				"probability": "Probability (%)",
+				"rationale": "Rationale"
+			},
+			"notifications": {
+				"created": "Probability created.",
+				"updated": "Probability updated.",
+				"deleted": "Probability deleted.",
+				"error": "Could not save probability."
+			}
+		},
+		"agentOrders": {
+			"title": "Agent orders",
+			"tableTitle": "Administrator orders",
+			"searchPlaceholder": "Filter by status or hash...",
+			"fields": {
+				"agentId": "Agent ID",
+				"eventId": "Event ID",
+				"marketId": "Market ID",
+				"reportId": "Report ID",
+				"stakeAmount": "Stake amount",
+				"stakeCurrency": "Currency",
+				"expectedRoiPct": "Expected ROI (%)",
+				"status": "Status",
+				"notes": "Notes",
+				"txHash": "Transaction hash",
+				"executedAt": "Executed at",
+				"createdById": "Created by"
+			},
+			"notifications": {
+				"created": "Order created.",
+				"updated": "Order updated.",
+				"deleted": "Order deleted.",
+				"error": "Could not save order."
+			}
+		},
+		"userInvestments": {
+			"title": "User investments",
+			"tableTitle": "Investments",
+			"searchPlaceholder": "Filter by user, agent, status...",
+			"fields": {
+				"userId": "User ID",
+				"agentId": "Agent ID",
+				"eventId": "Event ID",
+				"marketId": "Market ID",
+				"agentOrderId": "Agent order ID",
+				"amount": "Amount",
+				"currency": "Currency",
+				"status": "Status",
+				"txHash": "Transaction hash",
+				"expectedRoiPct": "Expected ROI (%)",
+				"settledPnl": "Settled PnL",
+				"notes": "Notes"
+			},
+			"notifications": {
+				"created": "Investment created.",
+				"updated": "Investment updated.",
+				"deleted": "Investment deleted.",
+				"error": "Could not save investment."
+			}
+		}
 	},
 	"app": {
 		"menu": {

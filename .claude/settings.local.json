@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(tree -L 2 -I 'node_modules')",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(pnpm --filter web type-check)",
+      "Bash(pnpm --filter web build:*)"
     ],
     "deny": [],
     "ask": []

@@ -14,6 +14,7 @@ import { aiRouter } from "./routes/ai";
 import { authRouter } from "./routes/auth";
 import { contactRouter } from "./routes/contact/router";
 import { healthRouter } from "./routes/health";
+import { homeRouter } from "./routes/home";
 import { newsletterRouter } from "./routes/newsletter";
 import { organizationsRouter } from "./routes/organizations/router";
 import { paymentsRouter } from "./routes/payments/router";
@@ -35,6 +36,7 @@ const appRouter = app
 	.route("/", newsletterRouter)
 	.route("/", organizationsRouter)
 	.route("/", adminRouter)
+	.route("/", homeRouter)
 	.route("/", healthRouter);
 
 app.get(

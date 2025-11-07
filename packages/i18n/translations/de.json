@@ -2,7 +2,38 @@
 	"admin": {
 		"menu": {
 			"organizations": "Organisationen",
-			"users": "Benutzer"
+			"users": "Benutzer",
+			"events": "Events",
+			"markets": "Märkte",
+			"agents": "Agents",
+			"reports": "Reports",
+			"reportProbabilities": "Wahrscheinlichkeiten",
+			"orders": "Orders",
+			"investments": "Investments"
+		},
+		"common": {
+			"actions": {
+				"create": "Erstellen",
+				"update": "Aktualisieren",
+				"delete": "Löschen",
+				"edit": "Bearbeiten",
+				"cancelEdit": "Abbrechen"
+			},
+			"state": {
+				"loading": "Lade Daten...",
+				"empty": "Keine Einträge."
+			},
+			"messages": {
+				"jsonError": "JSON ist ungültig. Bitte prüfen."
+			},
+			"labels": {
+				"unknown": "Unbekannt"
+			},
+			"confirmDelete": {
+				"title": "Eintrag löschen",
+				"message": "Diese Aktion kann nicht rückgängig gemacht werden.",
+				"confirm": "Löschen"
+			}
 		},
 		"organizations": {
 			"backToList": "Zurück zu Organisationen",
@@ -66,6 +97,165 @@
 			"title": "Benutzer verwalten",
 			"assignAdminRole": "Administration-Rolle zuweisen",
 			"removeAdminRole": "Adminstrator-Rolle entfernen"
+		},
+		"events": {
+			"title": "Vorhersage-Events",
+			"tableTitle": "Events",
+			"searchPlaceholder": "Nach Slug oder Kategorie filtern...",
+			"fields": {
+				"slug": "Slug",
+				"category": "Kategorie",
+				"status": "Status",
+				"image": "Bild-URL",
+				"plannedEndAt": "Geplantes Ende",
+				"activatedAt": "Aktiviert am",
+				"resolvedAt": "Beendet am",
+				"title": "Titel JSON",
+				"rules": "Regeln JSON",
+				"updatedAt": "Aktualisiert am"
+			},
+			"notifications": {
+				"created": "Event erstellt.",
+				"updated": "Event aktualisiert.",
+				"deleted": "Event gelöscht.",
+				"error": "Event konnte nicht gespeichert werden."
+			}
+		},
+		"markets": {
+			"title": "Märkte",
+			"tableTitle": "Märkte",
+			"searchPlaceholder": "Nach Slug oder Status filtern...",
+			"fields": {
+				"eventId": "Event-ID",
+				"slug": "Slug",
+				"status": "Status",
+				"activatedAt": "Aktiviert am",
+				"resolvedAt": "Beendet am",
+				"cancelledAt": "Storniert am",
+				"totalTradeVolume": "Volumen",
+				"image": "Bild-URL",
+				"title": "Titel JSON"
+			},
+			"notifications": {
+				"created": "Markt erstellt.",
+				"updated": "Markt aktualisiert.",
+				"deleted": "Markt gelöscht.",
+				"error": "Markt konnte nicht gespeichert werden."
+			}
+		},
+		"agents": {
+			"title": "Agents",
+			"tableTitle": "LLM Agents",
+			"searchPlaceholder": "Nach Name oder Modell filtern...",
+			"fields": {
+				"slug": "Slug",
+				"name": "Name",
+				"description": "Beschreibung",
+				"avatarUrl": "Avatar-URL",
+				"modelVendor": "Modellanbieter",
+				"modelName": "Modellname",
+				"isActive": "Status",
+				"metadata": "Metadaten JSON"
+			},
+			"status": {
+				"active": "Aktiv",
+				"paused": "Pausiert"
+			},
+			"metrics": "{reports} Reports · {orders} Orders · {investments} Investments",
+			"notifications": {
+				"created": "Agent erstellt.",
+				"updated": "Agent aktualisiert.",
+				"deleted": "Agent gelöscht.",
+				"error": "Agent konnte nicht gespeichert werden."
+			}
+		},
+		"agentReports": {
+			"title": "Agent-Reports",
+			"tableTitle": "Reports",
+			"searchPlaceholder": "Nach Überschrift oder Zusammenfassung filtern...",
+			"fields": {
+				"agentId": "Agent-ID",
+				"eventId": "Event-ID",
+				"reportDate": "Report-Datum",
+				"headline": "Überschrift",
+				"summary": "Zusammenfassung",
+				"rawOutput": "Raw Output JSON",
+				"confidence": "Confidence (%)",
+				"markets": "Märkte"
+			},
+			"notifications": {
+				"created": "Report erstellt.",
+				"updated": "Report aktualisiert.",
+				"deleted": "Report gelöscht.",
+				"error": "Report konnte nicht gespeichert werden."
+			}
+		},
+		"probabilities": {
+			"title": "Wahrscheinlichkeiten",
+			"tableTitle": "Wahrscheinlichkeiten",
+			"searchPlaceholder": "Nach Report- oder Markt-ID filtern...",
+			"fields": {
+				"reportId": "Report-ID",
+				"marketId": "Markt-ID",
+				"probability": "Wahrscheinlichkeit",
+				"rationale": "Begründung"
+			},
+			"notifications": {
+				"created": "Eintrag erstellt.",
+				"updated": "Eintrag aktualisiert.",
+				"deleted": "Eintrag gelöscht.",
+				"error": "Eintrag konnte nicht gespeichert werden."
+			}
+		},
+		"agentOrders": {
+			"title": "Agent Orders",
+			"tableTitle": "Orders",
+			"searchPlaceholder": "Nach Status oder Hash filtern...",
+			"fields": {
+				"agentId": "Agent-ID",
+				"eventId": "Event-ID",
+				"marketId": "Markt-ID",
+				"reportId": "Report-ID",
+				"stakeAmount": "Stake",
+				"stakeCurrency": "Währung",
+				"expectedRoiPct": "Erwartete Rendite",
+				"status": "Status",
+				"notes": "Notizen",
+				"txHash": "Transaktion",
+				"executedAt": "Ausgeführt am",
+				"createdById": "Erstellt von"
+			},
+			"notifications": {
+				"created": "Order erstellt.",
+				"updated": "Order aktualisiert.",
+				"deleted": "Order gelöscht.",
+				"error": "Order konnte nicht gespeichert werden."
+			}
+		},
+		"userInvestments": {
+			"title": "Investments",
+			"tableTitle": "Investments",
+			"searchPlaceholder": "Nach Benutzer oder Status filtern...",
+			"fields": {
+				"userId": "Benutzer-ID",
+				"agentId": "Agent-ID",
+				"eventId": "Event-ID",
+				"marketId": "Markt-ID",
+				"agentOrderId": "Order-ID",
+				"amount": "Betrag",
+				"currency": "Währung",
+				"status": "Status",
+				"txHash": "Transaktion",
+				"expectedRoiPct": "Erwartete Rendite",
+				"settledPnl": "Ergebnis",
+				"notes": "Notizen"
+			},
+			"notifications": {
+				"created": "Investment erstellt.",
+				"updated": "Investment aktualisiert.",
+				"deleted": "Investment gelöscht.",
+				"error": "Investment konnte nicht gespeichert werden."
+			}
 		},
 		"description": "Verwalte deine Anwendung."
 	},
