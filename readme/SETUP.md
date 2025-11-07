@@ -65,7 +65,7 @@ Edit `.env.local` with your specific configuration:
 DATABASE_URL="postgresql://postgres:password@localhost:5433/supastarter"
 
 # Application URLs
-NEXT_PUBLIC_SITE_URL="http://localhost:3001"
+NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 
 # Authentication Secrets
 BETTER_AUTH_SECRET="a_very_secret_string_for_better_auth"
@@ -153,7 +153,7 @@ Follow the interactive prompts:
 pnpm dev
 
 # Test signup endpoint
-curl -X POST http://localhost:3001/api/auth/sign-up/email \
+curl -X POST http://localhost:3000/api/auth/sign-up/email \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","password":"testpassword123","name":"Test User","callbackURL":"/app"}'
 ```
@@ -177,7 +177,7 @@ SMTP_FROM_NAME="MNR Associates International"
 
 ```bash
 # Test email functionality
-curl -X POST http://localhost:3001/api/auth/sign-up/email \
+curl -X POST http://localhost:3000/api/auth/sign-up/email \
   -H "Content-Type: application/json" \
   -d '{"email":"your-email@example.com","password":"testpassword123","name":"Test User","callbackURL":"/app"}'
 ```
@@ -194,7 +194,7 @@ pnpm dev
 ```
 
 The application will be available at:
-- **Frontend**: `http://localhost:3001`
+- **Frontend**: `http://localhost:3000`
 - **Database Studio**: `pnpm --filter database studio`
 
 ### Production Build
@@ -211,7 +211,7 @@ pnpm start
 
 ### Test Authentication Flow
 
-1. Visit `http://localhost:3001/auth/signup`
+1. Visit `http://localhost:3000/auth/signup`
 2. Create a new account
 3. Check email for verification
 4. Login with credentials
@@ -228,7 +228,7 @@ psql "postgresql://postgres:password@localhost:5433/supastarter" -c "SELECT COUN
 
 ```bash
 # Send test email via API
-curl -X POST http://localhost:3001/api/auth/sign-up/email \
+curl -X POST http://localhost:3000/api/auth/sign-up/email \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","password":"testpass123","name":"Test","callbackURL":"/app"}'
 ```

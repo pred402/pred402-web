@@ -84,9 +84,6 @@ export const auth = betterAuth({
   trustedOrigins: [
     appUrl,
     "http://localhost:3000",
-    "http://localhost:3001",
-    "http://localhost:3002",
-    "http://localhost:3003",
   ],
   appName: config.appName,
   database: drizzleAdapter(db, {
@@ -101,7 +98,7 @@ export const auth = betterAuth({
 ```env
 # Required
 BETTER_AUTH_SECRET="your-secret-key"
-NEXT_PUBLIC_SITE_URL="http://localhost:3001"
+NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 
 # OAuth (Optional)
 GOOGLE_CLIENT_ID="your-google-client-id"
@@ -378,21 +375,21 @@ All endpoints are available under `/api/auth/`:
 
 1. **Signup Flow**:
    ```bash
-   curl -X POST http://localhost:3001/api/auth/sign-up/email \
+   curl -X POST http://localhost:3000/api/auth/sign-up/email \
      -H "Content-Type: application/json" \
      -d '{"email":"test@example.com","password":"password123","name":"Test User","callbackURL":"/app"}'
    ```
 
 2. **Login Flow**:
    ```bash
-   curl -X POST http://localhost:3001/api/auth/sign-in/email \
+   curl -X POST http://localhost:3000/api/auth/sign-in/email \
      -H "Content-Type: application/json" \
      -d '{"email":"test@example.com","password":"password123","callbackURL":"/app"}'
    ```
 
 3. **Session Check**:
    ```bash
-   curl http://localhost:3001/api/auth/session
+   curl http://localhost:3000/api/auth/session
    ```
 
 ### Integration Testing
@@ -481,7 +478,7 @@ Monitor for:
 // Add your domain to trustedOrigins
 trustedOrigins: [
   "https://yourdomain.com",
-  "http://localhost:3001", // for development
+  "http://localhost:3000", // for development
 ],
 ```
 

@@ -431,11 +431,11 @@ export PATH="$HOME/.local/share/pnpm:$PATH"
 
 **Error Message:**
 ```
-ERROR [Better Auth]: Invalid origin: http://localhost:3001
+ERROR [Better Auth]: Invalid origin: http://localhost:3000
 ```
 
 **What Went Wrong:**
-- Better Auth rejected requests from port 3001
+- Better Auth rejected requests from port 3000
 - trustedOrigins only included localhost:3000
 
 **Root Cause:**
@@ -448,9 +448,6 @@ ERROR [Better Auth]: Invalid origin: http://localhost:3001
 trustedOrigins: [
   appUrl,
   "http://localhost:3000",
-  "http://localhost:3001",
-  "http://localhost:3002",
-  "http://localhost:3003",
 ],
 ```
 
@@ -533,7 +530,7 @@ pnpm add -w pg dotenv
 pkill -f "next dev" && pnpm dev
 
 # Test authentication
-curl http://localhost:3001/api/auth/session
+curl http://localhost:3000/api/auth/session
 ```
 
 ### Email Issues:

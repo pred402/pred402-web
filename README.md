@@ -1,4 +1,4 @@
-# supastarter - Next.js SaaS Starter Kit
+# Next.js SaaS Starter Kit
 
 A production-ready SaaS starter kit built with Next.js 15, TypeScript, Drizzle ORM, Better Auth, and modern development tools.
 
@@ -22,16 +22,16 @@ pnpm --filter database push
 pnpm dev
 ```
 
-Visit `http://localhost:3001` to see your application.
+Visit `http://localhost:3000` to see your application.
 
 ## 📚 Documentation
 
-- **[Setup Guide](./SETUP.md)** - Complete installation and configuration
-- **[Authentication](./AUTHENTICATION.md)** - User management, sessions, and permissions
-- **[Database](./DATABASE.md)** - PostgreSQL setup and schema management
-- **[Email](./EMAIL.md)** - SMTP configuration and email templates
-- **[Troubleshooting](./TROUBLESHOOTING.md)** - Common errors and solutions
-- **[Status](./STATUS.md)** - Current project status and features
+- **[Setup Guide](./readme/SETUP.md)** - Complete installation and configuration
+- **[Authentication](./readme/AUTHENTICATION.md)** - User management, sessions, and permissions
+- **[Database](./readme/DATABASE.md)** - PostgreSQL setup and schema management
+- **[Email](./readme/EMAIL.md)** - SMTP configuration and email templates
+- **[Troubleshooting](./readme/TROUBLESHOOTING.md)** - Common errors and solutions
+- **[Status](./readme/STATUS.md)** - Current project status and features
 
 ## 🛠️ Tech Stack
 
@@ -125,11 +125,11 @@ Key configuration in `.env.local`:
 
 ```env
 # Database
-DATABASE_URL="postgresql://postgres:password@localhost:5433/supastarter"
+DATABASE_URL="postgresql://postgres:password@localhost:5433/x402_dev"
 
 # Authentication
 BETTER_AUTH_SECRET="your-secret-key"
-NEXT_PUBLIC_SITE_URL="http://localhost:3001"
+NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 
 # Email (SMTP)
 MAIL_HOST="your-smtp-host"

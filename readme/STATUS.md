@@ -57,7 +57,7 @@ List of relations
 **Test Results:**
 ```bash
 # Successful signup test
-curl -X POST http://localhost:3001/api/auth/sign-up/email \
+curl -X POST http://localhost:3000/api/auth/sign-up/email \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","password":"testpassword123","name":"Test User","callbackURL":"/app"}'
 
@@ -96,7 +96,7 @@ SMTP_FROM_NAME="MNR Associates International"
 ### 🏗️ Development Environment
 **Status: ✅ FULLY OPERATIONAL**
 
-- **Next.js 15**: Running with Turbopack on port 3001
+- **Next.js 15**: Running with Turbopack on port 3000
 - **TypeScript**: Full type safety implemented
 - **Tailwind CSS**: Styling system active
 - **Biome**: Linting and formatting configured
@@ -192,7 +192,7 @@ DATABASE_URL="postgresql://postgres:password@localhost:5433/supastarter"
 **Authentication:**
 ```env
 BETTER_AUTH_SECRET="a_very_secret_string_for_better_auth"
-NEXT_PUBLIC_SITE_URL="http://localhost:3001"
+NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 ```
 
 **OAuth (Optional):**

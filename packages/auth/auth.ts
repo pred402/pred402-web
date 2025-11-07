@@ -12,7 +12,7 @@ import { sendEmail } from "@repo/mail";
 import { cancelSubscription } from "@repo/payments";
 import { getBaseUrl } from "@repo/utils";
 import { betterAuth } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { prismaAdapter } from "better-auth/adapters/prisma";
 import {
 	admin,
 	createAuthMiddleware,
@@ -47,7 +47,7 @@ export const auth = betterAuth({
 		"http://localhost:3003",
 	],
 	appName: config.appName,
-	database: drizzleAdapter(db, {
+	database: prismaAdapter(db, {
 		provider: "postgresql",
 	}),
 	advanced: {

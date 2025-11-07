@@ -178,7 +178,7 @@ openssl s_client -connect www.mnassociatesint.com:465 -crlf
 
 ```bash
 # Create a test user via API
-curl -X POST http://localhost:3001/api/auth/sign-up/email \
+curl -X POST http://localhost:3000/api/auth/sign-up/email \
   -H "Content-Type: application/json" \
   -d '{
     "email": "your-test-email@example.com",
