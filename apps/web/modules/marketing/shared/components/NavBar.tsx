@@ -113,23 +113,7 @@ export function NavBar() {
 						</LocaleLink>
 					</div>
 
-					<div className="hidden flex-1 items-center justify-center lg:flex">
-						{menuItems.map((menuItem) => (
-							<LocaleLink
-								key={menuItem.href}
-								href={menuItem.href}
-								className={cn(
-									"block px-3 py-2 font-medium text-foreground/80 text-sm",
-									isMenuItemActive(menuItem.href)
-										? "font-bold text-foreground"
-										: "",
-								)}
-								prefetch
-							>
-								{menuItem.label}
-							</LocaleLink>
-						))}
-					</div>
+					{/* 菜单已隐藏 */}
 
 					<div className="flex flex-1 items-center justify-end gap-3">
 						<ColorModeToggle />
@@ -155,27 +139,19 @@ export function NavBar() {
 							</SheetTrigger>
 							<SheetContent className="w-[280px]" side="right">
 								<SheetTitle />
-								<div className="flex flex-col items-start justify-center">
-									{menuItems.map((menuItem) => (
-										<LocaleLink
-											key={menuItem.href}
-											href={menuItem.href}
-											className={cn(
-												"block px-3 py-2 font-medium text-base text-foreground/80",
-												isMenuItemActive(menuItem.href)
-													? "font-bold text-foreground"
-													: "",
-											)}
-											prefetch
-										>
-											{menuItem.label}
-										</LocaleLink>
-									))}
-
+								<div className="flex flex-col items-start justify-center gap-2">
+									{/* 菜单已隐藏，只显示操作按钮 */}
+									<NextLink
+										href="/auth/wallet"
+										className="block w-full px-3 py-2 text-base font-medium text-center bg-primary text-primary-foreground rounded-md"
+										prefetch
+									>
+										{t("common.menu.walletLogin")}
+									</NextLink>
 									<NextLink
 										key={user ? "start" : "login"}
 										href={user ? "/app" : "/auth/login"}
-										className="block px-3 py-2 text-base"
+										className="block w-full px-3 py-2 text-base text-center"
 										prefetch={!user}
 									>
 										{user
@@ -186,30 +162,46 @@ export function NavBar() {
 							</SheetContent>
 						</Sheet>
 
-						{config.ui.saas.enabled &&
-							(user ? (
+						{config.ui.saas.enabled && (
+							<>
+								{/* 钱包登录按钮 - 高亮显示 */}
 								<Button
-									key="dashboard"
+									key="wallet"
 									className="hidden lg:flex"
 									asChild
-									variant="secondary"
+									variant="primary"
 								>
-									<NextLink href="/app">
-										{t("common.menu.dashboard")}
+									<NextLink href="/auth/wallet" prefetch>
+										{t("common.menu.walletLogin")}
 									</NextLink>
 								</Button>
-							) : (
-								<Button
-									key="login"
-									className="hidden lg:flex"
-									asChild
-									variant="secondary"
-								>
-									<NextLink href="/auth/login" prefetch>
-										{t("common.menu.login")}
-									</NextLink>
-								</Button>
-							))}
+
+								{/* Dashboard/Login 按钮 */}
+								{user ? (
+									<Button
+										key="dashboard"
+										className="hidden lg:flex"
+										asChild
+										variant="secondary"
+									>
+										<NextLink href="/app">
+											{t("common.menu.dashboard")}
+										</NextLink>
+									</Button>
+								) : (
+									<Button
+										key="login"
+										className="hidden lg:flex"
+										asChild
+										variant="secondary"
+									>
+										<NextLink href="/auth/login" prefetch>
+											{t("common.menu.login")}
+										</NextLink>
+									</Button>
+								)}
+							</>
+						)}
 					</div>
 				</div>
 			</div>

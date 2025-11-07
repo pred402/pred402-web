@@ -1,9 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardHeader } from "@ui/components/card";
-import { Badge } from "@ui/components/badge";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 
 type Event = {
 	id: string;
@@ -26,55 +23,44 @@ export function EventHeader({ event }: EventHeaderProps) {
 	const title = event.title.zh || event.title.en || "未知事件";
 	const rules = event.rules.zh || event.rules.en || "";
 
+	// 计算剩余时间
+	const getTimeRemaining = () => {
+		if (!event.plannedEndAt) return null;
+		const now = new Date();
+		const end = new Date(event.plannedEndAt);
+		const diff = end.getTime() - now.getTime();
+
+		if (diff <= 0) return "已结束";
+
+		const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+		const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+		return `${days}天${hours.toString().padStart(2, '0')}小时`;
+	};
+
 	return (
-		<Card>
-			<CardHeader>
-				<div className="flex items-start justify-between">
-					<div className="flex-1">
-						<div className="flex items-center gap-2 mb-2">
-							<Badge>{event.category}</Badge>
-							<Badge
-								status={event.status === "ACTIVE" ? "success" : "info"}
-							>
-								{event.status}
-							</Badge>
-						</div>
-						<h1 className="text-3xl font-bold mb-4">{title}</h1>
-						{event.image && (
-							<div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
-								<Image
-									src={event.image}
-									alt={title}
-									fill
-									className="object-cover"
-								/>
-							</div>
-						)}
-					</div>
+		<div className="space-y-3">
+			{/* 标题 */}
+			<h1 className="text-4xl font-bold">{title}</h1>
+
+			{/* 描述文本 */}
+			<p className="text-muted-foreground text-base leading-relaxed">
+				{rules}
+			</p>
+
+			{/* 研判判定和耗时信息 */}
+			<div className="flex items-center gap-4 text-sm">
+				<div className="flex items-center gap-2">
+					<span className="text-muted-foreground">研判判定：</span>
+					<span className="font-medium">以研判为准</span>
 				</div>
-			</CardHeader>
-			<CardContent>
-				<div className="space-y-4">
-					<div>
-						<h3 className="font-semibold mb-2">
-							{t("home.event.rules")}
-						</h3>
-						<p className="text-muted-foreground whitespace-pre-wrap">
-							{rules}
-						</p>
+				{event.plannedEndAt && (
+					<div className="flex items-center gap-2">
+						<span className="text-muted-foreground">耗时间隔：</span>
+						<span className="font-medium">{getTimeRemaining()}</span>
 					</div>
-					{event.plannedEndAt && (
-						<div>
-							<h3 className="font-semibold mb-2">
-								{t("home.event.deadline")}
-							</h3>
-							<p className="text-muted-foreground">
-								{new Date(event.plannedEndAt).toLocaleString()}
-							</p>
-						</div>
-					)}
-				</div>
-			</CardContent>
-		</Card>
+				)}
+			</div>
+		</div>
 	);
 }

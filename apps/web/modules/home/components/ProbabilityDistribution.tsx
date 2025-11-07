@@ -69,29 +69,43 @@ export function ProbabilityDistribution({
 		})
 		.sort((a, b) => b.avgProbability - a.avgProbability);
 
+	// 定义颜色方案
+	const colors = [
+		"bg-blue-500",
+		"bg-orange-500",
+		"bg-green-500",
+		"bg-pink-500",
+		"bg-purple-500",
+	];
+
 	return (
-		<Card>
+		<Card className="sticky top-6">
 			<CardHeader>
-				<CardTitle>{t("home.probabilityDistribution.title")}</CardTitle>
+				<CardTitle>下注分布</CardTitle>
 			</CardHeader>
 			<CardContent>
-				<div className="space-y-3">
-					{sortedMarkets.map(({ id, market, avgProbability }) => {
+				<div className="space-y-4">
+					{sortedMarkets.map(({ id, market, avgProbability }, index) => {
 						const marketTitle =
 							market.title.zh || market.title.en || "未知市场";
+						const color = colors[index % colors.length];
+
 						return (
-							<div key={id} className="space-y-1">
-								<div className="flex items-center justify-between text-sm">
-									<span className="font-medium">
-										{marketTitle}
-									</span>
-									<span className="text-muted-foreground">
-										{avgProbability.toFixed(1)}%
+							<div key={id} className="space-y-2">
+								<div className="flex items-center justify-between">
+									<div className="flex items-center gap-2">
+										<div className={`w-3 h-3 rounded-full ${color}`} />
+										<span className="font-medium text-sm">
+											{marketTitle}
+										</span>
+									</div>
+									<span className="font-semibold text-sm">
+										{avgProbability.toFixed(0)}%
 									</span>
 								</div>
-								<div className="h-2 bg-secondary rounded-full overflow-hidden">
+								<div className="relative h-1.5 bg-secondary rounded-full overflow-hidden">
 									<div
-										className="h-full bg-primary transition-all"
+										className={`absolute left-0 top-0 h-full ${color} transition-all duration-300`}
 										style={{
 											width: `${avgProbability}%`,
 										}}

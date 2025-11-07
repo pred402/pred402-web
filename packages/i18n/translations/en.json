@@ -397,7 +397,8 @@
 			"docs": "Docs",
 			"faq": "FAQ",
 			"login": "Login",
-			"pricing": "Pricing"
+			"pricing": "Pricing",
+			"walletLogin": "Connect Wallet"
 		},
 		"tableOfContents": {
 			"title": "On this page"

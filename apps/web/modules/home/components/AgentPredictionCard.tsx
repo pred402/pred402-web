@@ -74,121 +74,91 @@ export function AgentPredictionCard({ report, event }: AgentPredictionCardProps)
 		.toUpperCase()
 		.slice(0, 2);
 
+	// 计算收益率（模拟数据）
+	const returnRate = confidence ? ((confidence - 50) / 10).toFixed(1) : "0.0";
+	const isPositive = Number(returnRate) > 0;
+
+	// 获取顶部预测市场
+	const topMarket = sortedMarkets[0];
+	const topMarketTitle = topMarket
+		? topMarket.market.title.zh || topMarket.market.title.en || "未知"
+		: "未知";
+
 	return (
 		<>
-			<Card className="hover:shadow-lg transition-shadow">
-				<CardHeader>
-					<div className="flex items-start gap-4">
-						<Avatar className="size-16">
+			<Card className="hover:shadow-lg transition-shadow bg-card/50 backdrop-blur">
+				<CardHeader className="pb-3">
+					<div className="flex items-start gap-3">
+						<Avatar className="size-12">
 							<AvatarImage
 								src={agent.avatarUrl || undefined}
 								alt={agent.name}
 							/>
-							<AvatarFallback>{avatarFallback}</AvatarFallback>
+							<AvatarFallback className="text-sm">{avatarFallback}</AvatarFallback>
 						</Avatar>
-						<div className="flex-1">
-							<h3 className="text-xl font-bold mb-1">{agent.name}</h3>
+						<div className="flex-1 min-w-0">
+							<div className="flex items-center gap-2 mb-1">
+								<h3 className="text-lg font-bold truncate">{agent.name}</h3>
+								<Badge variant="secondary" className="text-xs shrink-0">
+									{topMarketTitle}
+								</Badge>
+							</div>
 							{agent.description && (
-								<p className="text-sm text-muted-foreground">
+								<p className="text-xs text-muted-foreground line-clamp-1">
 									{agent.description}
 								</p>
-							)}
-							{confidence && (
-								<div className="mt-2">
-									<Badge>
-										{t("home.agent.confidence")}: {confidence}%
-									</Badge>
-								</div>
 							)}
 						</div>
 					</div>
 				</CardHeader>
-				<CardContent className="space-y-4">
-					{/* 预测市场列表 */}
-					<div className="space-y-2">
-						<h4 className="font-semibold text-sm">
-							{t("home.agent.predictions")}
-						</h4>
-						<div className="space-y-2">
-							{sortedMarkets.map((marketProb) => {
-								const marketTitle =
-									marketProb.market.title.zh ||
-									marketProb.market.title.en ||
-									"未知市场";
-								return (
-									<div
-										key={marketProb.id}
-										className="flex items-center justify-between text-sm"
-									>
-										<span className="text-muted-foreground">
-											{marketTitle}
-										</span>
-										<Badge>
-											{Number(marketProb.probability).toFixed(1)}%
-										</Badge>
-									</div>
-								);
-							})}
-						</div>
-					</div>
-
-					{/* 研报摘要 */}
-					{(headline || summary) && (
-						<div className="space-y-2">
-							<h4 className="font-semibold text-sm">
-								{t("home.agent.reportSummary")}
-							</h4>
-							{headline && (
-								<p className="text-sm font-medium">{headline}</p>
-							)}
-							{summary && (
-								<p className="text-sm text-muted-foreground line-clamp-3">
-									{summary}
-								</p>
-							)}
-						</div>
+				<CardContent className="space-y-3">
+					{/* 观点摘要 */}
+					{summary && (
+						<p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+							{summary}
+						</p>
 					)}
 
-					{/* 投资统计 */}
-					<div className="space-y-2">
-						<h4 className="font-semibold text-sm">
-							{t("home.agent.investmentStats")}
-						</h4>
-						<div className="flex items-center gap-4 text-sm">
-							<div>
-								<span className="text-muted-foreground">
-									{t("home.agent.totalInvestors")}:{" "}
-								</span>
-								<span className="font-medium">
-									{stats.totalInvestors}
-								</span>
-							</div>
-							<div>
-								<span className="text-muted-foreground">
-									{t("home.agent.totalAmount")}:{" "}
-								</span>
-								<span className="font-medium">
-									{Number(stats.totalInvestmentAmount).toFixed(2)}{" "}
-									USDC
-								</span>
-							</div>
+					{/* 下方信息区域 */}
+					<div className="flex items-center justify-between pt-2 border-t">
+						{/* 左侧：标签 */}
+						<div className="flex items-center gap-2">
+							<span className="text-xs text-muted-foreground">下注：</span>
+							<Badge variant="outline" className="text-xs">
+								{topMarketTitle}
+							</Badge>
+						</div>
+
+						{/* 右侧：收益率 */}
+						<div className="flex items-center gap-1">
+							<span className="text-xs text-muted-foreground">收益率：</span>
+							<span
+								className={`text-sm font-semibold ${
+									isPositive ? "text-green-500" : "text-red-500"
+								}`}
+							>
+								{isPositive ? "+" : ""}
+								{returnRate}%
+							</span>
 						</div>
 					</div>
 
 					{/* 操作按钮 */}
-					<div className="flex gap-2 pt-2">
+					<div className="flex gap-2 pt-1">
 						<Button
 							variant="outline"
+							size="sm"
 							className="flex-1"
 							onClick={() => setShowReportDialog(true)}
 						>
-							{t("home.agent.viewReport")}
+							研报
 						</Button>
 						<Button
+							size="sm"
 							className="flex-1"
 							onClick={() => setShowInvestDialog(true)}
 						>
-							{t("home.agent.invest")}
+							投资
 						</Button>
 					</div>
 				</CardContent>

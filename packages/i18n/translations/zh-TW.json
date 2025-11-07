@@ -243,6 +243,30 @@
 			}
 		}
 	},
+	"common": {
+		"confirmation": {
+			"cancel": "取消",
+			"confirm": "確認"
+		},
+		"menu": {
+			"blog": "博客",
+			"changelog": "更新日誌",
+			"contact": "聯繫我們",
+			"dashboard": "控制台",
+			"docs": "文檔",
+			"faq": "常見問題",
+			"login": "登錄",
+			"pricing": "定價",
+			"walletLogin": "連接錢包"
+		},
+		"tableOfContents": {
+			"title": "本頁內容"
+		},
+		"actions": {
+			"continue": "繼續",
+			"verify": "驗證"
+		}
+	},
 	"auth": {
 		"signIn": "登錄",
 		"signUp": "註冊",
