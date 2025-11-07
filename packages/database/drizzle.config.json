@@ -1,0 +1,7 @@
+{
+  "dialect": "postgresql",
+  "schema": "./drizzle/schema/postgres.ts",
+  "dbCredentials": {
+    "url": "postgresql://postgres:password@localhost:5433/supastarter"
+  }
+}
