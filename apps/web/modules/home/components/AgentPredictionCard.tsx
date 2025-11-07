@@ -99,7 +99,7 @@ export function AgentPredictionCard({ report, event }: AgentPredictionCardProps)
 						<div className="flex-1 min-w-0">
 							<div className="flex items-center gap-2 mb-1">
 								<h3 className="text-lg font-bold truncate">{agent.name}</h3>
-								<Badge variant="secondary" className="text-xs shrink-0">
+								<Badge status="info" className="text-xs shrink-0">
 									{topMarketTitle}
 								</Badge>
 							</div>
@@ -124,7 +124,7 @@ export function AgentPredictionCard({ report, event }: AgentPredictionCardProps)
 						{/* 左侧：标签 */}
 						<div className="flex items-center gap-2">
 							<span className="text-xs text-muted-foreground">下注：</span>
-							<Badge variant="outline" className="text-xs">
+							<Badge status="info" className="text-xs">
 								{topMarketTitle}
 							</Badge>
 						</div>

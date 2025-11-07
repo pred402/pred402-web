@@ -82,7 +82,7 @@ export function MarketCategories({ event, agentReports }: MarketCategoriesProps)
 									{data.agents.map((agentName, idx) => (
 										<Badge
 											key={idx}
-											variant="secondary"
+											status="info"
 											className="text-xs px-2 py-0.5"
 										>
 											{agentName}

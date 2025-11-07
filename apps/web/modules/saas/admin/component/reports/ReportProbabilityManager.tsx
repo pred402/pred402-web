@@ -293,7 +293,7 @@ export function ReportProbabilityManager() {
 												</Button>
 												<Button
 													type="button"
-													variant="destructive"
+													variant="error"
 													size="sm"
 													onClick={() =>
 														handleDelete(record.id)

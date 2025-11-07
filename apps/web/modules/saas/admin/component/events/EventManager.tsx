@@ -431,7 +431,7 @@ export function EventManager() {
 												</Button>
 												<Button
 													type="button"
-													variant="destructive"
+													variant="error"
 													size="sm"
 													onClick={() =>
 														handleDelete(item.id)

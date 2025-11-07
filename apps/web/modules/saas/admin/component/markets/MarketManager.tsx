@@ -418,7 +418,7 @@ export function MarketManager() {
 												</Button>
 												<Button
 													type="button"
-													variant="destructive"
+													variant="error"
 													size="sm"
 													onClick={() =>
 														handleDelete(market.id)

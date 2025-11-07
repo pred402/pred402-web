@@ -473,7 +473,7 @@ export function UserInvestmentManager() {
 												</Button>
 												<Button
 													type="button"
-													variant="destructive"
+													variant="error"
 													size="sm"
 													onClick={() =>
 														handleDelete(inv.id)

@@ -374,7 +374,7 @@ export function AgentReportManager() {
 												</Button>
 												<Button
 													type="button"
-													variant="destructive"
+													variant="error"
 													size="sm"
 													onClick={() =>
 														handleDelete(report.id)

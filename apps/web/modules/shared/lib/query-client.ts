@@ -21,7 +21,7 @@ export function createQueryClient() {
 
 export function createQueryKeyWithParams(
 	key: string | string[],
-	params: Record<string, string | number>,
+	params: Record<string, string | number | boolean | undefined>,
 ) {
 	return [
 		...(Array.isArray(key) ? key : [key]),
