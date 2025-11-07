@@ -1,4 +1,4 @@
-# Next.js SaaS Starter Kit
+# Pred402
 
 This is a project that relies entirely on the ability of large models to conduct research and analysis on the actual probability of an event in the prediction market. It supports multiple different large models to analyze the same event and accepts follow-up investment from users.
 
