@@ -20,7 +20,7 @@ generator json {
 }
 
 model User {
-  id                 String       @id @default(cuid())
+  id                 String           @id @default(cuid())
   name               String
   email              String
   emailVerified      Boolean
@@ -32,7 +32,7 @@ model User {
   banned             Boolean?
   banReason          String?
   banExpires         DateTime?
-  onboardingComplete Boolean      @default(false)
+  onboardingComplete Boolean          @default(false)
   paymentsCustomerId String?
   locale             String?
   twoFactorEnabled   Boolean?
@@ -44,6 +44,9 @@ model User {
   members            Member[]
   twofactors         TwoFactor[]
   aiChats            AiChat[]
+  agentOrders        AgentOrder[]
+  userInvestments    UserInvestment[]
+  walletAddresses    WalletAddress[]
 
   @@unique([email])
   @@unique([username])
@@ -89,6 +92,21 @@ model Account {
   updatedAt             DateTime
 
   @@map("account")
+}
+
+// better-auth 用户可同时使用多个链的多个钱包地址登录
+model WalletAddress {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  address   String   @unique
+  chainId   Int      @map("chain_id")
+  isPrimary Boolean? @default(false) @map("is_primary")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("wallet_address")
 }
 
 model Verification {
@@ -209,4 +227,187 @@ model AiChat {
   updatedAt      DateTime      @updatedAt
 
   @@map("ai_chat")
+}
+
+/**
+ * 事件表（主题/话题）
+ * 表示预测主题，如“2024 美国总统选举”。
+ * 预测市场的话题信息，包括分类、标题、规则、答案选项等
+ * 一个事件下可包含多个市场（Market）。
+ */
+model Event {
+  id           String    @id @default(cuid())
+  slug         String?   @unique
+  title        Json // 多语种翻译, JSON 对象格式
+  category     String    @default("Politics") // @type Category - 主题分类 (Politics/Sports/Economy/Entertainment/Crypto/Technology/Health/Science)
+  rules        Json
+  image        String?
+  plannedEndAt DateTime? @map("planned_end_at") // 预设的事件结束时间
+  activatedAt  DateTime? @map("activated_at") // 实际的事件激活时间/交易开始时间
+  resolvedAt   DateTime? @map("resolved_at") // 实际的事件结束时间
+  status       String    @default("ACTIVE") // @type EventStatus (DRAFT/ACTIVE/SUSPENDED/RESOLVED/CANCELLED/INVALID)
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  markets         Market[]
+  agentReports    AgentReport[]
+  agentOrders     AgentOrder[]
+  userInvestments UserInvestment[]
+
+  @@index([slug])
+  @@index([status])
+  @@map("events")
+}
+
+// ==============================
+// Market 表
+// Market 代表一个可以交易的「预测市场」
+// 例如，在上面的 “谁会赢得 2024 年美国总统大选？” 这个事件中：
+// Biden Wins -> Yes/No
+// Trump Wins -> Yes/No
+// Other Wins -> Yes/No
+// 分别是三个 Market
+// title = “Biden Wins”
+// ==============================
+model Market {
+  id          String    @id @default(cuid())
+  slug        String?   @unique
+  eventId     String    @map("event_id")
+  title       Json // 多语种翻译, JSON 对象格式
+  image       String?
+  status      String    @default("OPENING") // @type MarketStatus (OPENING/RESOLVED/CANCEL)
+  activatedAt DateTime? @map("activated_at")
+  resolvedAt  DateTime? @map("resolved_at")
+  cancelledAt DateTime? @map("cancelled_at")
+
+  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  totalTradeVolume Decimal @default(0) @map("total_trade_volume") @db.Decimal(18, 4) // 累计交易量（下注金额总和）
+
+  // 关联
+  event                          Event                          @relation(fields: [eventId], references: [id])
+  agentReportMarketProbabilities AgentReportMarketProbability[]
+  agentOrders                    AgentOrder[]
+  userInvestments                UserInvestment[]
+
+  @@index([eventId])
+  @@index([status])
+  @@map("markets")
+}
+
+model Agent {
+  id          String   @id @default(cuid()) // Agent 主键，使用 cuid 方便跨环境同步
+  slug        String   @unique // 对外展示或 URL 使用的唯一标识
+  name        String // Agent 名称，通常对应模型 persona
+  description String? // Agent 说明，描述策略或定位
+  avatarUrl   String?  @map("avatar_url") // 头像地址，用于前端展示
+  modelVendor String   @map("model_vendor") // 模型提供方（例如 openai、anthropic）
+  modelName   String   @map("model_name") // 模型具体名称（例如 gpt-4o）
+  isActive    Boolean  @default(true) @map("is_active") // 是否可用
+  metadata    Json?    @map("metadata") // 额外配置（prompt、权重等）
+  createdAt   DateTime @default(now()) @map("created_at") // 创建时间
+  updatedAt   DateTime @updatedAt @map("updated_at") // 最近更新时间
+
+  reports         AgentReport[] // Agent 每日研报
+  orders          AgentOrder[] // 管理员代买订单
+  userInvestments UserInvestment[] // 用户跟投记录
+
+  @@map("agents")
+}
+
+model AgentReport {
+  id         String   @id @default(cuid()) // 研报主键
+  agentId    String   @map("agent_id") // 所属 Agent
+  eventId    String   @map("event_id") // 归属事件
+  reportDate DateTime @map("report_date") // 研报日期（按天唯一）
+  headline   String? // 研报标题
+  summary    String? // 关键信息摘要
+  rawOutput  Json?    @map("raw_output") // LLM 原始输出或结构化内容
+  confidence Decimal? @db.Decimal(5, 2) // Agent 给出的整体信心（0-100）
+  createdAt  DateTime @default(now()) @map("created_at") // 创建时间
+  updatedAt  DateTime @updatedAt @map("updated_at") // 最近更新时间
+
+  agent   Agent                          @relation(fields: [agentId], references: [id]) // 所属 Agent
+  event   Event                          @relation(fields: [eventId], references: [id]) // 所属事件
+  markets AgentReportMarketProbability[] // 各 Market 概率明细
+  orders  AgentOrder[] // 基于研报的管理员订单
+
+  @@unique([agentId, eventId, reportDate])
+  @@index([eventId, reportDate])
+  @@map("agent_reports")
+}
+
+model AgentReportMarketProbability {
+  id          Int      @id @default(autoincrement()) // 概率记录主键
+  reportId    String   @map("report_id") // 所属研报
+  marketId    String   @map("market_id") // 对应 Market
+  probability Decimal  @map("probability") @db.Decimal(5, 2) // 预测概率（0-100）
+  rationale   String? // 概率说明
+  createdAt   DateTime @default(now()) @map("created_at") // 创建时间
+  updatedAt   DateTime @updatedAt @map("updated_at") // 最近更新时间
+
+  report AgentReport @relation(fields: [reportId], references: [id]) // 研报反向关系
+  market Market      @relation(fields: [marketId], references: [id]) // 市场反向关系
+
+  @@unique([reportId, marketId])
+  @@index([marketId])
+  @@map("agent_report_market_probabilities")
+}
+
+model AgentOrder {
+  id             String    @id @default(cuid()) // 管理员代买单主键
+  agentId        String    @map("agent_id") // 所属 Agent
+  eventId        String    @map("event_id") // 关联事件
+  marketId       String    @map("market_id") // 目标 Market
+  reportId       String?   @map("report_id") // 来源研报
+  createdById    String?   @map("created_by_id") // 创建该订单的管理员
+  stakeAmount    Decimal   @map("stake_amount") @db.Decimal(20, 8) // 投入金额（加密货币数量）
+  stakeCurrency  String    @map("stake_currency") // 投入币种
+  expectedRoiPct Decimal?  @map("expected_roi_pct") @db.Decimal(9, 4) // 期望收益率（百分比）
+  status         String    @default("PENDING") // 订单状态
+  notes          String? // 额外备注
+  txHash         String?   @map("tx_hash") // 链上或交易平台哈希
+  executedAt     DateTime? @map("executed_at") // 实际成交时间
+  createdAt      DateTime  @default(now()) @map("created_at") // 创建时间
+  updatedAt      DateTime  @updatedAt @map("updated_at") // 最近更新时间
+
+  agent     Agent            @relation(fields: [agentId], references: [id]) // 所属 Agent
+  event     Event            @relation(fields: [eventId], references: [id]) // 所属事件
+  market    Market           @relation(fields: [marketId], references: [id]) // 对应 Market
+  report    AgentReport?     @relation(fields: [reportId], references: [id]) // 对应研报
+  createdBy User?            @relation(fields: [createdById], references: [id]) // 创建者
+  users     UserInvestment[] // 跟随该订单的用户投资
+
+  @@index([agentId, eventId, marketId])
+  @@index([reportId])
+  @@map("agent_orders")
+}
+
+model UserInvestment {
+  id             String   @id @default(cuid()) // 用户跟投记录主键
+  userId         String   @map("user_id") // 投资用户
+  agentId        String   @map("agent_id") // 跟随的 Agent
+  eventId        String   @map("event_id") // 对应事件
+  marketId       String   @map("market_id") // 对应 Market
+  agentOrderId   String?  @map("agent_order_id") // 关联的管理员订单
+  amount         Decimal  @db.Decimal(20, 8) // 投注金额
+  currency       String // 使用币种
+  status         String   @default("PENDING") // 当前状态
+  txHash         String?  @map("tx_hash") // 链上或交易哈希
+  expectedRoiPct Decimal? @map("expected_roi_pct") @db.Decimal(9, 4) // 预期收益率
+  settledPnl     Decimal? @map("settled_pnl") @db.Decimal(20, 8) // 结算后的盈亏
+  notes          String? // 备注
+  createdAt      DateTime @default(now()) @map("created_at") // 创建时间
+  updatedAt      DateTime @updatedAt @map("updated_at") // 最近更新时间
+
+  user       User        @relation(fields: [userId], references: [id]) // 投资用户
+  agent      Agent       @relation(fields: [agentId], references: [id]) // 跟随的 Agent
+  event      Event       @relation(fields: [eventId], references: [id]) // 所属事件
+  market     Market      @relation(fields: [marketId], references: [id]) // 所属 Market
+  agentOrder AgentOrder? @relation(fields: [agentOrderId], references: [id]) // 对应管理员订单
+
+  @@index([agentId, eventId, marketId])
+  @@index([agentOrderId])
+  @@map("user_investments")
 }
