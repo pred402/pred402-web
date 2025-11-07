@@ -6,7 +6,8 @@
       "Bash(pnpm --filter web type-check)",
       "Bash(pnpm --filter web build:*)",
       "Bash(pnpm:*)",
-      "Bash(nul)"
+      "Bash(nul)",
+      "Bash(node -e:*)"
     ],
     "deny": [],
     "ask": []

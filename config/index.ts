@@ -13,6 +13,10 @@ export const config = {
 				currency: "USD",
 				label: "English",
 			},
+			zh: {
+				currency: "CNY",
+				label: "简体中文",
+			},
 			de: {
 				currency: "USD",
 				label: "Deutsch",

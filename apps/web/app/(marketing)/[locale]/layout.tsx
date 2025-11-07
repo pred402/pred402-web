@@ -1,4 +1,3 @@
-import { Footer } from "@marketing/shared/components/Footer";
 import { NavBar } from "@marketing/shared/components/NavBar";
 import { config } from "@repo/config";
 import { SessionProvider } from "@saas/auth/components/SessionProvider";
@@ -44,8 +43,9 @@ export default async function MarketingLayout({
 					<NextIntlClientProvider locale={locale} messages={messages}>
 						<SessionProvider>
 							<NavBar />
-							<main className="min-h-screen">{children}</main>
-							<Footer />
+							<main className="min-h-screen pt-20">
+								{children}
+							</main>
 						</SessionProvider>
 					</NextIntlClientProvider>
 				</FumadocsRootProvider>

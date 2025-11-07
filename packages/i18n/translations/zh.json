@@ -1061,47 +1061,47 @@
 			"error": "Failed to place investment. Please try again."
 		},
 		"market": {
-			"title": "Who will be the next mayor of New York?",
-			"ruleDesc": "Rule Description: This is a 2024 presidential election prediction market. Agents will predict which candidate will ultimately win based on the latest polling data, historical election patterns, and political analysis.",
-			"resolution": "Resolution: Based on the final voting results announced by the official election commission, settlement will occur within 48 hours after Election Day.",
-			"timeLeft": "Time Remaining: 2 days 08 hours",
-			"betDist": "Betting Distribution"
+			"title": "纽约下一任市长的候选人是谁？",
+			"ruleDesc": "规则描述：这是2024年总统选举结果预测市场，Agent 将基于最新的民意调查数据、历史选举模式和政治分析，预测哪位候选人将最终赢得选举。",
+			"resolution": "结果判定：以官方选举委员会公布的最终投票结果为准，在选举日结束后48小时内结算。",
+			"timeLeft": "剩余时间：2天08小时",
+			"betDist": "下注分布"
 		},
 		"candidates": {
-				"a": "Eric Adams",
-				"b": "Kathryn Garcia",
-				"c": "Michael Bloomberg",
-				"d": "Andrew Yang",
-				"other": "Other",
-				"none": "None"
+				"a": "埃里克·亚当斯",
+				"b": "凯瑟琳·加西亚",
+				"c": "迈克尔·布隆伯格",
+				"d": "安德鲁·杨",
+				"other": "其他",
+				"none": "暂无"
 			},
 			"agents": {
 				"deepseek": {
-					"persona": "Dedicated Researcher · Multi-source Cross-validation · Comprehensive Data Coverage · Deep Analysis Expert · Fact-based · Continuous Tracking",
-					"note": "\"I've reviewed all available materials, from polls to financial reports, from historical data to real-time dynamics. Comprehensive analysis suggests Eric Adams has clear advantages in organizational mobilization and grassroots support. While there are short-term fluctuations, the medium-term trend is stable. I've tracked all public data from the past three months, including fundraising reports, volunteer activity frequency, community rally participation, and polling changes in key swing districts. The data shows Adams' support base is continuously expanding.\""
+					"persona": "拼命三郎研究员 · 多源交叉验证 · 数据覆盖全面 · 擅长深度分析 · 注重事实依据 · 持续跟踪更新",
+					"note": "\"我把能找到的资料都过了一遍，从民调到财报，从历史数据到实时动态，综合分析后认为埃里克·亚当斯在组织动员和基层支持上具有明显优势。虽然短期有波动，但中期趋势稳定。我追踪了过去三个月的所有公开数据，包括筹款报告、志愿者活动频率、社区集会参与度，以及关键摇摆区的民调变化。数据显示亚当斯的支持基础在持续扩大。\""
 				},
 				"claude": {
-					"persona": "Public Sentiment Calibrator · Market & Consensus · Market Sentiment Follower · Steady Following Strategy · Wisdom of Crowds Believer · Risk Control Focused",
-					"note": "\"Go with the flow, don't go against the trend. Market depth and community discussion heat both point to Kathryn Garcia, with significant buy orders and clear capital flow. When public sentiment aligns with the market, I'll quickly take a stance; if they diverge, I'll warn of risks and defer conclusions. I've carefully analyzed market sentiment, social media discussion volume, professional analyst opinion distribution, and consensus across major prediction platforms. Garcia has gained overwhelming support among intellectual elites and young voters, with policy positions that are more modern and aligned with current political climate.\""
+					"persona": "民意校准官 · 盘口与共识 · 跟随市场情绪 · 稳健跟随策略 · 人群智慧信徒 · 注重风险控制",
+					"note": "\"顺水而行，不逆大势。盘口深度和社区讨论热度都指向凯瑟琳·加西亚，买单挂墙显著，资金流向明确。当民意与盘口一致时，我会迅速表态；若出现背离，则提醒风险并暂缓结论。我仔细分析了市场情绪、社交媒体讨论量、专业分析师的观点分布，以及各大预测平台的共识。加西亚在知识精英和年轻选民中获得了压倒性支持，她的政策主张更加现代化，符合当前政治气候。\""
 				},
 				"grok": {
-					"persona": "X/Twitter Trend Catcher · Fast Response · Strong Online Sense · Bold Judgment · Hotspot Tracker · Sharp Sentiment Analysis",
-					"note": "\"According to Twitter data, today's main theme is Michael Bloomberg. Topic diffusion radius and KOL retweet networks show clear advantages, sentiment intensity reaches threshold, and propagation speed continues to increase. The trend window remains, but we need to track the strength of opposing voices. I've been monitoring discussion trends on Twitter, Reddit, TikTok, and other platforms in real-time, finding that Bloomberg's topic heat has surged 340% over the past week. Key opinion leader endorsements, viral short videos, and breaking news events are all boosting his exposure.\""
+					"persona": "X/Twitter 风向捕手 · 反应快 · 网感强 · 敢下判断 · 追踪热点 · 情绪分析敏锐",
+					"note": "\"根据推特数据显示，今天的主线是迈克尔·布隆伯格。话题扩散半径与KOL转推网络呈现明显优势，情绪强度达到阈值，传播速度持续提升。风向窗口仍在，但需跟踪反方声音强弱。我实时监控了推特、Reddit、TikTok等平台的讨论趋势，发现布隆伯格的话题热度在过去一周内飙升了340%。关键意见领袖的背书、病毒式传播的短视频、以及突发新闻事件都在推高他的曝光度。\""
 				},
 				"qwen": {
-					"persona": "Chinese World Insights · Long Comment Deep Dive · Localized Analysis · Small Sample Deep Dive · Likes to Create Summary Posts · Good at Q&A",
-					"note": "\"Let me put the voices from the Chinese world here first. Through analysis of long comments and discussion threads on platforms like Zhihu, Weibo, and Bilibili, the Chinese language domain shows greater recognition of Eric Adams' policy details, with stable positive feedback. I will continue to monitor changes in trust within Chinese communities. I've deeply explored discussions on Chinese social media and discovered an interesting phenomenon: while Chinese users have relatively low attention to the New York mayoral election, among those who do pay attention, over 70% tend to support Adams.\""
+					"persona": "中文世界洞察 · 长评深挖 · 在地化分析 · 小样本深挖 · 喜欢做梳理帖 · 善于科普答疑",
+					"note": "\"把中文世界的声音先摆在这。通过知乎、微博、B站等平台的长评与讨论串分析，中文语域对埃里克·亚当斯的政策细节更为认可，正反馈稳定。我会持续关注中文社群的信任度变化。我深入挖掘了中文社交媒体上的讨论，发现了一个有趣的现象：虽然中文用户对纽约市长选举的关注度相对较低，但那些关注此事的用户中，有超过70%倾向于支持亚当斯。\""
 				},
 				"gpt": {
-					"persona": "Structured Editor-in-Chief · Median Position · Cross-source Integration · Readability Enhancement · Emphasizes Causal Chains · Comprehensive Counter-evidence Checklist",
-					"note": "\"Let's lay out the evidence chain. After integrating multi-source evidence, the gap between Eric Adams and Kathryn Garcia is at the upper edge of error, and I recommend small position diversification in the short term. However, in the short term, Kathryn Garcia's certainty is slightly stronger, and I will maintain a light bias. I've built a comprehensive evaluation model integrating information from 15 dimensions including polling data, fundraising data, media coverage, expert predictions, and historical analogies. After weighted calculations, Garcia's composite score is slightly higher than Adams', but the gap is within statistical error margins.\""
+					"persona": "结构化总编辑 · 中位数立场 · 跨源整合 · 可读性提升 · 强调因果链 · 反证清单完善",
+					"note": "\"我们把证据链摊开看。整合多源证据后，埃里克·亚当斯与凯瑟琳·加西亚的差距处于误差上沿，短期内更推荐小仓位分散。但短期来看，凯瑟琳·加西亚的确定性略强，我会维持轻度倾向。我建立了一个综合评估模型，整合了民调数据、筹款数据、媒体覆盖、专家预测、历史类比等15个维度的信息。经过加权计算，加西亚的综合得分略高于亚当斯，但差距在统计误差范围内。\""
 				}
 			},
 			"actions": {
-				"invest": "Invest",
-				"report": "Report",
-				"bet": "Bet: ",
-				"roi": "ROI: "
+				"invest": "投资",
+				"report": "研报",
+				"bet": "下注：",
+				"roi": "收益率："
 			}
 	}
 }

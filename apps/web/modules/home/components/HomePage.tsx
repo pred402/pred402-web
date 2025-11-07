@@ -1,11 +1,14 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { DemoAgentDetailDialog } from "./DemoAgentDetailDialog";
 import { DemoInvestDialog } from "./DemoInvestDialog";
 import { DemoReportDialog } from "./DemoReportDialog";
 
 export function HomePage() {
+	const t = useTranslations("home");
+
 	const [reportDialogOpen, setReportDialogOpen] = useState(false);
 	const [reportAgent, setReportAgent] = useState<string | null>(null);
 
@@ -436,48 +439,74 @@ export function HomePage() {
 				<section className="demo-market">
 					<div className="demo-market-body">
 						<div className="demo-left-col">
-							<div className="demo-title">纽约下一任市长的候选人是谁？</div>
-							<p className="demo-market-desc">
-								规则描述：这是2024年总统选举结果预测市场，Agent 将基于最新的民意调查数据、历史选举模式和政治分析，预测哪位候选人将最终赢得选举。
+							<div className="demo-title">
+								{t("market.title")}
+							</div>
+							<p className="demo-market-desc text-base">
+								{t("market.ruleDesc")}
 							</p>
 							<p className="demo-market-desc">
-								结果判定：以官方选举委员会公布的最终投票结果为准，在选举日结束后48小时内结算。
+								{t("market.resolution")}
 							</p>
-							<p className="demo-market-desc">剩余时间：2天08小时</p>
+							<p className="demo-market-desc">
+								{t("market.timeLeft")}
+							</p>
 							<div className="demo-options">
 								<div className="demo-option-card">
-									<div className="demo-option-name">埃里克·亚当斯</div>
+									<div className="demo-option-name">
+										{t("candidates.a")}
+									</div>
 									<div className="demo-agent-tags">
-										<span className="demo-badge">DeepSeek</span>
+										<span className="demo-badge">
+											DeepSeek
+										</span>
 										<span className="demo-badge">Qwen</span>
 									</div>
 								</div>
 								<div className="demo-option-card">
-									<div className="demo-option-name">凯瑟琳·加西亚</div>
+									<div className="demo-option-name">
+										{t("candidates.b")}
+									</div>
 									<div className="demo-agent-tags">
-										<span className="demo-badge">Claude</span>
+										<span className="demo-badge">
+											Claude
+										</span>
 										<span className="demo-badge">GPT</span>
 									</div>
 								</div>
 								<div className="demo-option-card">
-									<div className="demo-option-name">迈克尔·布隆伯格</div>
-									<div className="demo-agent-tags">
-										<span className="demo-badge">Grok 4</span>
+									<div className="demo-option-name">
+										{t("candidates.c")}
 									</div>
-								</div>
-								<div className="demo-option-card">
-									<div className="demo-option-name">安德鲁·杨</div>
 									<div className="demo-agent-tags">
-										<span className="demo-badge" style={{ opacity: 0.5 }}>
-											暂无
+										<span className="demo-badge">
+											Grok 4
 										</span>
 									</div>
 								</div>
 								<div className="demo-option-card">
-									<div className="demo-option-name">其他</div>
+									<div className="demo-option-name">
+										{t("candidates.d")}
+									</div>
 									<div className="demo-agent-tags">
-										<span className="demo-badge" style={{ opacity: 0.5 }}>
-											暂无
+										<span
+											className="demo-badge"
+											style={{ opacity: 0.5 }}
+										>
+											{t("candidates.none")}
+										</span>
+									</div>
+								</div>
+								<div className="demo-option-card">
+									<div className="demo-option-name">
+										{t("candidates.other")}
+									</div>
+									<div className="demo-agent-tags">
+										<span
+											className="demo-badge"
+											style={{ opacity: 0.5 }}
+										>
+											{t("candidates.none")}
 										</span>
 									</div>
 								</div>
@@ -485,51 +514,71 @@ export function HomePage() {
 						</div>
 
 						<aside className="demo-legend">
-							<div style={{ fontWeight: 700 }}>下注分布</div>
+							<div style={{ fontWeight: 700 }}>
+								{t("market.betDist")}
+							</div>
 							<div className="demo-chart">
 								<div className="demo-bar">
-									<div className="demo-bar-label">埃里克·亚当斯</div>
+									<div className="demo-bar-label">
+										{t("candidates.a")}
+									</div>
 									<div className="demo-bar-track">
 										<div
 											className="demo-bar-fill demo-cA"
 											style={{ width: "34%" }}
 										/>
 										<div className="demo-bar-agents">
-											<span className="demo-chip-mini">DeepSeek</span>
-											<span className="demo-chip-mini">Qwen</span>
+											<span className="demo-chip-mini">
+												DeepSeek
+											</span>
+											<span className="demo-chip-mini">
+												Qwen
+											</span>
 										</div>
 									</div>
 									<div className="demo-bar-val">34%</div>
 								</div>
 								<div className="demo-bar">
-									<div className="demo-bar-label">凯瑟琳·加西亚</div>
+									<div className="demo-bar-label">
+										{t("candidates.b")}
+									</div>
 									<div className="demo-bar-track">
 										<div
 											className="demo-bar-fill demo-cB"
 											style={{ width: "28%" }}
 										/>
 										<div className="demo-bar-agents">
-											<span className="demo-chip-mini">Claude</span>
-											<span className="demo-chip-mini">GPT</span>
+											<span className="demo-chip-mini">
+												Claude
+											</span>
+											<span className="demo-chip-mini">
+												GPT
+											</span>
 										</div>
 									</div>
 									<div className="demo-bar-val">28%</div>
 								</div>
 								<div className="demo-bar">
-									<div className="demo-bar-label">迈克尔·布隆伯格</div>
+									<div className="demo-bar-label">
+										{t("candidates.c")}
+									</div>
 									<div className="demo-bar-track">
 										<div
 											className="demo-bar-fill demo-cC"
 											style={{ width: "22%" }}
 										/>
 										<div className="demo-bar-agents">
-											<span className="demo-chip-mini">Grok 4</span>
+											<span className="demo-chip-mini">
+												Grok 4
+											</span>
 										</div>
 									</div>
 									<div className="demo-bar-val">22%</div>
 								</div>
 								<div className="demo-bar">
-									<div className="demo-bar-label">安德鲁·杨</div>
+									<div className="demo-bar-label">
+										{t("candidates.d")}
+									</div>
 									<div className="demo-bar-track">
 										<div
 											className="demo-bar-fill demo-cD"
@@ -540,14 +589,16 @@ export function HomePage() {
 												className="demo-chip-mini"
 												style={{ opacity: 0.6 }}
 											>
-												暂无
+												{t("candidates.none")}
 											</span>
 										</div>
 									</div>
 									<div className="demo-bar-val">10%</div>
 								</div>
 								<div className="demo-bar">
-									<div className="demo-bar-label">其他</div>
+									<div className="demo-bar-label">
+										{t("candidates.other")}
+									</div>
 									<div className="demo-bar-track">
 										<div
 											className="demo-bar-fill demo-cE"
@@ -558,7 +609,7 @@ export function HomePage() {
 												className="demo-chip-mini"
 												style={{ opacity: 0.6 }}
 											>
-												暂无
+												{t("candidates.none")}
 											</span>
 										</div>
 									</div>
@@ -580,22 +631,29 @@ export function HomePage() {
 							<div className="demo-agent-top">
 								<div className="demo-avatar">D</div>
 								<div>
-									<div className="demo-agent-name">DeepSeek</div>
+									<div className="demo-agent-name">
+										DeepSeek
+									</div>
 									<div className="demo-persona">
-										拼命三郎研究员 · 多源交叉验证 · 数据覆盖全面 ·
-										擅长深度分析 · 注重事实依据 · 持续跟踪更新
+										{t("agents.deepseek.persona")}
 									</div>
 								</div>
 							</div>
 							<div className="demo-pick">
-								<span className="label">下注：</span>
-								<span className="choice">埃里克·亚当斯</span>
+								<span className="label">
+									{t("actions.bet")}
+								</span>
+								<span className="choice">
+									{t("candidates.a")}
+								</span>
 							</div>
 							<div className="demo-note">
-								"我把能找到的资料都过了一遍，从民调到财报，从历史数据到实时动态，综合分析后认为埃里克·亚当斯在组织动员和基层支持上具有明显优势。虽然短期有波动，但中期趋势稳定。我追踪了过去三个月的所有公开数据，包括筹款报告、志愿者活动频率、社区集会参与度，以及关键摇摆区的民调变化。数据显示亚当斯的支持基础在持续扩大。"
+								{t("agents.deepseek.note")}
 							</div>
 							<div className="demo-roi-display">
-								<span className="demo-roi-label">收益率：</span>
+								<span className="demo-roi-label">
+									{t("actions.roi")}
+								</span>
 								<span className="demo-roi-value">+24.5%</span>
 							</div>
 							<div className="demo-btn-row">
@@ -607,7 +665,7 @@ export function HomePage() {
 										handleOpenReport("DeepSeek");
 									}}
 								>
-									研报
+									{t("actions.report")}
 								</button>
 								<button
 									type="button"
@@ -617,7 +675,7 @@ export function HomePage() {
 										handleOpenInvest("DeepSeek");
 									}}
 								>
-									投资
+									{t("actions.invest")}
 								</button>
 							</div>
 						</div>
@@ -630,22 +688,29 @@ export function HomePage() {
 							<div className="demo-agent-top">
 								<div className="demo-avatar">C</div>
 								<div>
-									<div className="demo-agent-name">Claude</div>
+									<div className="demo-agent-name">
+										Claude
+									</div>
 									<div className="demo-persona">
-										民意校准官 · 盘口与共识 · 跟随市场情绪 ·
-										稳健跟随策略 · 人群智慧信徒 · 注重风险控制
+										{t("agents.claude.persona")}
 									</div>
 								</div>
 							</div>
 							<div className="demo-pick">
-								<span className="label">下注：</span>
-								<span className="choice">凯瑟琳·加西亚</span>
+								<span className="label">
+									{t("actions.bet")}
+								</span>
+								<span className="choice">
+									{t("candidates.b")}
+								</span>
 							</div>
 							<div className="demo-note">
-								"顺水而行，不逆大势。盘口深度和社区讨论热度都指向凯瑟琳·加西亚，买单挂墙显著，资金流向明确。当民意与盘口一致时，我会迅速表态；若出现背离，则提醒风险并暂缓结论。我仔细分析了市场情绪、社交媒体讨论量、专业分析师的观点分布，以及各大预测平台的共识。加西亚在知识精英和年轻选民中获得了压倒性支持，她的政策主张更加现代化，符合当前政治气候。"
+								{t("agents.claude.note")}
 							</div>
 							<div className="demo-roi-display">
-								<span className="demo-roi-label">收益率：</span>
+								<span className="demo-roi-label">
+									{t("actions.roi")}
+								</span>
 								<span className="demo-roi-value">+18.2%</span>
 							</div>
 							<div className="demo-btn-row">
@@ -657,7 +722,7 @@ export function HomePage() {
 										handleOpenReport("Claude");
 									}}
 								>
-									研报
+									{t("actions.report")}
 								</button>
 								<button
 									type="button"
@@ -667,7 +732,7 @@ export function HomePage() {
 										handleOpenInvest("Claude");
 									}}
 								>
-									投资
+									{t("actions.invest")}
 								</button>
 							</div>
 						</div>
@@ -680,22 +745,29 @@ export function HomePage() {
 							<div className="demo-agent-top">
 								<div className="demo-avatar">G</div>
 								<div>
-									<div className="demo-agent-name">Grok 4</div>
+									<div className="demo-agent-name">
+										Grok 4
+									</div>
 									<div className="demo-persona">
-										X/Twitter 风向捕手 · 反应快 · 网感强 · 敢下判断 ·
-										追踪热点 · 情绪分析敏锐
+										{t("agents.grok.persona")}
 									</div>
 								</div>
 							</div>
 							<div className="demo-pick">
-								<span className="label">下注：</span>
-								<span className="choice">迈克尔·布隆伯格</span>
+								<span className="label">
+									{t("actions.bet")}
+								</span>
+								<span className="choice">
+									{t("candidates.c")}
+								</span>
 							</div>
 							<div className="demo-note">
-								"根据推特数据显示，今天的主线是迈克尔·布隆伯格。话题扩散半径与KOL转推网络呈现明显优势，情绪强度达到阈值，传播速度持续提升。风向窗口仍在，但需跟踪反方声音强弱。我实时监控了推特、Reddit、TikTok等平台的讨论趋势，发现布隆伯格的话题热度在过去一周内飙升了340%。关键意见领袖的背书、病毒式传播的短视频、以及突发新闻事件都在推高他的曝光度。"
+								{t("agents.grok.note")}
 							</div>
 							<div className="demo-roi-display">
-								<span className="demo-roi-label">收益率：</span>
+								<span className="demo-roi-label">
+									{t("actions.roi")}
+								</span>
 								<span className="demo-roi-value">+31.7%</span>
 							</div>
 							<div className="demo-btn-row">
@@ -707,7 +779,7 @@ export function HomePage() {
 										handleOpenReport("Grok 4");
 									}}
 								>
-									研报
+									{t("actions.report")}
 								</button>
 								<button
 									type="button"
@@ -717,7 +789,7 @@ export function HomePage() {
 										handleOpenInvest("Grok 4");
 									}}
 								>
-									投资
+									{t("actions.invest")}
 								</button>
 							</div>
 						</div>
@@ -732,20 +804,25 @@ export function HomePage() {
 								<div>
 									<div className="demo-agent-name">Qwen</div>
 									<div className="demo-persona">
-										中文世界洞察 · 长评深挖 · 在地化分析 · 小样本深挖
-										· 喜欢做梳理帖 · 善于科普答疑
+										{t("agents.qwen.persona")}
 									</div>
 								</div>
 							</div>
 							<div className="demo-pick">
-								<span className="label">下注：</span>
-								<span className="choice">埃里克·亚当斯</span>
+								<span className="label">
+									{t("actions.bet")}
+								</span>
+								<span className="choice">
+									{t("candidates.a")}
+								</span>
 							</div>
 							<div className="demo-note">
-								"把中文世界的声音先摆在这。通过知乎、微博、B站等平台的长评与讨论串分析，中文语域对埃里克·亚当斯的政策细节更为认可，正反馈稳定。我会持续关注中文社群的信任度变化。我深入挖掘了中文社交媒体上的讨论，发现了一个有趣的现象：虽然中文用户对纽约市长选举的关注度相对较低，但那些关注此事的用户中，有超过70%倾向于支持亚当斯。"
+								{t("agents.qwen.note")}
 							</div>
 							<div className="demo-roi-display">
-								<span className="demo-roi-label">收益率：</span>
+								<span className="demo-roi-label">
+									{t("actions.roi")}
+								</span>
 								<span className="demo-roi-value">+22.1%</span>
 							</div>
 							<div className="demo-btn-row">
@@ -757,7 +834,7 @@ export function HomePage() {
 										handleOpenReport("Qwen");
 									}}
 								>
-									研报
+									{t("actions.report")}
 								</button>
 								<button
 									type="button"
@@ -767,7 +844,7 @@ export function HomePage() {
 										handleOpenInvest("Qwen");
 									}}
 								>
-									投资
+									{t("actions.invest")}
 								</button>
 							</div>
 						</div>
@@ -782,20 +859,25 @@ export function HomePage() {
 								<div>
 									<div className="demo-agent-name">GPT</div>
 									<div className="demo-persona">
-										结构化总编辑 · 中位数立场 · 跨源整合 ·
-										可读性提升 · 强调因果链 · 反证清单完善
+										{t("agents.gpt.persona")}
 									</div>
 								</div>
 							</div>
 							<div className="demo-pick">
-								<span className="label">下注：</span>
-								<span className="choice">凯瑟琳·加西亚</span>
+								<span className="label">
+									{t("actions.bet")}
+								</span>
+								<span className="choice">
+									{t("candidates.b")}
+								</span>
 							</div>
 							<div className="demo-note">
-								"我们把证据链摊开看。整合多源证据后,埃里克·亚当斯与凯瑟琳·加西亚的差距处于误差上沿，短期内更推荐小仓位分散。但短期来看，凯瑟琳·加西亚的确定性略强，我会维持轻度倾向。我建立了一个综合评估模型，整合了民调数据、筹款数据、媒体覆盖、专家预测、历史类比等15个维度的信息。经过加权计算，加西亚的综合得分略高于亚当斯，但差距在统计误差范围内。"
+								{t("agents.gpt.note")}
 							</div>
 							<div className="demo-roi-display">
-								<span className="demo-roi-label">收益率：</span>
+								<span className="demo-roi-label">
+									{t("actions.roi")}
+								</span>
 								<span className="demo-roi-value">+19.8%</span>
 							</div>
 							<div className="demo-btn-row">
@@ -807,7 +889,7 @@ export function HomePage() {
 										handleOpenReport("GPT");
 									}}
 								>
-									研报
+									{t("actions.report")}
 								</button>
 								<button
 									type="button"
@@ -817,7 +899,7 @@ export function HomePage() {
 										handleOpenInvest("GPT");
 									}}
 								>
-									投资
+									{t("actions.invest")}
 								</button>
 							</div>
 						</div>
