@@ -1,6 +1,6 @@
 # Next.js SaaS Starter Kit
 
-A production-ready SaaS starter kit built with Next.js 15, TypeScript, Drizzle ORM, Better Auth, and modern development tools.
+This is a project that relies entirely on the ability of large models to conduct research and analysis on the actual probability of an event in the prediction market. It supports multiple different large models to analyze the same event and accepts follow-up investment from users.
 
 ## 🚀 Quick Start
 
@@ -43,7 +43,7 @@ Visit `http://localhost:3000` to see your application.
 
 ### Backend
 - **Better Auth** - Authentication and session management
-- **Drizzle ORM** - Type-safe database operations
+- **Prisma ORM** - Type-safe database operations
 - **PostgreSQL** - Primary database
 - **Nodemailer** - Email sending
 
@@ -65,7 +65,7 @@ Visit `http://localhost:3000` to see your application.
 - Session management
 
 ### Database
-- PostgreSQL with Drizzle ORM
+- PostgreSQL with Prisma ORM
 - Type-safe queries and migrations
 - Multi-tenant organization support
 - User management and profiles
@@ -96,7 +96,6 @@ superstar/
 │   └── ...                   # Other packages
 ├── tooling/                  # Development tools
 ├── docker-compose.yml        # Database container
-└── docs/                     # Documentation
 ```
 
 ## 📦 Scripts
@@ -167,7 +166,6 @@ This project is licensed under the MIT License.
 
 ## 🎯 Support
 
-- **Documentation**: Check the detailed guides in this repository
 - **Issues**: Report bugs and request features
 - **Discussions**: Ask questions and get help
 
