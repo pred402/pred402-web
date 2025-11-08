@@ -211,7 +211,7 @@ export function HomePage() {
 					padding-top: 0;
 					min-height: 0;
 					flex: 1;
-					align-items: start;
+					align-items: stretch;
 				}
 
 				.demo-left-col {
@@ -220,7 +220,6 @@ export function HomePage() {
 					gap: 1px;
 					min-height: 0;
 					overflow: hidden;
-					flex: 1;
 				}
 
 				.demo-options {
@@ -229,7 +228,7 @@ export function HomePage() {
 					gap: 8px;
 					grid-auto-rows: min-content;
 					flex-shrink: 0;
-					margin-top: 12px;
+					margin-top: auto;
 				}
 
 				.demo-option-card {

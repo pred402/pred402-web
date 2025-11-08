@@ -3,7 +3,6 @@
 import { LocaleLink, useLocalePathname } from "@i18n/routing";
 import { config } from "@repo/config";
 import { useSession } from "@saas/auth/hooks/use-session";
-import { ColorModeToggle } from "@shared/components/ColorModeToggle";
 import { LocaleSwitch } from "@shared/components/LocaleSwitch";
 import { Logo } from "@shared/components/Logo";
 import { Button } from "@ui/components/button";
@@ -116,15 +115,15 @@ export function NavBar() {
 
 					{/* 中间标题区域 */}
 					{isHomePage && (
-						<div className="hidden lg:flex flex-[2.5] items-center justify-center">
+						<div className="hidden lg:flex flex-[2.4] items-center justify-center">
 							<h1 className="text-lg lg:text-3xl font-bold text-foreground">
 								{t("home.market.title")}
 							</h1>
 						</div>
 					)}
 
-					<div className="flex flex-[0.8] items-center justify-end gap-3">
-						<ColorModeToggle />
+					<div className="flex flex-[1.0] items-center justify-end gap-2">
+						{/* <ColorModeToggle /> */}
 						{config.i18n.enabled && (
 							<Suspense>
 								<LocaleSwitch />

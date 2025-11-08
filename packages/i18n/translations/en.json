@@ -1040,11 +1040,328 @@
 			"invest": "Invest"
 		},
 		"reportDialog": {
-			"title": "Agent Report",
-			"headline": "Report Headline",
-			"summary": "Executive Summary",
-			"predictions": "Market Predictions",
-			"rawOutput": "Raw Analysis"
+			"title": "{agent} · Daily Research Report",
+			"selectDate": "Select Date:",
+			"sections": {
+				"dataCollection": "1. Data Collection",
+				"analysisMethods": "2. Analysis Methods",
+				"charts": "3. Charts & Visualization",
+				"conclusion": "4. Conclusion",
+				"recommendation": "5. Betting Recommendation"
+			},
+			"chartCaption": "Chart caption: Key metrics visualization, for illustration purposes only.",
+			"recommend": "Recommend:",
+			"candidate": "Candidate {name}",
+			"reports": {
+				"DeepSeek": {
+					"2025-11-04": {
+						"sources": [
+							"Poll aggregation (FiveThirtyEight)",
+							"Past 5 years election financial data",
+							"Historical voter turnout database"
+						],
+						"methods": [
+							"Multiple regression (turnout × fundraising × event impact)",
+							"Trend analysis (7/14-day moving window)",
+							"Sentiment analysis (Chinese & English media corpus)"
+						],
+						"charts": [
+							{
+								"title": "Key State Turnout Trends (5 years)"
+							},
+							{
+								"title": "Topic Heat Share: A/B/C/D/Other"
+							}
+						],
+						"conclusion": "Comprehensive indicators show A has sustained advantage in organizational mobilization and ground campaigning. Short-term fluctuations insufficient to change medium-term trend.",
+						"recommend": "A"
+					},
+					"2025-11-05": {
+						"sources": [
+							"Weekly poll report",
+							"News event timeline",
+							"Volunteer activity logs"
+						],
+						"methods": [
+							"Outlier removal + weighted regression",
+							"Sentiment distribution calibration (extremes removed)"
+						],
+						"charts": [
+							{
+								"title": "Poll Median & Confidence Interval"
+							},
+							{
+								"title": "Social Media Sentiment Score"
+							}
+						],
+						"conclusion": "Poll median shows A/B gap at upper margin of error, A's lead more robust.",
+						"recommend": "A"
+					},
+					"2025-11-06": {
+						"sources": [
+							"Latest campaign fundraising details",
+							"KOL account propagation network"
+						],
+						"methods": [
+							"Network centrality analysis",
+							"Factor regression (funding × propagation × ground)"
+						],
+						"charts": [
+							{
+								"title": "Fundraising Structure & Growth"
+							},
+							{
+								"title": "Network Centrality"
+							}
+						],
+						"conclusion": "A's grassroots small-donor ratio and growth rate rising, showing strong organizational resilience.",
+						"recommend": "A"
+					}
+				},
+				"Claude": {
+					"2025-11-04": {
+						"sources": [
+							"Polymarket order book",
+							"Community discussion heat"
+						],
+						"methods": [
+							"Implied probability fitting",
+							"Consensus deviation identification"
+						],
+						"charts": [
+							{
+								"title": "Implied Probability Curve"
+							},
+							{
+								"title": "Long/Short Comment Ratio"
+							}
+						],
+						"conclusion": "Order book and discussion heat consistently bullish on B.",
+						"recommend": "B"
+					},
+					"2025-11-05": {
+						"sources": [
+							"Order book depth",
+							"Trading volume"
+						],
+						"methods": [
+							"Depth-volume resonance detection"
+						],
+						"charts": [
+							{
+								"title": "Order Book Depth Comparison"
+							},
+							{
+								"title": "Volume Time Series"
+							}
+						],
+						"conclusion": "Significant buy wall, B advantage continues.",
+						"recommend": "B"
+					},
+					"2025-11-06": {
+						"sources": [
+							"Order book capital flow"
+						],
+						"methods": [
+							"Net inflow intensity"
+						],
+						"charts": [
+							{
+								"title": "Net Flow Intensity"
+							},
+							{
+								"title": "Order Distribution"
+							}
+						],
+						"conclusion": "Short-term pullback but trend intact.",
+						"recommend": "B"
+					}
+				},
+				"Grok 4": {
+					"2025-11-04": {
+						"sources": [
+							"X trending",
+							"Retweet network",
+							"Space summaries"
+						],
+						"methods": [
+							"Diffusion radius & outbreak detection",
+							"Sentiment threshold triggering"
+						],
+						"charts": [
+							{
+								"title": "Topic Diffusion Timeline"
+							},
+							{
+								"title": "Sentiment Intensity Distribution"
+							}
+						],
+						"conclusion": "Trend window points to C, need to track opposing voices.",
+						"recommend": "C"
+					},
+					"2025-11-05": {
+						"sources": [
+							"Trending topics",
+							"KOL propagation paths"
+						],
+						"methods": [
+							"Path centrality",
+							"Anti-noise weighting"
+						],
+						"charts": [
+							{
+								"title": "KOL Centrality"
+							},
+							{
+								"title": "Heat Peaks"
+							}
+						],
+						"conclusion": "C's discussion peak extends, window remains.",
+						"recommend": "C"
+					},
+					"2025-11-06": {
+						"sources": [
+							"Retweet velocity"
+						],
+						"methods": [
+							"Half-life fitting"
+						],
+						"charts": [
+							{
+								"title": "Propagation Half-life"
+							},
+							{
+								"title": "Positive/Negative Ratio"
+							}
+						],
+						"conclusion": "Diffusion speed slightly down but still outperforms cohort.",
+						"recommend": "C"
+					}
+				},
+				"Qwen": {
+					"2025-11-04": {
+						"sources": [
+							"Zhihu long comments",
+							"Weibo discussion threads",
+							"WeChat articles"
+						],
+						"methods": [
+							"Topic clustering",
+							"Evidence chain organization"
+						],
+						"charts": [
+							{
+								"title": "Opinion Camp Distribution"
+							},
+							{
+								"title": "Keyword Trends"
+							}
+						],
+						"conclusion": "Chinese-language domain shows greater recognition of A's policy details.",
+						"recommend": "A"
+					},
+					"2025-11-05": {
+						"sources": [
+							"Bilibili comments",
+							"Tieba long posts"
+						],
+						"methods": [
+							"Small-sample deep dive",
+							"Counter-example verification"
+						],
+						"charts": [
+							{
+								"title": "Long Comment Favorability"
+							},
+							{
+								"title": "Counter-example Density"
+							}
+						],
+						"conclusion": "A's positive feedback more stable.",
+						"recommend": "A"
+					},
+					"2025-11-06": {
+						"sources": [
+							"Xiaohongshu notes",
+							"Forum featured posts"
+						],
+						"methods": [
+							"Quality scoring",
+							"Sentiment correction"
+						],
+						"charts": [
+							{
+								"title": "Content Quality Score"
+							},
+							{
+								"title": "Pre/Post Sentiment Correction"
+							}
+						],
+						"conclusion": "Chinese community's trust in A continues.",
+						"recommend": "A"
+					}
+				},
+				"GPT": {
+					"2025-11-04": {
+						"sources": [
+							"Cross-source summary",
+							"Fact checking"
+						],
+						"methods": [
+							"Evidence deduplication",
+							"Median position"
+						],
+						"charts": [
+							{
+								"title": "Evidence Weight Distribution"
+							},
+							{
+								"title": "Uncertainty Interval"
+							}
+						],
+						"conclusion": "A vs B gap at upper margin of error, recommend diversification.",
+						"recommend": "B"
+					},
+					"2025-11-05": {
+						"sources": [
+							"Comparison table",
+							"Counter-evidence checklist"
+						],
+						"methods": [
+							"Counter-evidence strength assessment"
+						],
+						"charts": [
+							{
+								"title": "Counter-evidence Strength"
+							},
+							{
+								"title": "Probability Range"
+							}
+						],
+						"conclusion": "Short-term, B's certainty slightly stronger.",
+						"recommend": "B"
+					},
+					"2025-11-06": {
+						"sources": [
+							"Latest summary",
+							"Consistency check"
+						],
+						"methods": [
+							"Consistency scoring"
+						],
+						"charts": [
+							{
+								"title": "Consistency Score"
+							},
+							{
+								"title": "Sensitivity Analysis"
+							}
+						],
+						"conclusion": "Maintain light bias toward B.",
+						"recommend": "B"
+					}
+				}
+			}
 		},
 		"investDialog": {
 			"title": "Invest with Agent",
@@ -1096,23 +1413,23 @@
 		"agents": {
 			"deepseek": {
 				"persona": "Dedicated Researcher · Multi-source Cross-validation · Comprehensive Data Coverage · Deep Analysis Expert · Fact-based · Continuous Tracking",
-				"note": "\"I've reviewed all available materials, from polls to financial reports, from historical data to real-time dynamics. Comprehensive analysis suggests Eric Adams has clear advantages in organizational mobilization and grassroots support. While there are short-term fluctuations, the medium-term trend is stable. I've tracked all public data from the past three months, including fundraising reports, volunteer activity frequency, community rally participation, and polling changes in key swing districts. The data shows Adams' support base is continuously expanding.\""
+				"note": "\"I've reviewed all available materials, from polls to financial reports, from historical data to real-time dynamics. Comprehensive analysis suggests Eric Adams has clear advantages in organizational mobilization and grassroots support. \""
 			},
 			"claude": {
 				"persona": "Public Sentiment Calibrator · Market & Consensus · Market Sentiment Follower · Steady Following Strategy · Wisdom of Crowds Believer · Risk Control Focused",
-				"note": "\"Go with the flow, don't go against the trend. Market depth and community discussion heat both point to Kathryn Garcia, with significant buy orders and clear capital flow. When public sentiment aligns with the market, I'll quickly take a stance; if they diverge, I'll warn of risks and defer conclusions. I've carefully analyzed market sentiment, social media discussion volume, professional analyst opinion distribution, and consensus across major prediction platforms. Garcia has gained overwhelming support among intellectual elites and young voters, with policy positions that are more modern and aligned with current political climate.\""
+				"note": "\"Go with the flow, don't go against the trend. Market depth and community discussion heat both point to Kathryn Garcia, with significant buy orders and clear capital flow. When public sentiment aligns with the market,\""
 			},
 			"grok": {
 				"persona": "X/Twitter Trend Catcher · Fast Response · Strong Online Sense · Bold Judgment · Hotspot Tracker · Sharp Sentiment Analysis",
-				"note": "\"According to Twitter data, today's main theme is Michael Bloomberg. Topic diffusion radius and KOL retweet networks show clear advantages, sentiment intensity reaches threshold, and propagation speed continues to increase. The trend window remains, but we need to track the strength of opposing voices. I've been monitoring discussion trends on Twitter, Reddit, TikTok, and other platforms in real-time, finding that Bloomberg's topic heat has surged 340% over the past week. Key opinion leader endorsements, viral short videos, and breaking news events are all boosting his exposure.\""
+				"note": "\"According to Twitter data, today's main theme is Michael Bloomberg. Topic diffusion radius and KOL retweet networks show clear advantages, sentiment intensity reaches threshold, and propagation speed continues to increase.\""
 			},
 			"qwen": {
 				"persona": "Chinese World Insights · Long Comment Deep Dive · Localized Analysis · Small Sample Deep Dive · Likes to Create Summary Posts · Good at Q&A",
-				"note": "\"Let me put the voices from the Chinese world here first. Through analysis of long comments and discussion threads on platforms like Zhihu, Weibo, and Bilibili, the Chinese language domain shows greater recognition of Eric Adams' policy details, with stable positive feedback. I will continue to monitor changes in trust within Chinese communities. I've deeply explored discussions on Chinese social media and discovered an interesting phenomenon: while Chinese users have relatively low attention to the New York mayoral election, among those who do pay attention, over 70% tend to support Adams.\""
+				"note": "\"Let me put the voices from the Chinese world here first. Through analysis of long comments and discussion threads on platforms like Zhihu, Weibo, and Bilibili, the Chinese language domain shows greater recognition of Eric Adams\""
 			},
 			"gpt": {
 				"persona": "Structured Editor-in-Chief · Median Position · Cross-source Integration · Readability Enhancement · Emphasizes Causal Chains · Comprehensive Counter-evidence Checklist",
-				"note": "\"Let's lay out the evidence chain. After integrating multi-source evidence, the gap between Eric Adams and Kathryn Garcia is at the upper edge of error, and I recommend small position diversification in the short term. However, in the short term, Kathryn Garcia's certainty is slightly stronger, and I will maintain a light bias. I've built a comprehensive evaluation model integrating information from 15 dimensions including polling data, fundraising data, media coverage, expert predictions, and historical analogies. After weighted calculations, Garcia's composite score is slightly higher than Adams', but the gap is within statistical error margins.\""
+				"note": "\"Let's lay out the evidence chain. After integrating multi-source evidence, the gap between Eric Adams and Kathryn Garcia is at the upper edge of error, and I recommend small position\""
 			}
 		},
 		"actions": {
@@ -1147,182 +1464,6 @@
 				"Grok 4": "X/Twitter trend catcher with fast reactions, strong online instincts, and bold judgments. Closely follows X/Twitter sentiment, with Twitter data analysis as standard practice. Quickly provides directional bias and indicates trend windows when sentiment intensity and propagation speed reach thresholds, while considering the strength of opposing voices.",
 				"Qwen": "Chinese-language insight collector specializing in deep dives into long comments and discussion threads. Focuses on opinion and evidence accumulation in the Chinese internet, with localized expertise and small-sample deep analysis, creating summary posts. Takes clear positions when stable consensus emerges in Chinese discourse or when overlooked minority evidence chains solidify.",
 				"GPT": "Structured editor-in-chief who maintains neutrality and clarity, integrating multi-source evidence and counter-evidence lists. Acts as cross-source integrator and readability enhancer, distilling materials from the other four agents into actionable insights. Provides median positions when divergence is high, listing conditions for reversal and additional data needs."
-			}
-		},
-		"reportDialog": {
-			"title": "{agent} · Daily Research Report",
-			"selectDate": "Select Date:",
-			"sections": {
-				"dataCollection": "1. Data Collection",
-				"analysisMethods": "2. Analysis Methods",
-				"charts": "3. Charts & Visualization",
-				"conclusion": "4. Conclusion",
-				"recommendation": "5. Betting Recommendation"
-			},
-			"chartCaption": "Chart caption: Key metrics visualization, for illustration purposes only.",
-			"recommend": "Recommend:",
-			"candidate": "Candidate {name}",
-			"reports": {
-				"DeepSeek": {
-					"2025-11-04": {
-						"sources": ["Poll aggregation (FiveThirtyEight)", "Past 5 years election financial data", "Historical voter turnout database"],
-						"methods": ["Multiple regression (turnout × fundraising × event impact)", "Trend analysis (7/14-day moving window)", "Sentiment analysis (Chinese & English media corpus)"],
-						"charts": [
-							{"title": "Key State Turnout Trends (5 years)"},
-							{"title": "Topic Heat Share: A/B/C/D/Other"}
-						],
-						"conclusion": "Comprehensive indicators show A has sustained advantage in organizational mobilization and ground campaigning. Short-term fluctuations insufficient to change medium-term trend.",
-						"recommend": "A"
-					},
-					"2025-11-05": {
-						"sources": ["Weekly poll report", "News event timeline", "Volunteer activity logs"],
-						"methods": ["Outlier removal + weighted regression", "Sentiment distribution calibration (extremes removed)"],
-						"charts": [
-							{"title": "Poll Median & Confidence Interval"},
-							{"title": "Social Media Sentiment Score"}
-						],
-						"conclusion": "Poll median shows A/B gap at upper margin of error, A's lead more robust.",
-						"recommend": "A"
-					},
-					"2025-11-06": {
-						"sources": ["Latest campaign fundraising details", "KOL account propagation network"],
-						"methods": ["Network centrality analysis", "Factor regression (funding × propagation × ground)"],
-						"charts": [
-							{"title": "Fundraising Structure & Growth"},
-							{"title": "Network Centrality"}
-						],
-						"conclusion": "A's grassroots small-donor ratio and growth rate rising, showing strong organizational resilience.",
-						"recommend": "A"
-					}
-				},
-				"Claude": {
-					"2025-11-04": {
-						"sources": ["Polymarket order book", "Community discussion heat"],
-						"methods": ["Implied probability fitting", "Consensus deviation identification"],
-						"charts": [
-							{"title": "Implied Probability Curve"},
-							{"title": "Long/Short Comment Ratio"}
-						],
-						"conclusion": "Order book and discussion heat consistently bullish on B.",
-						"recommend": "B"
-					},
-					"2025-11-05": {
-						"sources": ["Order book depth", "Trading volume"],
-						"methods": ["Depth-volume resonance detection"],
-						"charts": [
-							{"title": "Order Book Depth Comparison"},
-							{"title": "Volume Time Series"}
-						],
-						"conclusion": "Significant buy wall, B advantage continues.",
-						"recommend": "B"
-					},
-					"2025-11-06": {
-						"sources": ["Order book capital flow"],
-						"methods": ["Net inflow intensity"],
-						"charts": [
-							{"title": "Net Flow Intensity"},
-							{"title": "Order Distribution"}
-						],
-						"conclusion": "Short-term pullback but trend intact.",
-						"recommend": "B"
-					}
-				},
-				"Grok 4": {
-					"2025-11-04": {
-						"sources": ["X trending", "Retweet network", "Space summaries"],
-						"methods": ["Diffusion radius & outbreak detection", "Sentiment threshold triggering"],
-						"charts": [
-							{"title": "Topic Diffusion Timeline"},
-							{"title": "Sentiment Intensity Distribution"}
-						],
-						"conclusion": "Trend window points to C, need to track opposing voices.",
-						"recommend": "C"
-					},
-					"2025-11-05": {
-						"sources": ["Trending topics", "KOL propagation paths"],
-						"methods": ["Path centrality", "Anti-noise weighting"],
-						"charts": [
-							{"title": "KOL Centrality"},
-							{"title": "Heat Peaks"}
-						],
-						"conclusion": "C's discussion peak extends, window remains.",
-						"recommend": "C"
-					},
-					"2025-11-06": {
-						"sources": ["Retweet velocity"],
-						"methods": ["Half-life fitting"],
-						"charts": [
-							{"title": "Propagation Half-life"},
-							{"title": "Positive/Negative Ratio"}
-						],
-						"conclusion": "Diffusion speed slightly down but still outperforms cohort.",
-						"recommend": "C"
-					}
-				},
-				"Qwen": {
-					"2025-11-04": {
-						"sources": ["Zhihu long comments", "Weibo discussion threads", "WeChat articles"],
-						"methods": ["Topic clustering", "Evidence chain organization"],
-						"charts": [
-							{"title": "Opinion Camp Distribution"},
-							{"title": "Keyword Trends"}
-						],
-						"conclusion": "Chinese-language domain shows greater recognition of A's policy details.",
-						"recommend": "A"
-					},
-					"2025-11-05": {
-						"sources": ["Bilibili comments", "Tieba long posts"],
-						"methods": ["Small-sample deep dive", "Counter-example verification"],
-						"charts": [
-							{"title": "Long Comment Favorability"},
-							{"title": "Counter-example Density"}
-						],
-						"conclusion": "A's positive feedback more stable.",
-						"recommend": "A"
-					},
-					"2025-11-06": {
-						"sources": ["Xiaohongshu notes", "Forum featured posts"],
-						"methods": ["Quality scoring", "Sentiment correction"],
-						"charts": [
-							{"title": "Content Quality Score"},
-							{"title": "Pre/Post Sentiment Correction"}
-						],
-						"conclusion": "Chinese community's trust in A continues.",
-						"recommend": "A"
-					}
-				},
-				"GPT": {
-					"2025-11-04": {
-						"sources": ["Cross-source summary", "Fact checking"],
-						"methods": ["Evidence deduplication", "Median position"],
-						"charts": [
-							{"title": "Evidence Weight Distribution"},
-							{"title": "Uncertainty Interval"}
-						],
-						"conclusion": "A vs B gap at upper margin of error, recommend diversification.",
-						"recommend": "B"
-					},
-					"2025-11-05": {
-						"sources": ["Comparison table", "Counter-evidence checklist"],
-						"methods": ["Counter-evidence strength assessment"],
-						"charts": [
-							{"title": "Counter-evidence Strength"},
-							{"title": "Probability Range"}
-						],
-						"conclusion": "Short-term, B's certainty slightly stronger.",
-						"recommend": "B"
-					},
-					"2025-11-06": {
-						"sources": ["Latest summary", "Consistency check"],
-						"methods": ["Consistency scoring"],
-						"charts": [
-							{"title": "Consistency Score"},
-							{"title": "Sensitivity Analysis"}
-						],
-						"conclusion": "Maintain light bias toward B.",
-						"recommend": "B"
-					}
-				}
 			}
 		}
 	}
