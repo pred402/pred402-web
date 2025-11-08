@@ -95,12 +95,10 @@ export function HomePage() {
 
 				.countdown-section {
 					display: flex;
-					gap: 32px;
+					gap: 88px;
 					justify-content: center;
 					align-items: center;
-					padding: 16px;
-					background: linear-gradient(180deg, var(--panel) 0%, var(--panel-alt) 100%);
-					border: 1px solid var(--border);
+					padding: 8px;
 					border-radius: 16px;
 				}
 
@@ -113,7 +111,6 @@ export function HomePage() {
 
 				.countdown-label {
 					font-size: 13px;
-					color: var(--accent);
 					font-weight: 600;
 					letter-spacing: 0.5px;
 					text-transform: uppercase;
@@ -148,31 +145,30 @@ export function HomePage() {
 					justify-content: center;
 					font-size: 28px;
 					font-weight: 700;
-					color: var(--brand);
 					position: relative;
 					box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 				}
 
-				.flip-card-inner::before {
-					content: '';
-					position: absolute;
-					top: 50%;
-					left: 0;
-					right: 0;
-					height: 1px;
-					background: rgba(0, 0, 0, 0.4);
-				}
+				// .flip-card-inner::before {
+				// 	content: '';
+				// 	position: absolute;
+				// 	top: 50%;
+				// 	left: 0;
+				// 	right: 0;
+				// 	height: 1px;
+				// 	background: rgba(0, 0, 0, 0.4);
+				// }
 
-				.flip-card-inner::after {
-					content: '';
-					position: absolute;
-					top: 50%;
-					left: 0;
-					right: 0;
-					height: 1px;
-					background: var(--border);
-					transform: translateY(-1px);
-				}
+				// .flip-card-inner::after {
+				// 	content: '';
+				// 	position: absolute;
+				// 	top: 50%;
+				// 	left: 0;
+				// 	right: 0;
+				// 	height: 1px;
+				// 	background: var(--border);
+				// 	transform: translateY(-1px);
+				// }
 
 				.time-separator {
 					display: flex;
@@ -183,7 +179,7 @@ export function HomePage() {
 				}
 
 				.time-separator-label {
-					font-size: 11px;
+					font-size: 14px;
 					color: var(--muted);
 					font-weight: 500;
 					line-height: 1.2;
@@ -201,18 +197,10 @@ export function HomePage() {
 					min-height: 0;
 				}
 
-				.demo-title {
-					font-size: clamp(16px, 2vw, 26px);
-					font-weight: 700;
-					letter-spacing: 0.2px;
-					line-height: 1.6;
-					margin-bottom: 12px;
-				}
-
 				.demo-market-desc {
 					color: var(--muted);
 					margin-top: 0;
-					font-size: 12px;
+					font-size: 14px;
 					line-height: 1.8;
 				}
 
@@ -811,9 +799,6 @@ export function HomePage() {
 				<section className="demo-market">
 					<div className="demo-market-body">
 						<div className="demo-left-col">
-							<div className="demo-title">
-								{t("market.title")}
-							</div>
 							<p className="demo-market-desc text-base">
 								{t("market.ruleDesc")}
 							</p>
@@ -850,11 +835,11 @@ export function HomePage() {
 						</div>
 
 						<aside className="demo-legend">
-							<div
+							{/* <div
 								style={{ fontWeight: 700, marginBottom: "8px" }}
 							>
 								{t("market.reportProbability")}
-							</div>
+							</div> */}
 							<div className="demo-agent-predictions">
 								{/* DeepSeek */}
 								<div className="demo-agent-prediction">

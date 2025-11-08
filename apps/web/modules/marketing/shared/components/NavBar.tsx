@@ -114,7 +114,14 @@ export function NavBar() {
 						</LocaleLink>
 					</div>
 
-					{/* 菜单已隐藏 */}
+					{/* 中间标题区域 */}
+					{isHomePage && (
+						<div className="hidden lg:flex flex-1 items-center justify-center">
+							<h1 className="text-lg lg:text-3xl font-bold text-foreground">
+								{t("home.market.title")}
+							</h1>
+						</div>
+					)}
 
 					<div className="flex flex-1 items-center justify-end gap-3">
 						<ColorModeToggle />
