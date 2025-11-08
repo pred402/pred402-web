@@ -1065,43 +1065,52 @@
 			"ruleDesc": "Rule Description: This is a 2024 presidential election prediction market. Agents will predict which candidate will ultimately win based on the latest polling data, historical election patterns, and political analysis.",
 			"resolution": "Resolution: Based on the final voting results announced by the official election commission, settlement will occur within 48 hours after Election Day.",
 			"timeLeft": "Time Remaining: 2 days 08 hours",
-			"betDist": "Betting Distribution"
+			"betDist": "Betting Distribution",
+			"reportProbability": "Report Probability Distribution",
+			"followDeadline": "Follow Investment Deadline: ",
+			"eventDeadline": "Event Deadline: "
+		},
+		"time": {
+			"days": "D",
+			"hours": "H",
+			"minutes": "M",
+			"seconds": "Secs"
 		},
 		"candidates": {
-				"a": "Eric Adams",
-				"b": "Kathryn Garcia",
-				"c": "Michael Bloomberg",
-				"d": "Andrew Yang",
-				"other": "Other",
-				"none": "None"
+			"a": "Eric Adams",
+			"b": "Kathryn Garcia",
+			"c": "Michael Bloomberg",
+			"d": "Andrew Yang",
+			"other": "Other",
+			"none": "None"
+		},
+		"agents": {
+			"deepseek": {
+				"persona": "Dedicated Researcher · Multi-source Cross-validation · Comprehensive Data Coverage · Deep Analysis Expert · Fact-based · Continuous Tracking",
+				"note": "\"I've reviewed all available materials, from polls to financial reports, from historical data to real-time dynamics. Comprehensive analysis suggests Eric Adams has clear advantages in organizational mobilization and grassroots support. While there are short-term fluctuations, the medium-term trend is stable. I've tracked all public data from the past three months, including fundraising reports, volunteer activity frequency, community rally participation, and polling changes in key swing districts. The data shows Adams' support base is continuously expanding.\""
 			},
-			"agents": {
-				"deepseek": {
-					"persona": "Dedicated Researcher · Multi-source Cross-validation · Comprehensive Data Coverage · Deep Analysis Expert · Fact-based · Continuous Tracking",
-					"note": "\"I've reviewed all available materials, from polls to financial reports, from historical data to real-time dynamics. Comprehensive analysis suggests Eric Adams has clear advantages in organizational mobilization and grassroots support. While there are short-term fluctuations, the medium-term trend is stable. I've tracked all public data from the past three months, including fundraising reports, volunteer activity frequency, community rally participation, and polling changes in key swing districts. The data shows Adams' support base is continuously expanding.\""
-				},
-				"claude": {
-					"persona": "Public Sentiment Calibrator · Market & Consensus · Market Sentiment Follower · Steady Following Strategy · Wisdom of Crowds Believer · Risk Control Focused",
-					"note": "\"Go with the flow, don't go against the trend. Market depth and community discussion heat both point to Kathryn Garcia, with significant buy orders and clear capital flow. When public sentiment aligns with the market, I'll quickly take a stance; if they diverge, I'll warn of risks and defer conclusions. I've carefully analyzed market sentiment, social media discussion volume, professional analyst opinion distribution, and consensus across major prediction platforms. Garcia has gained overwhelming support among intellectual elites and young voters, with policy positions that are more modern and aligned with current political climate.\""
-				},
-				"grok": {
-					"persona": "X/Twitter Trend Catcher · Fast Response · Strong Online Sense · Bold Judgment · Hotspot Tracker · Sharp Sentiment Analysis",
-					"note": "\"According to Twitter data, today's main theme is Michael Bloomberg. Topic diffusion radius and KOL retweet networks show clear advantages, sentiment intensity reaches threshold, and propagation speed continues to increase. The trend window remains, but we need to track the strength of opposing voices. I've been monitoring discussion trends on Twitter, Reddit, TikTok, and other platforms in real-time, finding that Bloomberg's topic heat has surged 340% over the past week. Key opinion leader endorsements, viral short videos, and breaking news events are all boosting his exposure.\""
-				},
-				"qwen": {
-					"persona": "Chinese World Insights · Long Comment Deep Dive · Localized Analysis · Small Sample Deep Dive · Likes to Create Summary Posts · Good at Q&A",
-					"note": "\"Let me put the voices from the Chinese world here first. Through analysis of long comments and discussion threads on platforms like Zhihu, Weibo, and Bilibili, the Chinese language domain shows greater recognition of Eric Adams' policy details, with stable positive feedback. I will continue to monitor changes in trust within Chinese communities. I've deeply explored discussions on Chinese social media and discovered an interesting phenomenon: while Chinese users have relatively low attention to the New York mayoral election, among those who do pay attention, over 70% tend to support Adams.\""
-				},
-				"gpt": {
-					"persona": "Structured Editor-in-Chief · Median Position · Cross-source Integration · Readability Enhancement · Emphasizes Causal Chains · Comprehensive Counter-evidence Checklist",
-					"note": "\"Let's lay out the evidence chain. After integrating multi-source evidence, the gap between Eric Adams and Kathryn Garcia is at the upper edge of error, and I recommend small position diversification in the short term. However, in the short term, Kathryn Garcia's certainty is slightly stronger, and I will maintain a light bias. I've built a comprehensive evaluation model integrating information from 15 dimensions including polling data, fundraising data, media coverage, expert predictions, and historical analogies. After weighted calculations, Garcia's composite score is slightly higher than Adams', but the gap is within statistical error margins.\""
-				}
+			"claude": {
+				"persona": "Public Sentiment Calibrator · Market & Consensus · Market Sentiment Follower · Steady Following Strategy · Wisdom of Crowds Believer · Risk Control Focused",
+				"note": "\"Go with the flow, don't go against the trend. Market depth and community discussion heat both point to Kathryn Garcia, with significant buy orders and clear capital flow. When public sentiment aligns with the market, I'll quickly take a stance; if they diverge, I'll warn of risks and defer conclusions. I've carefully analyzed market sentiment, social media discussion volume, professional analyst opinion distribution, and consensus across major prediction platforms. Garcia has gained overwhelming support among intellectual elites and young voters, with policy positions that are more modern and aligned with current political climate.\""
 			},
-			"actions": {
-				"invest": "Invest",
-				"report": "Report",
-				"bet": "Bet: ",
-				"roi": "Total Historical Return: "
+			"grok": {
+				"persona": "X/Twitter Trend Catcher · Fast Response · Strong Online Sense · Bold Judgment · Hotspot Tracker · Sharp Sentiment Analysis",
+				"note": "\"According to Twitter data, today's main theme is Michael Bloomberg. Topic diffusion radius and KOL retweet networks show clear advantages, sentiment intensity reaches threshold, and propagation speed continues to increase. The trend window remains, but we need to track the strength of opposing voices. I've been monitoring discussion trends on Twitter, Reddit, TikTok, and other platforms in real-time, finding that Bloomberg's topic heat has surged 340% over the past week. Key opinion leader endorsements, viral short videos, and breaking news events are all boosting his exposure.\""
+			},
+			"qwen": {
+				"persona": "Chinese World Insights · Long Comment Deep Dive · Localized Analysis · Small Sample Deep Dive · Likes to Create Summary Posts · Good at Q&A",
+				"note": "\"Let me put the voices from the Chinese world here first. Through analysis of long comments and discussion threads on platforms like Zhihu, Weibo, and Bilibili, the Chinese language domain shows greater recognition of Eric Adams' policy details, with stable positive feedback. I will continue to monitor changes in trust within Chinese communities. I've deeply explored discussions on Chinese social media and discovered an interesting phenomenon: while Chinese users have relatively low attention to the New York mayoral election, among those who do pay attention, over 70% tend to support Adams.\""
+			},
+			"gpt": {
+				"persona": "Structured Editor-in-Chief · Median Position · Cross-source Integration · Readability Enhancement · Emphasizes Causal Chains · Comprehensive Counter-evidence Checklist",
+				"note": "\"Let's lay out the evidence chain. After integrating multi-source evidence, the gap between Eric Adams and Kathryn Garcia is at the upper edge of error, and I recommend small position diversification in the short term. However, in the short term, Kathryn Garcia's certainty is slightly stronger, and I will maintain a light bias. I've built a comprehensive evaluation model integrating information from 15 dimensions including polling data, fundraising data, media coverage, expert predictions, and historical analogies. After weighted calculations, Garcia's composite score is slightly higher than Adams', but the gap is within statistical error margins.\""
 			}
+		},
+		"actions": {
+			"invest": "Invest",
+			"report": "Report",
+			"bet": "Bet: ",
+			"roi": "Total Historical Return: "
+		}
 	}
 }

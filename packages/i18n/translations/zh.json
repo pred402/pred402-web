@@ -1065,7 +1065,16 @@
 			"ruleDesc": "规则描述：这是2024年总统选举结果预测市场，Agent 将基于最新的民意调查数据、历史选举模式和政治分析，预测哪位候选人将最终赢得选举。",
 			"resolution": "结果判定：以官方选举委员会公布的最终投票结果为准，在选举日结束后48小时内结算。",
 			"timeLeft": "剩余时间：2天08小时",
-			"betDist": "下注分布"
+			"betDist": "下注分布",
+			"reportProbability": "研报概率分布",
+			"followDeadline": "跟投截至时间：",
+			"eventDeadline": "事件截至时间："
+		},
+		"time": {
+			"days": "天",
+			"hours": "时",
+			"minutes": "分",
+			"seconds": "秒"
 		},
 		"candidates": {
 				"a": "埃里克·亚当斯",

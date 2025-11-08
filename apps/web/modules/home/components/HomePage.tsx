@@ -34,14 +34,14 @@ export function HomePage() {
 		return () => clearInterval(timer);
 	}, []);
 
-	// 格式化倒计时显示
-	const formatTime = (seconds: number) => {
+	// 格式化倒计时显示 - 返回时间对象
+	const getTimeComponents = (seconds: number) => {
 		const days = Math.floor(seconds / (24 * 60 * 60));
 		const hours = Math.floor((seconds % (24 * 60 * 60)) / (60 * 60));
 		const minutes = Math.floor((seconds % (60 * 60)) / 60);
 		const secs = seconds % 60;
 
-		return `${days} 天 ${hours.toString().padStart(2, "0")} 小时 ${minutes.toString().padStart(2, "0")} 分 ${secs.toString().padStart(2, "0")} 秒`;
+		return { days, hours, minutes, secs };
 	};
 
 	const handleOpenReport = (agent: string) => {
@@ -87,10 +87,107 @@ export function HomePage() {
 				.demo-container {
 					height: calc(100vh - 56px);
 					display: grid;
-					grid-template-rows: 0.33fr 0.67fr;
+					grid-template-rows: auto 0.33fr 0.67fr;
 					gap: 10px;
 					padding: 4px clamp(14px, 3vw, 24px) 10px;
 					overflow: hidden;
+				}
+
+				.countdown-section {
+					display: flex;
+					gap: 32px;
+					justify-content: center;
+					align-items: center;
+					padding: 16px;
+					background: linear-gradient(180deg, var(--panel) 0%, var(--panel-alt) 100%);
+					border: 1px solid var(--border);
+					border-radius: 16px;
+				}
+
+				.countdown-item {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					gap: 12px;
+				}
+
+				.countdown-label {
+					font-size: 13px;
+					color: var(--accent);
+					font-weight: 600;
+					letter-spacing: 0.5px;
+					text-transform: uppercase;
+				}
+
+				.countdown-time {
+					display: flex;
+					gap: 8px;
+					align-items: center;
+				}
+
+				.countdown-digits {
+					display: flex;
+					gap: 4px;
+				}
+
+				.flip-card {
+					position: relative;
+					width: 40px;
+					height: 52px;
+					perspective: 1000px;
+				}
+
+				.flip-card-inner {
+					width: 100%;
+					height: 100%;
+					background: linear-gradient(180deg, #1a2847 0%, #0f1a35 100%);
+					border: 1px solid var(--border);
+					border-radius: 8px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 28px;
+					font-weight: 700;
+					color: var(--brand);
+					position: relative;
+					box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+				}
+
+				.flip-card-inner::before {
+					content: '';
+					position: absolute;
+					top: 50%;
+					left: 0;
+					right: 0;
+					height: 1px;
+					background: rgba(0, 0, 0, 0.4);
+				}
+
+				.flip-card-inner::after {
+					content: '';
+					position: absolute;
+					top: 50%;
+					left: 0;
+					right: 0;
+					height: 1px;
+					background: var(--border);
+					transform: translateY(-1px);
+				}
+
+				.time-separator {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					gap: 2px;
+					padding: 0 8px;
+				}
+
+				.time-separator-label {
+					font-size: 11px;
+					color: var(--muted);
+					font-weight: 500;
+					line-height: 1.2;
+					white-space: nowrap;
 				}
 
 				.demo-market {
@@ -151,7 +248,7 @@ export function HomePage() {
 					background: var(--card);
 					border: 1px solid var(--border);
 					border-radius: 14px;
-					padding: 12px 20px;
+					padding: 8px 20px;
 					display: flex;
 					flex-direction: column;
 					gap: 4px;
@@ -468,6 +565,9 @@ export function HomePage() {
 					.demo-agent-grid {
 						grid-template-columns: repeat(3, minmax(0, 1fr));
 					}
+					.countdown-section {
+						gap: 40px;
+					}
 				}
 
 				@media (max-width: 640px) {
@@ -478,12 +578,235 @@ export function HomePage() {
 						grid-template-columns: repeat(2, minmax(0, 1fr));
 					}
 					.demo-container {
-						grid-template-rows: 1.1fr 0.9fr;
+						grid-template-rows: auto 1.1fr 0.9fr;
+					}
+					.countdown-section {
+						padding: 12px;
+					}
+					.countdown-item {
+						gap: 8px;
+					}
+					.countdown-label {
+						font-size: 11px;
+					}
+					.flip-card {
+						width: 32px;
+						height: 42px;
+					}
+					.flip-card-inner {
+						font-size: 22px;
+					}
+					.time-separator {
+						padding: 0 4px;
+						gap: 1px;
+					}
+					.time-separator-label {
+						font-size: 9px;
 					}
 				}
 			`}</style>
 
 			<main className="demo-container">
+				{/* 倒计时区域 */}
+				<section className="countdown-section">
+					<div className="countdown-item">
+						<div className="countdown-label">
+							{t("market.followDeadline")}
+						</div>
+						<div className="countdown-time">
+							<div className="countdown-digits">
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{getTimeComponents(followTimeLeft).days}
+									</div>
+								</div>
+							</div>
+							<div className="time-separator">
+								<div className="time-separator-label">
+									{t("time.days")}
+								</div>
+							</div>
+							<div className="countdown-digits">
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{
+											String(
+												getTimeComponents(
+													followTimeLeft,
+												).hours,
+											).padStart(2, "0")[0]
+										}
+									</div>
+								</div>
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{
+											String(
+												getTimeComponents(
+													followTimeLeft,
+												).hours,
+											).padStart(2, "0")[1]
+										}
+									</div>
+								</div>
+							</div>
+							<div className="time-separator">
+								<div className="time-separator-label">
+									{t("time.hours")}
+								</div>
+							</div>
+							<div className="countdown-digits">
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{
+											String(
+												getTimeComponents(
+													followTimeLeft,
+												).minutes,
+											).padStart(2, "0")[0]
+										}
+									</div>
+								</div>
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{
+											String(
+												getTimeComponents(
+													followTimeLeft,
+												).minutes,
+											).padStart(2, "0")[1]
+										}
+									</div>
+								</div>
+							</div>
+							<div className="time-separator">
+								<div className="time-separator-label">
+									{t("time.minutes")}
+								</div>
+							</div>
+							<div className="countdown-digits">
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{
+											String(
+												getTimeComponents(
+													followTimeLeft,
+												).secs,
+											).padStart(2, "0")[0]
+										}
+									</div>
+								</div>
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{
+											String(
+												getTimeComponents(
+													followTimeLeft,
+												).secs,
+											).padStart(2, "0")[1]
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className="countdown-item">
+						<div className="countdown-label">
+							{t("market.eventDeadline")}
+						</div>
+						<div className="countdown-time">
+							<div className="countdown-digits">
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{getTimeComponents(eventTimeLeft).days}
+									</div>
+								</div>
+							</div>
+							<div className="time-separator">
+								<div className="time-separator-label">
+									{t("time.days")}
+								</div>
+							</div>
+							<div className="countdown-digits">
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{
+											String(
+												getTimeComponents(eventTimeLeft)
+													.hours,
+											).padStart(2, "0")[0]
+										}
+									</div>
+								</div>
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{
+											String(
+												getTimeComponents(eventTimeLeft)
+													.hours,
+											).padStart(2, "0")[1]
+										}
+									</div>
+								</div>
+							</div>
+							<div className="time-separator">
+								<div className="time-separator-label">
+									{t("time.hours")}
+								</div>
+							</div>
+							<div className="countdown-digits">
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{
+											String(
+												getTimeComponents(eventTimeLeft)
+													.minutes,
+											).padStart(2, "0")[0]
+										}
+									</div>
+								</div>
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{
+											String(
+												getTimeComponents(eventTimeLeft)
+													.minutes,
+											).padStart(2, "0")[1]
+										}
+									</div>
+								</div>
+							</div>
+							<div className="time-separator">
+								<div className="time-separator-label">
+									{t("time.minutes")}
+								</div>
+							</div>
+							<div className="countdown-digits">
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{
+											String(
+												getTimeComponents(eventTimeLeft)
+													.secs,
+											).padStart(2, "0")[0]
+										}
+									</div>
+								</div>
+								<div className="flip-card">
+									<div className="flip-card-inner">
+										{
+											String(
+												getTimeComponents(eventTimeLeft)
+													.secs,
+											).padStart(2, "0")[1]
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
 				{/* 上半屏：预测市场主体 */}
 				<section className="demo-market">
 					<div className="demo-market-body">
@@ -496,12 +819,6 @@ export function HomePage() {
 							</p>
 							<p className="demo-market-desc">
 								{t("market.resolution")}
-							</p>
-							<p className="demo-market-desc">
-								跟投截至时间：{formatTime(followTimeLeft)}
-							</p>
-							<p className="demo-market-desc">
-								事件截至时间：{formatTime(eventTimeLeft)}
 							</p>
 							<div className="demo-options">
 								<div className="demo-option-card">
@@ -536,7 +853,7 @@ export function HomePage() {
 							<div
 								style={{ fontWeight: 700, marginBottom: "8px" }}
 							>
-								研报概率分布
+								{t("market.reportProbability")}
 							</div>
 							<div className="demo-agent-predictions">
 								{/* DeepSeek */}
