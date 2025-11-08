@@ -105,7 +105,7 @@ export function NavBar() {
 						!isTop || isDocsPage ? "py-4" : "py-6",
 					)}
 				>
-					<div className="flex flex-1 justify-start">
+					<div className="flex flex-[0.8] justify-start">
 						<LocaleLink
 							href="/"
 							className="block hover:no-underline active:no-underline"
@@ -116,14 +116,14 @@ export function NavBar() {
 
 					{/* 中间标题区域 */}
 					{isHomePage && (
-						<div className="hidden lg:flex flex-1 items-center justify-center">
+						<div className="hidden lg:flex flex-[2.5] items-center justify-center">
 							<h1 className="text-lg lg:text-3xl font-bold text-foreground">
 								{t("home.market.title")}
 							</h1>
 						</div>
 					)}
 
-					<div className="flex flex-1 items-center justify-end gap-3">
+					<div className="flex flex-[0.8] items-center justify-end gap-3">
 						<ColorModeToggle />
 						{config.i18n.enabled && (
 							<Suspense>

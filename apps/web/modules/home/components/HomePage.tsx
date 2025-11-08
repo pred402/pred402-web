@@ -200,8 +200,8 @@ export function HomePage() {
 				.demo-market-desc {
 					color: var(--muted);
 					margin-top: 0;
-					font-size: 14px;
-					line-height: 1.8;
+					font-size: 12px;
+					line-height: 1.4;
 				}
 
 				.demo-market-body {
@@ -236,7 +236,7 @@ export function HomePage() {
 					background: var(--card);
 					border: 1px solid var(--border);
 					border-radius: 14px;
-					padding: 8px 20px;
+					padding: 4px 12px;
 					display: flex;
 					flex-direction: column;
 					gap: 4px;
