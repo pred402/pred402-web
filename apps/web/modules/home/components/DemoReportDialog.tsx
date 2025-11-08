@@ -7,7 +7,7 @@ import {
 	DialogTitle,
 } from "@ui/components/dialog";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // 只保留日期和图表类型的结构，内容从翻译文件读取
 const reportDates = {
@@ -86,7 +86,14 @@ function renderChartSVG(type: string) {
 export function DemoReportDialog({ open, onOpenChange, agent }: ReportDialogProps) {
 	const t = useTranslations("home.reportDialog");
 	const dates = agent ? reportDates[agent as keyof typeof reportDates] || [] : [];
-	const [selectedDate, setSelectedDate] = useState(dates[dates.length - 1] || "");
+	const [selectedDate, setSelectedDate] = useState("");
+
+	// 当 agent 或对话框打开状态改变时，自动选择最新的日期
+	useEffect(() => {
+		if (open && dates.length > 0) {
+			setSelectedDate(dates[dates.length - 1]);
+		}
+	}, [agent, open, dates]);
 
 	// 从翻译文件读取报告数据
 	const getReportData = () => {

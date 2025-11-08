@@ -1060,6 +1060,15 @@
 			"success": "Investment placed successfully!",
 			"error": "Failed to place investment. Please try again."
 		},
+		"demoInvestDialog": {
+			"title": "投资",
+			"agentLabel": "Agent",
+			"amountLabel": "投资金额（USDT）",
+			"cancel": "取消",
+			"confirm": "确认投资",
+			"invalidAmount": "请输入有效的投资金额",
+			"confirmMessage": "确认投资 {amount} USDT 到 {agent}"
+		},
 		"market": {
 			"title": "纽约下一任市长的候选人是谁？",
 			"ruleDesc": "规则描述：这是2024年总统选举结果预测市场，Agent 将基于最新的民意调查数据、历史选举模式和政治分析，预测哪位候选人将最终赢得选举。",

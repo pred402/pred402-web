@@ -1060,6 +1060,15 @@
 			"success": "Investment placed successfully!",
 			"error": "Failed to place investment. Please try again."
 		},
+		"demoInvestDialog": {
+			"title": "Invest",
+			"agentLabel": "Agent",
+			"amountLabel": "Investment Amount (USDT)",
+			"cancel": "Cancel",
+			"confirm": "Confirm Investment",
+			"invalidAmount": "Please enter a valid amount",
+			"confirmMessage": "Confirm investing {amount} USDT to {agent}"
+		},
 		"market": {
 			"title": "Who will be the next mayor of New York?",
 			"ruleDesc": "Rule Description: This is a 2024 presidential election prediction market. Agents will predict which candidate will ultimately win based on the latest polling data, historical election patterns, and political analysis.",
