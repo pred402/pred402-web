@@ -11,7 +11,7 @@ import {
 async function main() {
 	console.log("Creating admin user...");
 
-	const email = "hi@gomark.pro";
+	const email = "pred402.team@gmail.com";
 	const name = "Super Admin";
 
 	try {
@@ -23,7 +23,7 @@ async function main() {
 		}
 
 		const authContext = await auth.$context;
-		const adminPassword = "Admin123!@#";
+		const adminPassword = "Simplicity.123";
 		const hashedPassword = await authContext.password.hash(adminPassword);
 
 		const adminUser = await createUser({

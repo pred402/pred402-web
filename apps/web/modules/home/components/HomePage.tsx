@@ -1,13 +1,19 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DemoAgentDetailDialog } from "./DemoAgentDetailDialog";
 import { DemoInvestDialog } from "./DemoInvestDialog";
 import { DemoReportDialog } from "./DemoReportDialog";
 
 export function HomePage() {
 	const t = useTranslations("home");
+
+	// 倒计时状态
+	// 事件截至时间：2 天 08 小时 = 56 小时 = 201600 秒
+	const [eventTimeLeft, setEventTimeLeft] = useState(201600);
+	// 跟投截至时间：事件截至 - 6 小时 = 50 小时 = 180000 秒
+	const [followTimeLeft, setFollowTimeLeft] = useState(180000);
 
 	const [reportDialogOpen, setReportDialogOpen] = useState(false);
 	const [reportAgent, setReportAgent] = useState<string | null>(null);
@@ -17,6 +23,26 @@ export function HomePage() {
 
 	const [investDialogOpen, setInvestDialogOpen] = useState(false);
 	const [investAgent, setInvestAgent] = useState<string | null>(null);
+
+	// 倒计时逻辑
+	useEffect(() => {
+		const timer = setInterval(() => {
+			setEventTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+			setFollowTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+		}, 1000);
+
+		return () => clearInterval(timer);
+	}, []);
+
+	// 格式化倒计时显示
+	const formatTime = (seconds: number) => {
+		const days = Math.floor(seconds / (24 * 60 * 60));
+		const hours = Math.floor((seconds % (24 * 60 * 60)) / (60 * 60));
+		const minutes = Math.floor((seconds % (60 * 60)) / 60);
+		const secs = seconds % 60;
+
+		return `${days} 天 ${hours.toString().padStart(2, "0")} 小时 ${minutes.toString().padStart(2, "0")} 分 ${secs.toString().padStart(2, "0")} 秒`;
+	};
 
 	const handleOpenReport = (agent: string) => {
 		setReportAgent(agent);
@@ -79,18 +105,18 @@ export function HomePage() {
 				}
 
 				.demo-title {
-					font-size: clamp(16px, 2vw, 24px);
+					font-size: clamp(16px, 2vw, 26px);
 					font-weight: 700;
 					letter-spacing: 0.2px;
-					line-height: 1.2;
-					margin-bottom: 4px;
+					line-height: 1.6;
+					margin-bottom: 12px;
 				}
 
 				.demo-market-desc {
 					color: var(--muted);
 					margin-top: 0;
 					font-size: 12px;
-					line-height: 1.3;
+					line-height: 1.8;
 				}
 
 				.demo-market-body {
@@ -118,14 +144,14 @@ export function HomePage() {
 					gap: 8px;
 					grid-auto-rows: min-content;
 					flex-shrink: 0;
-					margin-top: 2px;
+					margin-top: 12px;
 				}
 
 				.demo-option-card {
 					background: var(--card);
 					border: 1px solid var(--border);
 					border-radius: 14px;
-					padding: 6px 8px;
+					padding: 12px 20px;
 					display: flex;
 					flex-direction: column;
 					gap: 4px;
@@ -162,7 +188,7 @@ export function HomePage() {
 					background: var(--card);
 					border: 1px solid var(--border);
 					border-radius: 14px;
-					padding: 6px 10px 8px 10px;
+					padding: 12px 20px 12px 20px;
 					display: grid;
 					grid-template-rows: auto 1fr;
 					gap: 6px;
@@ -414,7 +440,7 @@ export function HomePage() {
 						grid-template-columns: 1fr;
 					}
 					.demo-options {
-						grid-template-columns: repeat(3, minmax(0, 1fr));
+						grid-template-columns: repeat(5, minmax(0, 1fr));
 					}
 					.demo-agent-grid {
 						grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -423,7 +449,7 @@ export function HomePage() {
 
 				@media (max-width: 640px) {
 					.demo-options {
-						grid-template-columns: repeat(2, minmax(0, 1fr));
+						grid-template-columns: repeat(5, minmax(0, 1fr));
 					}
 					.demo-agent-grid {
 						grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -449,65 +475,35 @@ export function HomePage() {
 								{t("market.resolution")}
 							</p>
 							<p className="demo-market-desc">
-								{t("market.timeLeft")}
+								跟投截至时间：{formatTime(followTimeLeft)}
+							</p>
+							<p className="demo-market-desc">
+								事件截至时间：{formatTime(eventTimeLeft)}
 							</p>
 							<div className="demo-options">
 								<div className="demo-option-card">
 									<div className="demo-option-name">
 										{t("candidates.a")}
 									</div>
-									<div className="demo-agent-tags">
-										<span className="demo-badge">
-											DeepSeek
-										</span>
-										<span className="demo-badge">Qwen</span>
-									</div>
 								</div>
 								<div className="demo-option-card">
 									<div className="demo-option-name">
 										{t("candidates.b")}
-									</div>
-									<div className="demo-agent-tags">
-										<span className="demo-badge">
-											Claude
-										</span>
-										<span className="demo-badge">GPT</span>
 									</div>
 								</div>
 								<div className="demo-option-card">
 									<div className="demo-option-name">
 										{t("candidates.c")}
 									</div>
-									<div className="demo-agent-tags">
-										<span className="demo-badge">
-											Grok 4
-										</span>
-									</div>
 								</div>
 								<div className="demo-option-card">
 									<div className="demo-option-name">
 										{t("candidates.d")}
 									</div>
-									<div className="demo-agent-tags">
-										<span
-											className="demo-badge"
-											style={{ opacity: 0.5 }}
-										>
-											{t("candidates.none")}
-										</span>
-									</div>
 								</div>
 								<div className="demo-option-card">
 									<div className="demo-option-name">
 										{t("candidates.other")}
-									</div>
-									<div className="demo-agent-tags">
-										<span
-											className="demo-badge"
-											style={{ opacity: 0.5 }}
-										>
-											{t("candidates.none")}
-										</span>
 									</div>
 								</div>
 							</div>
@@ -639,23 +635,24 @@ export function HomePage() {
 									</div>
 								</div>
 							</div>
-							<div className="demo-pick">
-								<span className="label">
-									{t("actions.bet")}
-								</span>
+							{/* <div className="demo-pick">
 								<span className="choice">
 									{t("candidates.a")}
 								</span>
-							</div>
-							<div className="demo-note">
-								{t("agents.deepseek.note")}
-							</div>
+								<span className="label">
+									{t("actions.bet")}
+								</span>
+							</div> */}
 							<div className="demo-roi-display">
 								<span className="demo-roi-label">
 									{t("actions.roi")}
 								</span>
 								<span className="demo-roi-value">+24.5%</span>
 							</div>
+							<div className="demo-note">
+								{t("agents.deepseek.note")}
+							</div>
+
 							<div className="demo-btn-row">
 								<button
 									type="button"
@@ -696,23 +693,24 @@ export function HomePage() {
 									</div>
 								</div>
 							</div>
-							<div className="demo-pick">
+							{/* <div className="demo-pick">
 								<span className="label">
 									{t("actions.bet")}
 								</span>
 								<span className="choice">
 									{t("candidates.b")}
 								</span>
-							</div>
-							<div className="demo-note">
-								{t("agents.claude.note")}
-							</div>
+							</div> */}
 							<div className="demo-roi-display">
 								<span className="demo-roi-label">
 									{t("actions.roi")}
 								</span>
 								<span className="demo-roi-value">+18.2%</span>
 							</div>
+							<div className="demo-note">
+								{t("agents.claude.note")}
+							</div>
+
 							<div className="demo-btn-row">
 								<button
 									type="button"
@@ -753,23 +751,24 @@ export function HomePage() {
 									</div>
 								</div>
 							</div>
-							<div className="demo-pick">
+							{/* <div className="demo-pick">
 								<span className="label">
 									{t("actions.bet")}
 								</span>
 								<span className="choice">
 									{t("candidates.c")}
 								</span>
-							</div>
-							<div className="demo-note">
-								{t("agents.grok.note")}
-							</div>
+							</div> */}
 							<div className="demo-roi-display">
 								<span className="demo-roi-label">
 									{t("actions.roi")}
 								</span>
 								<span className="demo-roi-value">+31.7%</span>
 							</div>
+							<div className="demo-note">
+								{t("agents.grok.note")}
+							</div>
+
 							<div className="demo-btn-row">
 								<button
 									type="button"
@@ -808,23 +807,24 @@ export function HomePage() {
 									</div>
 								</div>
 							</div>
-							<div className="demo-pick">
+							{/* <div className="demo-pick">
 								<span className="label">
 									{t("actions.bet")}
 								</span>
 								<span className="choice">
 									{t("candidates.a")}
 								</span>
-							</div>
-							<div className="demo-note">
-								{t("agents.qwen.note")}
-							</div>
+							</div> */}
 							<div className="demo-roi-display">
 								<span className="demo-roi-label">
 									{t("actions.roi")}
 								</span>
 								<span className="demo-roi-value">+22.1%</span>
 							</div>
+							<div className="demo-note">
+								{t("agents.qwen.note")}
+							</div>
+
 							<div className="demo-btn-row">
 								<button
 									type="button"
@@ -863,23 +863,24 @@ export function HomePage() {
 									</div>
 								</div>
 							</div>
-							<div className="demo-pick">
+							{/* <div className="demo-pick">
 								<span className="label">
 									{t("actions.bet")}
 								</span>
 								<span className="choice">
 									{t("candidates.b")}
 								</span>
-							</div>
-							<div className="demo-note">
-								{t("agents.gpt.note")}
-							</div>
+							</div> */}
 							<div className="demo-roi-display">
 								<span className="demo-roi-label">
 									{t("actions.roi")}
 								</span>
 								<span className="demo-roi-value">+19.8%</span>
 							</div>
+							<div className="demo-note">
+								{t("agents.gpt.note")}
+							</div>
+
 							<div className="demo-btn-row">
 								<button
 									type="button"

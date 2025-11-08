@@ -528,6 +528,9 @@ importers:
       prisma-json-types-generator:
         specifier: ^3.4.2
         version: 3.4.2(prisma@6.9.0(typescript@5.8.3))(typescript@5.8.3)
+      tsx:
+        specifier: ^4.19.4
+        version: 4.19.4
       zod-prisma-types:
         specifier: ^3.2.4
         version: 3.2.4(@prisma/client@6.9.0(prisma@6.9.0(typescript@5.8.3))(typescript@5.8.3))(prisma@6.9.0(typescript@5.8.3))
@@ -12713,7 +12716,7 @@ snapshots:
 
   tsx@4.19.4:
     dependencies:
-      esbuild: 0.25.3
+      esbuild: 0.25.5
       get-tsconfig: 4.10.0
     optionalDependencies:
       fsevents: 2.3.3

@@ -8,6 +8,9 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true,
+			"a11y": {
+				"useKeyWithClickEvents": "off"
+			},
 			"suspicious": {
 				"noExplicitAny": "off",
 				"noArrayIndexKey": "off"
