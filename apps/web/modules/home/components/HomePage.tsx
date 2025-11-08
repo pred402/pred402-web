@@ -121,7 +121,7 @@ export function HomePage() {
 
 				.demo-market-body {
 					display: grid;
-					grid-template-columns: 1.3fr 1.1fr;
+					grid-template-columns: 2fr 3fr;
 					gap: 12px;
 					padding-top: 0;
 					min-height: 0;
@@ -198,18 +198,40 @@ export function HomePage() {
 					height: 100%;
 				}
 
-				.demo-chart {
+				.demo-agent-predictions {
+					display: grid;
+					grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+					gap: 16px;
+					flex: 1;
+					min-height: 0;
+				}
+
+				.demo-agent-prediction {
 					display: flex;
 					flex-direction: column;
-					gap: 10px;
-					margin-top: 2px;
+					gap: 8px;
+				}
+
+				.demo-prediction-chart {
+					display: flex;
+					flex-direction: column;
+					gap: 8px;
+				}
+
+				.demo-agent-prediction-name {
+					text-align: center;
+					font-weight: 600;
+					font-size: 12px;
+					color: var(--muted);
+					padding-top: 4px;
+					border-top: 1px solid var(--border);
 				}
 
 				.demo-bar {
 					display: grid;
-					grid-template-columns: 80px 1fr 64px;
+					grid-template-columns: 50px 1fr 25px;
 					align-items: center;
-					gap: 8px;
+					gap: 4px;
 					font-size: 12px;
 				}
 
@@ -244,6 +266,7 @@ export function HomePage() {
 				.demo-bar-val {
 					text-align: right;
 					color: var(--muted);
+					font-size: 12px;
 				}
 
 				.demo-bar-agents {
@@ -510,106 +533,405 @@ export function HomePage() {
 						</div>
 
 						<aside className="demo-legend">
-							<div style={{ fontWeight: 700 }}>
-								{t("market.betDist")}
+							<div
+								style={{ fontWeight: 700, marginBottom: "8px" }}
+							>
+								研报概率分布
 							</div>
-							<div className="demo-chart">
-								<div className="demo-bar">
-									<div className="demo-bar-label">
-										{t("candidates.a")}
-									</div>
-									<div className="demo-bar-track">
-										<div
-											className="demo-bar-fill demo-cA"
-											style={{ width: "34%" }}
-										/>
-										<div className="demo-bar-agents">
-											<span className="demo-chip-mini">
-												DeepSeek
-											</span>
-											<span className="demo-chip-mini">
-												Qwen
-											</span>
+							<div className="demo-agent-predictions">
+								{/* DeepSeek */}
+								<div className="demo-agent-prediction">
+									<div className="demo-prediction-chart">
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.a")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cA"
+													style={{ width: "40%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												40%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.b")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cB"
+													style={{ width: "25%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												25%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.c")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cC"
+													style={{ width: "20%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												20%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.d")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cD"
+													style={{ width: "10%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												10%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.other")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cE"
+													style={{ width: "5%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												5%
+											</div>
 										</div>
 									</div>
-									<div className="demo-bar-val">34%</div>
+									<div className="demo-agent-prediction-name">
+										DeepSeek
+									</div>
 								</div>
-								<div className="demo-bar">
-									<div className="demo-bar-label">
-										{t("candidates.b")}
-									</div>
-									<div className="demo-bar-track">
-										<div
-											className="demo-bar-fill demo-cB"
-											style={{ width: "28%" }}
-										/>
-										<div className="demo-bar-agents">
-											<span className="demo-chip-mini">
-												Claude
-											</span>
-											<span className="demo-chip-mini">
-												GPT
-											</span>
+
+								{/* Claude */}
+								<div className="demo-agent-prediction">
+									<div className="demo-prediction-chart">
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.a")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cA"
+													style={{ width: "20%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												20%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.b")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cB"
+													style={{ width: "35%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												35%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.c")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cC"
+													style={{ width: "25%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												25%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.d")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cD"
+													style={{ width: "15%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												15%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.other")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cE"
+													style={{ width: "5%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												5%
+											</div>
 										</div>
 									</div>
-									<div className="demo-bar-val">28%</div>
+									<div className="demo-agent-prediction-name">
+										Claude
+									</div>
 								</div>
-								<div className="demo-bar">
-									<div className="demo-bar-label">
-										{t("candidates.c")}
-									</div>
-									<div className="demo-bar-track">
-										<div
-											className="demo-bar-fill demo-cC"
-											style={{ width: "22%" }}
-										/>
-										<div className="demo-bar-agents">
-											<span className="demo-chip-mini">
-												Grok 4
-											</span>
+
+								{/* Grok 4 */}
+								<div className="demo-agent-prediction">
+									<div className="demo-prediction-chart">
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.a")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cA"
+													style={{ width: "15%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												15%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.b")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cB"
+													style={{ width: "20%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												20%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.c")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cC"
+													style={{ width: "45%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												45%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.d")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cD"
+													style={{ width: "12%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												12%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.other")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cE"
+													style={{ width: "8%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												8%
+											</div>
 										</div>
 									</div>
-									<div className="demo-bar-val">22%</div>
+									<div className="demo-agent-prediction-name">
+										Grok 4
+									</div>
 								</div>
-								<div className="demo-bar">
-									<div className="demo-bar-label">
-										{t("candidates.d")}
-									</div>
-									<div className="demo-bar-track">
-										<div
-											className="demo-bar-fill demo-cD"
-											style={{ width: "10%" }}
-										/>
-										<div className="demo-bar-agents">
-											<span
-												className="demo-chip-mini"
-												style={{ opacity: 0.6 }}
-											>
-												{t("candidates.none")}
-											</span>
+
+								{/* Qwen */}
+								<div className="demo-agent-prediction">
+									<div className="demo-prediction-chart">
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.a")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cA"
+													style={{ width: "38%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												38%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.b")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cB"
+													style={{ width: "22%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												22%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.c")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cC"
+													style={{ width: "25%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												25%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.d")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cD"
+													style={{ width: "10%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												10%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.other")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cE"
+													style={{ width: "5%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												5%
+											</div>
 										</div>
 									</div>
-									<div className="demo-bar-val">10%</div>
+									<div className="demo-agent-prediction-name">
+										Qwen
+									</div>
 								</div>
-								<div className="demo-bar">
-									<div className="demo-bar-label">
-										{t("candidates.other")}
-									</div>
-									<div className="demo-bar-track">
-										<div
-											className="demo-bar-fill demo-cE"
-											style={{ width: "6%" }}
-										/>
-										<div className="demo-bar-agents">
-											<span
-												className="demo-chip-mini"
-												style={{ opacity: 0.6 }}
-											>
-												{t("candidates.none")}
-											</span>
+
+								{/* GPT */}
+								<div className="demo-agent-prediction">
+									<div className="demo-prediction-chart">
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.a")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cA"
+													style={{ width: "22%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												22%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.b")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cB"
+													style={{ width: "32%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												32%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.c")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cC"
+													style={{ width: "25%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												25%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.d")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cD"
+													style={{ width: "16%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												16%
+											</div>
+										</div>
+										<div className="demo-bar">
+											<div className="demo-bar-label">
+												{t("candidates.other")}
+											</div>
+											<div className="demo-bar-track">
+												<div
+													className="demo-bar-fill demo-cE"
+													style={{ width: "5%" }}
+												/>
+											</div>
+											<div className="demo-bar-val">
+												5%
+											</div>
 										</div>
 									</div>
-									<div className="demo-bar-val">6%</div>
+									<div className="demo-agent-prediction-name">
+										GPT
+									</div>
 								</div>
 							</div>
 						</aside>

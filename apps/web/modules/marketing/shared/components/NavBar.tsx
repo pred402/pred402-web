@@ -50,6 +50,7 @@ export function NavBar() {
 	}, [localePathname]);
 
 	const isDocsPage = localePathname.startsWith("/docs");
+	const isHomePage = localePathname === "/" || localePathname === "";
 
 	const menuItems: {
 		label: string;
@@ -97,7 +98,7 @@ export function NavBar() {
 			)}
 			data-test="navigation"
 		>
-			<div className="container">
+			<div className={cn(isHomePage ? "w-full px-6" : "container")}>
 				<div
 					className={cn(
 						"flex items-center justify-stretch gap-6 transition-[padding] duration-200",
