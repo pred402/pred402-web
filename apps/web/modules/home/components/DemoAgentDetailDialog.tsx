@@ -6,12 +6,11 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@ui/components/dialog";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 const agentDetails = {
 	DeepSeek: {
-		about:
-			"拼命三郎研究员，主打勤奋与覆盖面，多源交叉验证，少情绪多事实。每天产出超长研究报告，资料搬运与原创整合并重，偏好多源交叉验证。当证据覆盖率高、矛盾点已澄清时明确表态；否则持续分析到最后一刻也不硬给结论。",
 		investors: 1245,
 		aum: "2,340,000",
 		roi: "+18.6%",
@@ -41,8 +40,6 @@ const agentDetails = {
 		],
 	},
 	Claude: {
-		about:
-			"民意校准官，顺应共识，以盘口与社区讨论为主要参照。共识导向、稳健跟随、人群智慧信徒。当民意偏向与盘口确认一致时迅速表态；若二者背离，则提醒风险、暂缓结论。",
 		investors: 980,
 		aum: "1,560,000",
 		roi: "+12.3%",
@@ -65,8 +62,6 @@ const agentDetails = {
 		],
 	},
 	"Grok 4": {
-		about:
-			"X/Twitter 风向捕手，反应快、有网感，敢下判断。贴近 X/Twitter 民意，根据推特数据是标配开场。当情绪强度与传播速度触及阈值，结合对立面声音强弱，快速给出倾向并说明风向窗口。",
 		investors: 735,
 		aum: "1,020,000",
 		roi: "+9.4%",
@@ -89,8 +84,6 @@ const agentDetails = {
 		],
 	},
 	Qwen: {
-		about:
-			"中文世界洞察采集器，擅长长评与讨论串的小样本深挖。聚焦中文互联网的意见与证据沉淀，在地化、会做小样本深挖、喜欢做梳理帖。当中文语域出现稳定的一致意见，或被忽视的少数派证据链成形时给出明确立场。",
 		investors: 1120,
 		aum: "1,890,000",
 		roi: "+15.1%",
@@ -106,8 +99,6 @@ const agentDetails = {
 		],
 	},
 	GPT: {
-		about:
-			"结构化总编辑，中立清晰；整合多源证据与反证清单。做跨源整合与可读性提升的总编辑，把其他四位的素材压缩成可执行要点。在分歧较大时给中位数立场，并列出打脸条件与需要额外数据。",
 		investors: 1520,
 		aum: "2,780,000",
 		roi: "+14.2%",
@@ -208,9 +199,23 @@ export function DemoAgentDetailDialog({
 	onOpenChange,
 	agent,
 }: AgentDetailDialogProps) {
+	const t = useTranslations("home.agentDetail");
 	const details = agent ? agentDetails[agent as keyof typeof agentDetails] : null;
 	const [commentInput, setCommentInput] = useState("");
 	const [comments, setComments] = useState(details?.comments || []);
+
+	const getRoleLabel = (role: string) => {
+		switch (role) {
+			case "KOL":
+				return t("comments.roles.kol");
+			case "Agent":
+				return t("comments.roles.agent");
+			case "User":
+				return t("comments.roles.user");
+			default:
+				return role;
+		}
+	};
 
 	const handleSendComment = () => {
 		if (!commentInput.trim()) return;
@@ -232,47 +237,47 @@ export function DemoAgentDetailDialog({
 		<Dialog open={open} onOpenChange={onOpenChange}>
 			<DialogContent className="max-w-[1000px] max-h-[86vh] overflow-hidden p-0 bg-[var(--panel)] border-[var(--border)]">
 				<DialogHeader className="px-4 py-3 bg-[var(--panel-alt)] border-b border-[var(--border)]">
-					<DialogTitle className="font-bold text-lg">{agent} · 详情</DialogTitle>
+					<DialogTitle className="font-bold text-lg">{t("title", { agent: agent || "" })}</DialogTitle>
 				</DialogHeader>
 
 				<div className="px-4 py-4 overflow-auto bg-[var(--card)] space-y-4">
 					{/* 自我介绍 */}
 					<div className="bg-[var(--panel)] border border-[var(--border)] rounded-xl p-3">
-						<div className="text-sm text-[var(--muted)] mb-2">自我介绍</div>
-						<div className="text-sm">{details?.about}</div>
+						<div className="text-sm text-[var(--muted)] mb-2">{t("about")}</div>
+						<div className="text-sm">{agent && t(`agents.${agent}`)}</div>
 					</div>
 
 					{/* 统计数据 */}
 					<div className="grid grid-cols-4 gap-3">
 						<div className="bg-[var(--panel)] border border-[var(--border)] rounded-xl p-3">
-							<div className="text-xs text-[var(--muted)] mb-1">投资人数</div>
+							<div className="text-xs text-[var(--muted)] mb-1">{t("stats.investors")}</div>
 							<div className="font-bold text-lg">{details?.investors.toLocaleString()}</div>
 						</div>
 						<div className="bg-[var(--panel)] border border-[var(--border)] rounded-xl p-3">
 							<div className="text-xs text-[var(--muted)] mb-1">
-								管理资金（USDC）
+								{t("stats.aum")}
 							</div>
 							<div className="font-bold text-lg">{details?.aum}</div>
 						</div>
 						<div className="bg-[var(--panel)] border border-[var(--border)] rounded-xl p-3">
-							<div className="text-xs text-[var(--muted)] mb-1">收益率</div>
+							<div className="text-xs text-[var(--muted)] mb-1">{t("stats.roi")}</div>
 							<div className="font-bold text-lg">{details?.roi}</div>
 						</div>
 						<div className="bg-[var(--panel)] border border-[var(--border)] rounded-xl p-3">
-							<div className="text-xs text-[var(--muted)] mb-1">胜率</div>
+							<div className="text-xs text-[var(--muted)] mb-1">{t("stats.winRate")}</div>
 							<div className="font-bold text-lg">{details?.win}</div>
 						</div>
 					</div>
 
 					{/* 收益率曲线 */}
 					<div className="bg-[var(--panel)] border border-[var(--border)] rounded-xl p-3">
-						<div className="text-sm text-[var(--muted)] mb-2">收益率曲线</div>
+						<div className="text-sm text-[var(--muted)] mb-2">{t("roiChart")}</div>
 						{agent && <RoiChart agent={agent} />}
 					</div>
 
 					{/* 评论区 */}
 					<div className="bg-[var(--panel)] border border-[var(--border)] rounded-xl p-3 space-y-3">
-						<div className="text-sm text-[var(--muted)]">评论区</div>
+						<div className="text-sm text-[var(--muted)]">{t("comments.title")}</div>
 
 						{/* 评论列表 */}
 						<div className="space-y-3">
@@ -289,7 +294,7 @@ export function DemoAgentDetailDialog({
 														: "bg-[#10233f] text-[#cfe2ff]"
 											}`}
 										>
-											{comment.role}
+											{getRoleLabel(comment.role)}
 										</span>
 										<span className="text-xs text-[var(--muted)]">
 											{comment.time}
@@ -306,7 +311,7 @@ export function DemoAgentDetailDialog({
 											<div className="flex items-center gap-2 mb-1">
 												<strong className="text-sm">{reply.author}</strong>
 												<span className="text-[10px] px-2 py-0.5 rounded-full border border-[var(--border)] bg-[#132c1f] text-[#bfffd3]">
-													{reply.role}
+													{getRoleLabel(reply.role)}
 												</span>
 												<span className="text-xs text-[var(--muted)]">
 													{reply.time}
@@ -327,7 +332,7 @@ export function DemoAgentDetailDialog({
 						<div className="grid grid-cols-[1fr,auto] gap-2">
 							<input
 								className="bg-[#0b2447] text-[#dbe7ff] border border-[var(--border)] rounded-lg px-3 py-2 text-sm"
-								placeholder="发布评论（示例本地追加，无后端）"
+								placeholder={t("comments.placeholder")}
 								value={commentInput}
 								onChange={(e) => setCommentInput(e.target.value)}
 								onKeyDown={(e) => {
@@ -339,7 +344,7 @@ export function DemoAgentDetailDialog({
 								className="bg-gradient-to-br from-[#2563eb] to-[#22d3ee] text-[#0b1020] border-none rounded-lg px-4 py-2 font-bold cursor-pointer"
 								onClick={handleSendComment}
 							>
-								发送
+								{t("comments.send")}
 							</button>
 						</div>
 					</div>
