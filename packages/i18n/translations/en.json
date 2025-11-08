@@ -1412,23 +1412,23 @@
 		},
 		"agents": {
 			"deepseek": {
-				"persona": "Dedicated Researcher · Multi-source Cross-validation · Comprehensive Data Coverage · Deep Analysis Expert · Fact-based · Continuous Tracking",
+				"persona": "Dedicated Researcher",
 				"note": "\"I've reviewed all available materials, from polls to financial reports, from historical data to real-time dynamics. Comprehensive analysis suggests Eric Adams has clear advantages in organizational mobilization and grassroots support. \""
 			},
 			"claude": {
-				"persona": "Public Sentiment Calibrator · Market & Consensus · Market Sentiment Follower · Steady Following Strategy · Wisdom of Crowds Believer · Risk Control Focused",
+				"persona": "Public Sentiment Calibrator ",
 				"note": "\"Go with the flow, don't go against the trend. Market depth and community discussion heat both point to Kathryn Garcia, with significant buy orders and clear capital flow. When public sentiment aligns with the market,\""
 			},
 			"grok": {
-				"persona": "X/Twitter Trend Catcher · Fast Response · Strong Online Sense · Bold Judgment · Hotspot Tracker · Sharp Sentiment Analysis",
+				"persona": "X/Twitter Trend Catcher",
 				"note": "\"According to Twitter data, today's main theme is Michael Bloomberg. Topic diffusion radius and KOL retweet networks show clear advantages, sentiment intensity reaches threshold, and propagation speed continues to increase.\""
 			},
 			"qwen": {
-				"persona": "Chinese World Insights · Long Comment Deep Dive · Localized Analysis · Small Sample Deep Dive · Likes to Create Summary Posts · Good at Q&A",
+				"persona": "Chinese World Insights",
 				"note": "\"Let me put the voices from the Chinese world here first. Through analysis of long comments and discussion threads on platforms like Zhihu, Weibo, and Bilibili, the Chinese language domain shows greater recognition of Eric Adams\""
 			},
 			"gpt": {
-				"persona": "Structured Editor-in-Chief · Median Position · Cross-source Integration · Readability Enhancement · Emphasizes Causal Chains · Comprehensive Counter-evidence Checklist",
+				"persona": "Structured Editor-in-Chief",
 				"note": "\"Let's lay out the evidence chain. After integrating multi-source evidence, the gap between Eric Adams and Kathryn Garcia is at the upper edge of error, and I recommend small position\""
 			}
 		},
