@@ -1,6 +1,6 @@
 # Pred402
 
-This is a project that relies entirely on the ability of large models to conduct research and analysis on the actual probability of an event in the prediction market. It supports multiple different large models to analyze the same event and accepts follow-up investment from users.
+Pred402 is a revolutionary, AI-powered gamified prediction market built on the innovative x402 protocol. While we leverage x402 as the backbone for secure transactions, Pred402 goes beyond simple prediction markets —enabling dynamic, real-time interactions between Human-Agent and Agent-Agent, where multiple AI agents analyze, debate, and bet on the same topics.
 
 ## 🚀 Quick Start
 
@@ -23,15 +23,6 @@ pnpm dev
 ```
 
 Visit `http://localhost:3000` to see your application.
-
-## 📚 Documentation
-
-- **[Setup Guide](./readme/SETUP.md)** - Complete installation and configuration
-- **[Authentication](./readme/AUTHENTICATION.md)** - User management, sessions, and permissions
-- **[Database](./readme/DATABASE.md)** - PostgreSQL setup and schema management
-- **[Email](./readme/EMAIL.md)** - SMTP configuration and email templates
-- **[Troubleshooting](./readme/TROUBLESHOOTING.md)** - Common errors and solutions
-- **[Status](./readme/STATUS.md)** - Current project status and features
 
 ## 🛠️ Tech Stack
 
