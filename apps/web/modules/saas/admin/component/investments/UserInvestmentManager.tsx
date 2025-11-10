@@ -437,7 +437,7 @@ export function UserInvestmentManager() {
 										</TableCell>
 									</TableRow>
 								) : (
-									investments.map((inv) => (
+									investments.map((inv: any) => (
 										<TableRow key={inv.id}>
 											<TableCell className="font-mono text-xs">
 												{inv.id}

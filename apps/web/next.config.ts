@@ -6,6 +6,12 @@ const withNextIntl = nextIntlPlugin("./modules/i18n/request.ts");
 
 const nextConfig: NextConfig = {
 	transpilePackages: ["@repo/api", "@repo/auth", "@repo/database"],
+	serverComponentsExternalPackages: [
+		"@solana/web3.js",
+		"@solana/spl-token",
+		"@coral-xyz/anchor",
+		"bs58",
+	],
 	images: {
 		remotePatterns: [
 			{
@@ -47,12 +53,29 @@ const nextConfig: NextConfig = {
 	eslint: {
 		ignoreDuringBuilds: true,
 	},
-	webpack: (config, { webpack }) => {
+	webpack: (config, { webpack, isServer }) => {
 		config.plugins.push(
 			new webpack.IgnorePlugin({
 				resourceRegExp: /^pg-native$|^cloudflare:sockets$/,
 			}),
 		);
+
+		// Handle Node.js modules in client-side bundles
+		if (!isServer) {
+			config.resolve.fallback = {
+				...config.resolve.fallback,
+				fs: false,
+				net: false,
+				tls: false,
+				crypto: false,
+			};
+		}
+
+		// Ensure proper resolution of ES modules
+		config.resolve.extensionAlias = {
+			'.js': ['.js', '.ts', '.tsx'],
+			'.jsx': ['.jsx', '.tsx'],
+		};
 
 		return config;
 	},

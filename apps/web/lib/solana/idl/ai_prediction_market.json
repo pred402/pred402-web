@@ -1,0 +1,2730 @@
+{
+  "address": "2EbRqaaFbjAsMVYbSZ4m4k2nLqhnjG1SxV6QgY8UnmzG",
+  "metadata": {
+    "name": "ai_prediction_market",
+    "version": "0.1.0",
+    "spec": "0.1.0"
+  },
+  "instructions": [
+    {
+      "name": "agent_vote",
+      "discriminator": [
+        141,
+        243,
+        107,
+        38,
+        141,
+        243,
+        182,
+        105
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "relations": [
+            "theme"
+          ]
+        },
+        {
+          "name": "theme",
+          "writable": true
+        },
+        {
+          "name": "agent",
+          "writable": true
+        },
+        {
+          "name": "agent_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "theme_agent",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  104,
+                  101,
+                  109,
+                  101,
+                  95,
+                  97,
+                  103,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vote",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  118,
+                  111,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent.agent_id",
+                "account": "Agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "agent_id",
+          "type": "u16"
+        },
+        {
+          "name": "vote_allocations",
+          "type": {
+            "vec": {
+              "defined": {
+                "name": "VoteAllocation"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "claim_rewards",
+      "discriminator": [
+        4,
+        144,
+        132,
+        71,
+        116,
+        23,
+        151,
+        80
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "relations": [
+            "theme"
+          ]
+        },
+        {
+          "name": "theme"
+        },
+        {
+          "name": "theme_agent",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  104,
+                  101,
+                  109,
+                  101,
+                  95,
+                  97,
+                  103,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "theme_agent.agent",
+                "account": "ThemeAgent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vote",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  118,
+                  111,
+                  116,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "theme_agent.agent_id",
+                "account": "ThemeAgent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_stake",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  115,
+                  116,
+                  97,
+                  107,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "user_stake.agent_id",
+                "account": "UserStake"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault",
+          "writable": true
+        },
+        {
+          "name": "agent_vault_authority"
+        },
+        {
+          "name": "destination",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_agent",
+      "discriminator": [
+        143,
+        66,
+        198,
+        95,
+        110,
+        85,
+        83,
+        249
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true
+        },
+        {
+          "name": "agent_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "agent",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "config.config_id",
+                "account": "Config"
+              },
+              {
+                "kind": "account",
+                "path": "config.next_agent_id",
+                "account": "Config"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_performance",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  112,
+                  101,
+                  114,
+                  102
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "config.config_id",
+                "account": "Config"
+              },
+              {
+                "kind": "account",
+                "path": "config.next_agent_id",
+                "account": "Config"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "metadata_uri",
+          "type": "string"
+        },
+        {
+          "name": "metadata_hash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_theme",
+      "discriminator": [
+        31,
+        75,
+        234,
+        9,
+        139,
+        252,
+        25,
+        155
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config"
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "theme",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  104,
+                  101,
+                  109,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "config.config_id",
+                "account": "Config"
+              },
+              {
+                "kind": "arg",
+                "path": "args.theme_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "CreateThemeArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "distribute_rewards",
+      "discriminator": [
+        97,
+        6,
+        227,
+        255,
+        124,
+        165,
+        3,
+        148
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "relations": [
+            "theme"
+          ]
+        },
+        {
+          "name": "theme"
+        },
+        {
+          "name": "winning_option_vault",
+          "writable": true
+        },
+        {
+          "name": "winning_option_vault_authority"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_agent_vault",
+      "discriminator": [
+        230,
+        71,
+        53,
+        169,
+        238,
+        108,
+        169,
+        111
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "relations": [
+            "theme",
+            "agent"
+          ]
+        },
+        {
+          "name": "theme"
+        },
+        {
+          "name": "agent"
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "agent_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_config",
+      "discriminator": [
+        208,
+        127,
+        21,
+        1,
+        194,
+        190,
+        196,
+        70
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "args.config_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_treasury",
+          "writable": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "InitializeConfigArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "initialize_option_vault",
+      "discriminator": [
+        211,
+        34,
+        236,
+        65,
+        108,
+        159,
+        39,
+        165
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "relations": [
+            "theme"
+          ]
+        },
+        {
+          "name": "theme"
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "option_state",
+          "writable": true
+        },
+        {
+          "name": "option_vault",
+          "writable": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "option_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "initialize_theme_agent",
+      "discriminator": [
+        230,
+        158,
+        116,
+        16,
+        206,
+        40,
+        173,
+        180
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "relations": [
+            "theme",
+            "agent"
+          ]
+        },
+        {
+          "name": "theme"
+        },
+        {
+          "name": "agent"
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "theme_agent",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  104,
+                  101,
+                  109,
+                  101,
+                  95,
+                  97,
+                  103,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_user_stake_account",
+      "discriminator": [
+        228,
+        16,
+        32,
+        98,
+        20,
+        64,
+        239,
+        67
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "relations": [
+            "theme"
+          ]
+        },
+        {
+          "name": "theme"
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "user_stake",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  115,
+                  116,
+                  97,
+                  107,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "arg",
+                "path": "agent_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "agent_id",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "initialize_user_stake_for_beneficiary",
+      "discriminator": [
+        196,
+        77,
+        208,
+        17,
+        43,
+        58,
+        23,
+        94
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "relations": [
+            "theme"
+          ]
+        },
+        {
+          "name": "theme"
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "user_stake",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  115,
+                  116,
+                  97,
+                  107,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "beneficiary"
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "arg",
+                "path": "agent_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "agent_id",
+          "type": "u16"
+        },
+        {
+          "name": "beneficiary",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "proxy_stake",
+      "discriminator": [
+        235,
+        211,
+        106,
+        250,
+        20,
+        66,
+        150,
+        117
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "relations": [
+            "agent"
+          ]
+        },
+        {
+          "name": "theme",
+          "writable": true
+        },
+        {
+          "name": "agent",
+          "writable": true
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "payer_source",
+          "writable": true
+        },
+        {
+          "name": "theme_agent",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  104,
+                  101,
+                  109,
+                  101,
+                  95,
+                  97,
+                  103,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_stake",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  115,
+                  116,
+                  97,
+                  107,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "beneficiary"
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "arg",
+                "path": "agent_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_performance",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  112,
+                  101,
+                  114,
+                  102
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "config.config_id",
+                "account": "Config"
+              },
+              {
+                "kind": "account",
+                "path": "agent.agent_id",
+                "account": "Agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_treasury",
+          "writable": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "agent_id",
+          "type": "u16"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "beneficiary",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "set_config_pause",
+      "discriminator": [
+        47,
+        92,
+        51,
+        101,
+        64,
+        211,
+        167,
+        114
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true
+        }
+      ],
+      "args": [
+        {
+          "name": "paused",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "settle_theme",
+      "discriminator": [
+        31,
+        103,
+        15,
+        26,
+        99,
+        206,
+        217,
+        2
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "relations": [
+            "theme"
+          ]
+        },
+        {
+          "name": "theme",
+          "writable": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "winning_option",
+          "type": "u8"
+        },
+        {
+          "name": "result_proof_str",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "update_oracle_signer",
+      "discriminator": [
+        244,
+        34,
+        0,
+        241,
+        189,
+        102,
+        141,
+        124
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true
+        }
+      ],
+      "args": [
+        {
+          "name": "new_oracle",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "user_stake",
+      "discriminator": [
+        114,
+        200,
+        186,
+        75,
+        1,
+        228,
+        118,
+        99
+      ],
+      "accounts": [
+        {
+          "name": "config",
+          "relations": [
+            "agent"
+          ]
+        },
+        {
+          "name": "theme",
+          "writable": true
+        },
+        {
+          "name": "agent",
+          "writable": true
+        },
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "user_source",
+          "writable": true
+        },
+        {
+          "name": "theme_agent",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  104,
+                  101,
+                  109,
+                  101,
+                  95,
+                  97,
+                  103,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_stake",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114,
+                  95,
+                  115,
+                  116,
+                  97,
+                  107,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user"
+              },
+              {
+                "kind": "account",
+                "path": "theme"
+              },
+              {
+                "kind": "account",
+                "path": "agent.agent_id",
+                "account": "Agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "agent_performance",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  103,
+                  101,
+                  110,
+                  116,
+                  95,
+                  112,
+                  101,
+                  114,
+                  102
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "config.config_id",
+                "account": "Config"
+              },
+              {
+                "kind": "account",
+                "path": "agent.agent_id",
+                "account": "Agent"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_treasury",
+          "writable": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "agent_id",
+          "type": "u16"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Agent",
+      "discriminator": [
+        47,
+        166,
+        112,
+        147,
+        155,
+        197,
+        86,
+        7
+      ]
+    },
+    {
+      "name": "AgentPerformance",
+      "discriminator": [
+        42,
+        181,
+        42,
+        252,
+        255,
+        172,
+        28,
+        54
+      ]
+    },
+    {
+      "name": "AgentVote",
+      "discriminator": [
+        220,
+        51,
+        114,
+        184,
+        194,
+        29,
+        176,
+        108
+      ]
+    },
+    {
+      "name": "Config",
+      "discriminator": [
+        155,
+        12,
+        170,
+        224,
+        30,
+        250,
+        204,
+        130
+      ]
+    },
+    {
+      "name": "Theme",
+      "discriminator": [
+        171,
+        104,
+        100,
+        28,
+        204,
+        102,
+        192,
+        49
+      ]
+    },
+    {
+      "name": "ThemeAgent",
+      "discriminator": [
+        10,
+        130,
+        13,
+        168,
+        157,
+        84,
+        143,
+        25
+      ]
+    },
+    {
+      "name": "ThemeOptionState",
+      "discriminator": [
+        90,
+        16,
+        244,
+        252,
+        158,
+        111,
+        137,
+        30
+      ]
+    },
+    {
+      "name": "UserStake",
+      "discriminator": [
+        102,
+        53,
+        163,
+        107,
+        9,
+        138,
+        87,
+        153
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "AgentCreated",
+      "discriminator": [
+        237,
+        44,
+        61,
+        111,
+        90,
+        251,
+        241,
+        34
+      ]
+    },
+    {
+      "name": "AgentVoted",
+      "discriminator": [
+        248,
+        125,
+        100,
+        240,
+        0,
+        87,
+        30,
+        175
+      ]
+    },
+    {
+      "name": "FeeTransferred",
+      "discriminator": [
+        189,
+        70,
+        248,
+        46,
+        148,
+        12,
+        150,
+        71
+      ]
+    },
+    {
+      "name": "RewardClaimed",
+      "discriminator": [
+        49,
+        28,
+        87,
+        84,
+        158,
+        48,
+        229,
+        175
+      ]
+    },
+    {
+      "name": "ThemeCreated",
+      "discriminator": [
+        87,
+        208,
+        122,
+        188,
+        153,
+        104,
+        49,
+        192
+      ]
+    },
+    {
+      "name": "ThemeSettled",
+      "discriminator": [
+        108,
+        199,
+        199,
+        147,
+        181,
+        134,
+        126,
+        221
+      ]
+    },
+    {
+      "name": "UserDeposited",
+      "discriminator": [
+        83,
+        166,
+        194,
+        102,
+        87,
+        104,
+        88,
+        137
+      ]
+    },
+    {
+      "name": "UserStaked",
+      "discriminator": [
+        13,
+        66,
+        173,
+        212,
+        39,
+        10,
+        205,
+        241
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "ConfigPaused",
+      "msg": "Config is paused"
+    },
+    {
+      "code": 6001,
+      "name": "Unauthorized",
+      "msg": "Unauthorized operation"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidFeeBps",
+      "msg": "Invalid fee basis points"
+    },
+    {
+      "code": 6003,
+      "name": "AgentLimitReached",
+      "msg": "Agent limit reached"
+    },
+    {
+      "code": 6004,
+      "name": "UriTooLong",
+      "msg": "URI too long"
+    },
+    {
+      "code": 6005,
+      "name": "BettingClosed",
+      "msg": "Betting period closed"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidTimeRange",
+      "msg": "Invalid time range"
+    },
+    {
+      "code": 6007,
+      "name": "VotingWindowClosed",
+      "msg": "Voting window closed"
+    },
+    {
+      "code": 6008,
+      "name": "ResolutionNotReady",
+      "msg": "Resolution time not reached"
+    },
+    {
+      "code": 6009,
+      "name": "ThemeAlreadySettled",
+      "msg": "Theme already settled"
+    },
+    {
+      "code": 6010,
+      "name": "InvalidOptionIndex",
+      "msg": "Invalid option index"
+    },
+    {
+      "code": 6011,
+      "name": "MathOverflow",
+      "msg": "Math overflow"
+    },
+    {
+      "code": 6012,
+      "name": "InsufficientFunds",
+      "msg": "Insufficient funds"
+    },
+    {
+      "code": 6013,
+      "name": "AmountBelowMinimum",
+      "msg": "Amount below minimum"
+    },
+    {
+      "code": 6014,
+      "name": "AmountTooSmall",
+      "msg": "Amount must be greater than zero"
+    },
+    {
+      "code": 6015,
+      "name": "WinnerStakeZero",
+      "msg": "Winner stake is zero"
+    },
+    {
+      "code": 6016,
+      "name": "InvalidVoteAllocations",
+      "msg": "Invalid vote allocations"
+    },
+    {
+      "code": 6017,
+      "name": "InvalidRatioSum",
+      "msg": "Invalid ratio sum"
+    },
+    {
+      "code": 6018,
+      "name": "VoteNotSettled",
+      "msg": "Vote not settled"
+    },
+    {
+      "code": 6019,
+      "name": "ProofTooLong",
+      "msg": "Proof too long"
+    },
+    {
+      "code": 6020,
+      "name": "OptionsLengthMismatch",
+      "msg": "Options length mismatch"
+    },
+    {
+      "code": 6021,
+      "name": "NotEnoughOptions",
+      "msg": "Not enough options"
+    },
+    {
+      "code": 6022,
+      "name": "TooManyOptions",
+      "msg": "Too many options"
+    },
+    {
+      "code": 6023,
+      "name": "AgentMismatch",
+      "msg": "Agent mismatch"
+    },
+    {
+      "code": 6024,
+      "name": "ThemeMismatch",
+      "msg": "Theme mismatch"
+    },
+    {
+      "code": 6025,
+      "name": "BettingStillOpen",
+      "msg": "Betting still open"
+    },
+    {
+      "code": 6026,
+      "name": "AgentInactive",
+      "msg": "Agent inactive"
+    },
+    {
+      "code": 6027,
+      "name": "VaultMismatch",
+      "msg": "Vault mismatch"
+    },
+    {
+      "code": 6028,
+      "name": "InvalidVaultAuthority",
+      "msg": "Invalid vault authority"
+    },
+    {
+      "code": 6029,
+      "name": "InvalidRemainingAccounts",
+      "msg": "Invalid remaining accounts"
+    },
+    {
+      "code": 6030,
+      "name": "AgentNotWinner",
+      "msg": "Agent not winner"
+    },
+    {
+      "code": 6031,
+      "name": "ThemeNotSettled",
+      "msg": "Theme not settled"
+    },
+    {
+      "code": 6032,
+      "name": "AlreadyClaimed",
+      "msg": "Rewards already claimed"
+    },
+    {
+      "code": 6033,
+      "name": "InsufficientVaultBalance",
+      "msg": "Insufficient vault balance"
+    },
+    {
+      "code": 6034,
+      "name": "MissingBump",
+      "msg": "Missing PDA bump"
+    },
+    {
+      "code": 6035,
+      "name": "InvalidTreasury",
+      "msg": "Invalid treasury"
+    },
+    {
+      "code": 6036,
+      "name": "InvalidMint",
+      "msg": "Invalid mint"
+    },
+    {
+      "code": 6037,
+      "name": "TooManyAgents",
+      "msg": "Too many agents for settlement"
+    },
+    {
+      "code": 6038,
+      "name": "InvalidVoteAmount",
+      "msg": "Vote amount does not match total stake"
+    }
+  ],
+  "types": [
+    {
+      "name": "Agent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config",
+            "type": "pubkey"
+          },
+          {
+            "name": "agent_id",
+            "type": "u16"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "metadata_uri",
+            "type": "string"
+          },
+          {
+            "name": "metadata_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "active",
+            "type": "bool"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AgentCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config",
+            "type": "pubkey"
+          },
+          {
+            "name": "agent",
+            "type": "pubkey"
+          },
+          {
+            "name": "agent_id",
+            "type": "u16"
+          },
+          {
+            "name": "authority",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AgentPerformance",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "agent_id",
+            "type": "u16"
+          },
+          {
+            "name": "total_themes",
+            "type": "u32"
+          },
+          {
+            "name": "total_stake_received",
+            "type": "u64"
+          },
+          {
+            "name": "total_payout_distributed",
+            "type": "u64"
+          },
+          {
+            "name": "roi_bps",
+            "type": "i32"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AgentVote",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "agent_id",
+            "type": "u16"
+          },
+          {
+            "name": "theme",
+            "type": "pubkey"
+          },
+          {
+            "name": "vote_allocations",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "VoteAllocation"
+                }
+              }
+            }
+          },
+          {
+            "name": "total_amount",
+            "type": "u64"
+          },
+          {
+            "name": "vote_time",
+            "type": "i64"
+          },
+          {
+            "name": "winning_amount",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AgentVoted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "theme",
+            "type": "pubkey"
+          },
+          {
+            "name": "agent",
+            "type": "pubkey"
+          },
+          {
+            "name": "agent_id",
+            "type": "u16"
+          },
+          {
+            "name": "option_index",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Config",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config_id",
+            "type": "u16"
+          },
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "oracle_signer",
+            "type": "pubkey"
+          },
+          {
+            "name": "fee_treasury",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "min_user_stake",
+            "type": "u64"
+          },
+          {
+            "name": "max_agents",
+            "type": "u16"
+          },
+          {
+            "name": "fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "next_agent_id",
+            "type": "u16"
+          },
+          {
+            "name": "config_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CreateThemeArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "theme_id",
+            "type": "u64"
+          },
+          {
+            "name": "metadata_uri",
+            "type": "string"
+          },
+          {
+            "name": "metadata_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "total_options",
+            "type": "u8"
+          },
+          {
+            "name": "options",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "ThemeOptionInput"
+                }
+              }
+            }
+          },
+          {
+            "name": "resolution_time",
+            "type": "i64"
+          },
+          {
+            "name": "end_time",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FeeTransferred",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config",
+            "type": "pubkey"
+          },
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "fee_amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InitializeConfigArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config_id",
+            "type": "u16"
+          },
+          {
+            "name": "oracle_signer",
+            "type": "pubkey"
+          },
+          {
+            "name": "min_user_stake",
+            "type": "u64"
+          },
+          {
+            "name": "max_agents",
+            "type": "u16"
+          },
+          {
+            "name": "fee_bps",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RewardClaimed",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "theme",
+            "type": "pubkey"
+          },
+          {
+            "name": "agent",
+            "type": "pubkey"
+          },
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "payout",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Theme",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config",
+            "type": "pubkey"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "theme_id",
+            "type": "u64"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "metadata_uri",
+            "type": "string"
+          },
+          {
+            "name": "metadata_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "total_options",
+            "type": "u8"
+          },
+          {
+            "name": "options",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "ThemeOption"
+                }
+              }
+            }
+          },
+          {
+            "name": "resolution_time",
+            "type": "i64"
+          },
+          {
+            "name": "end_time",
+            "type": "i64"
+          },
+          {
+            "name": "winning_option",
+            "type": {
+              "option": "u8"
+            }
+          },
+          {
+            "name": "is_settled",
+            "type": "bool"
+          },
+          {
+            "name": "total_user_stake",
+            "type": "u64"
+          },
+          {
+            "name": "winning_stake_total",
+            "type": "u64"
+          },
+          {
+            "name": "losing_stake_total",
+            "type": "u64"
+          },
+          {
+            "name": "result_proof",
+            "type": "bytes"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ThemeAgent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "theme",
+            "type": "pubkey"
+          },
+          {
+            "name": "agent",
+            "type": "pubkey"
+          },
+          {
+            "name": "agent_id",
+            "type": "u16"
+          },
+          {
+            "name": "total_stake",
+            "type": "u64"
+          },
+          {
+            "name": "voted_amount",
+            "type": "u64"
+          },
+          {
+            "name": "settled_amount",
+            "type": "u64"
+          },
+          {
+            "name": "reserved",
+            "type": {
+              "array": [
+                "u8",
+                4
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ThemeCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config",
+            "type": "pubkey"
+          },
+          {
+            "name": "theme",
+            "type": "pubkey"
+          },
+          {
+            "name": "theme_id",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ThemeOption",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "index",
+            "type": "u8"
+          },
+          {
+            "name": "label_uri",
+            "type": "string"
+          },
+          {
+            "name": "label_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ThemeOptionInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "label_uri",
+            "type": "string"
+          },
+          {
+            "name": "label_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ThemeOptionState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "theme",
+            "type": "pubkey"
+          },
+          {
+            "name": "option_index",
+            "type": "u8"
+          },
+          {
+            "name": "total_amount",
+            "type": "u64"
+          },
+          {
+            "name": "is_winner",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ThemeSettled",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config",
+            "type": "pubkey"
+          },
+          {
+            "name": "theme",
+            "type": "pubkey"
+          },
+          {
+            "name": "winning_option",
+            "type": "u8"
+          },
+          {
+            "name": "winning_stake_total",
+            "type": "u64"
+          },
+          {
+            "name": "losing_stake_total",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserDeposited",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config",
+            "type": "pubkey"
+          },
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserStake",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config",
+            "type": "pubkey"
+          },
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "theme",
+            "type": "pubkey"
+          },
+          {
+            "name": "agent_id",
+            "type": "u16"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "staked_time",
+            "type": "i64"
+          },
+          {
+            "name": "has_claimed",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserStaked",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "config",
+            "type": "pubkey"
+          },
+          {
+            "name": "theme",
+            "type": "pubkey"
+          },
+          {
+            "name": "agent",
+            "type": "pubkey"
+          },
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VoteAllocation",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "option_index",
+            "type": "u8"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ]
+}

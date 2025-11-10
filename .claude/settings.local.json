@@ -9,7 +9,21 @@
       "Bash(nul)",
       "Bash(node -e:*)",
       "Bash(findstr:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(dotenv -c -e:*)",
+      "Bash(npx prisma migrate dev:*)",
+      "Bash(cat:*)",
+      "Bash(bash:*)",
+      "Bash(node:*)",
+      "Bash(npx dotenv -e .env.local:*)",
+      "Read(//Users/decode/Documents/ls/test-ts/src/**)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)",
+      "Bash(psql:*)",
+      "Bash(for i in {1..5})",
+      "Bash(do echo \"Request $i:\")",
+      "Bash(done)",
+      "Read(//Users/decode/Documents/ls/test-ts/**)"
     ],
     "deny": [],
     "ask": []

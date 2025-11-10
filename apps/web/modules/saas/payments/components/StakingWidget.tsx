@@ -8,9 +8,9 @@
  */
 
 import { useState } from 'react';
-import { Button } from '@/modules/ui/components/button';
-import { Input } from '@/modules/ui/components/input';
-import { Label } from '@/modules/ui/components/label';
+import { Button } from '@ui/components/button';
+import { Input } from '@ui/components/input';
+import { Label } from '@ui/components/label';
 import { createPaymentClient, makePaymentRequest } from '../lib/x402-client';
 import { formatUSDCAmount } from '../lib/x402-config';
 import { toast } from 'sonner';
@@ -102,7 +102,7 @@ export function StakingWidget({
           min="0.1"
           step="0.1"
           value={amount}
-          onChange={(e) => setAmount(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAmount(e.target.value)}
           placeholder="Enter amount in USDC"
           disabled={isLoading}
         />

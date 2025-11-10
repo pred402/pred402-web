@@ -77,7 +77,7 @@ export function HomePage() {
 
 						{/* Agent 预测卡片 */}
 						<div className="grid gap-6 lg:grid-cols-2">
-							{processedAgentReports.map((report) => (
+							{processedAgentReports.map((report: any) => (
 								<AgentPredictionCard
 									key={report.id}
 									report={report}

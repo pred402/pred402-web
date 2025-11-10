@@ -18,6 +18,7 @@ import { useTranslations } from "next-intl";
 import NextLink from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import { useDebounceCallback } from "usehooks-ts";
+import { WalletButton } from "../../../../lib/solana/WalletButton";
 
 export function NavBar() {
 	const t = useTranslations();
@@ -171,17 +172,10 @@ export function NavBar() {
 
 						{config.ui.saas.enabled && (
 							<>
-								{/* 钱包登录按钮 - 高亮显示 */}
-								<Button
-									key="wallet"
-									className="hidden lg:flex"
-									asChild
-									variant="primary"
-								>
-									<NextLink href="/auth/wallet" prefetch>
-										{t("common.menu.walletLogin")}
-									</NextLink>
-								</Button>
+								{/* Solana钱包连接按钮 */}
+								<div className="hidden lg:flex">
+									<WalletButton />
+								</div>
 
 								{/* Dashboard/Login 按钮 */}
 								{user ? (

@@ -5,7 +5,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { handlePaymentRequest } from '@/modules/saas/payments/lib/x402-server';
+import { handlePaymentRequest } from '@saas/payments/lib/x402-server';
 import { z } from 'zod';
 
 /**
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
         description: `Stake ${validatedData.amount} USDC on Agent ${validatedData.agentId} for Theme ${validatedData.themeId}`,
         memo: `theme:${validatedData.themeId}|agent:${validatedData.agentId}`,
       },
-      async (paymentData) => {
+      async (paymentData: any) => {
         // Payment verified - process the stake
 
         // TODO: Integrate with your Solana program

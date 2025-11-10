@@ -8,6 +8,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { PropsWithChildren } from "react";
+import { WalletProvider } from "../../../lib/solana/WalletProvider";
 
 const locales = Object.keys(config.i18n.locales);
 
@@ -42,10 +43,12 @@ export default async function MarketingLayout({
 				>
 					<NextIntlClientProvider locale={locale} messages={messages}>
 						<SessionProvider>
-							<NavBar />
-							<main className="min-h-screen pt-20">
-								{children}
-							</main>
+							<WalletProvider>
+								<NavBar />
+								<main className="min-h-screen pt-20">
+									{children}
+								</main>
+							</WalletProvider>
 						</SessionProvider>
 					</NextIntlClientProvider>
 				</FumadocsRootProvider>

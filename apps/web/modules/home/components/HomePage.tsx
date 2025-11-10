@@ -5,15 +5,52 @@ import { useEffect, useState } from "react";
 import { DemoAgentDetailDialog } from "./DemoAgentDetailDialog";
 import { DemoInvestDialog } from "./DemoInvestDialog";
 import { DemoReportDialog } from "./DemoReportDialog";
+import { useWallet } from '@solana/wallet-adapter-react';
+import { useWalletModal } from '@solana/wallet-adapter-react-ui';
+
+interface ThemeOption {
+	optionIndex: number;
+	label: string;
+	labelUri: string;
+}
+
+interface Theme {
+	id: string;
+	themeId: number;
+	themePda: string;
+	title: string;
+	description?: string;
+	metadataUri: string;
+	endTime: string;
+	resolutionTime: string;
+	totalOptions: number;
+	status: string;
+	options: ThemeOption[];
+}
+
+interface Agent {
+	id: string;
+	agentId: number;
+	agentPda: string;
+	slug: string;
+	name: string;
+	description?: string;
+	avatarUrl?: string;
+}
 
 export function HomePage() {
 	const t = useTranslations("home");
+	const { publicKey } = useWallet();
+	const { setVisible: setWalletModalVisible } = useWalletModal();
+
+	// Data state
+	const [theme, setTheme] = useState<Theme | null>(null);
+	const [agents, setAgents] = useState<Agent[]>([]);
+	const [loading, setLoading] = useState(true);
 
 	// 倒计时状态
-	// 事件截至时间：2 天 08 小时 = 56 小时 = 201600 秒
-	const [eventTimeLeft, setEventTimeLeft] = useState(201600);
-	// 跟投截至时间：事件截至 - 6 小时 = 50 小时 = 180000 秒
-	const [followTimeLeft, setFollowTimeLeft] = useState(180000);
+	const [eventTimeLeft, setEventTimeLeft] = useState(0);
+	const [followTimeLeft, setFollowTimeLeft] = useState(0);
 
 	const [reportDialogOpen, setReportDialogOpen] = useState(false);
 	const [reportAgent, setReportAgent] = useState<string | null>(null);
@@ -22,7 +59,46 @@ export function HomePage() {
 	const [detailAgent, setDetailAgent] = useState<string | null>(null);
 
 	const [investDialogOpen, setInvestDialogOpen] = useState(false);
-	const [investAgent, setInvestAgent] = useState<string | null>(null);
+	const [investAgent, setInvestAgent] = useState<Agent | null>(null);
+
+	// Fetch data
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				const [themesRes, agentsRes] = await Promise.all([
+					fetch('/api/themes'),
+					fetch('/api/agents'),
+				]);
+
+				const themesData = await themesRes.json();
+				const agentsData = await agentsRes.json();
+
+				if (themesData.success && themesData.data.length > 0) {
+					// Get the first active theme
+					const activeTheme = themesData.data[0];
+					setTheme(activeTheme);
+
+					// Calculate initial countdown values
+					const now = Date.now();
+					const endTime = new Date(activeTheme.endTime).getTime();
+					const resolutionTime = new Date(activeTheme.resolutionTime).getTime();
+
+					setFollowTimeLeft(Math.max(0, Math.floor((endTime - now) / 1000)));
+					setEventTimeLeft(Math.max(0, Math.floor((resolutionTime - now) / 1000)));
+				}
+
+				if (agentsData.success) {
+					setAgents(agentsData.data);
+				}
+			} catch (error) {
+				console.error('Failed to fetch data:', error);
+			} finally {
+				setLoading(false);
+			}
+		}
+
+		fetchData();
+	}, []);
 
 	// 倒计时逻辑
 	useEffect(() => {
@@ -54,7 +130,15 @@ export function HomePage() {
 		setAgentDetailDialogOpen(true);
 	};
 
-	const handleOpenInvest = (agent: string) => {
+	const handleOpenInvest = (agent: Agent) => {
+		// Check if wallet is connected
+		if (!publicKey) {
+			// Show wallet connection modal
+			setWalletModalVisible(true);
+			return;
+		}
+
+		// Wallet is connected, open invest dialog
 		setInvestAgent(agent);
 		setInvestDialogOpen(true);
 	};
@@ -798,39 +882,37 @@ export function HomePage() {
 				<section className="demo-market">
 					<div className="demo-market-body">
 						<div className="demo-left-col">
-							<p className="demo-market-desc text-base">
-								{t("market.ruleDesc")}
-							</p>
-							<p className="demo-market-desc">
-								{t("market.resolution")}
-							</p>
-							<div className="demo-options">
-								<div className="demo-option-card">
-									<div className="demo-option-name">
-										{t("candidates.a")}
+							{theme ? (
+								<>
+									<p className="demo-market-desc text-base">
+										{theme.title}
+									</p>
+									{theme.description && (
+										<p className="demo-market-desc">
+											{theme.description}
+										</p>
+									)}
+									<div className="demo-options" style={{
+										gridTemplateColumns: `repeat(${theme.totalOptions}, minmax(0, 1fr))`
+									}}>
+										{theme.options.map((option) => (
+											<div key={option.optionIndex} className="demo-option-card">
+												<div className="demo-option-name">
+													{option.label}
+												</div>
+											</div>
+										))}
 									</div>
-								</div>
-								<div className="demo-option-card">
-									<div className="demo-option-name">
-										{t("candidates.b")}
-									</div>
-								</div>
-								<div className="demo-option-card">
-									<div className="demo-option-name">
-										{t("candidates.c")}
-									</div>
-								</div>
-								<div className="demo-option-card">
-									<div className="demo-option-name">
-										{t("candidates.d")}
-									</div>
-								</div>
-								<div className="demo-option-card">
-									<div className="demo-option-name">
-										{t("candidates.other")}
-									</div>
-								</div>
-							</div>
+								</>
+							) : loading ? (
+								<p className="demo-market-desc text-base">
+									加载中...
+								</p>
+							) : (
+								<p className="demo-market-desc text-base">
+									暂无活跃主题
+								</p>
+							)}
 						</div>
 
 						<aside className="demo-legend">
@@ -1239,294 +1321,89 @@ export function HomePage() {
 					</div>
 				</section>
 
-				{/* 下半屏：五个 Agent 横排 */}
+				{/* 下半屏：Agent 列表 */}
 				<section className="demo-agents">
-					<div className="demo-agent-grid">
-						{/* DeepSeek */}
-						<div
-							className="demo-agent-card"
-							onClick={() => handleOpenAgentDetail("DeepSeek")}
-						>
-							<div className="demo-agent-top">
-								<div className="demo-avatar">D</div>
-								<div>
-									<div className="demo-agent-name">
-										DeepSeek
-									</div>
-									<div className="demo-persona">
-										{t("agents.deepseek.persona")}
-									</div>
+					<div className="demo-agent-grid" style={{
+						gridTemplateColumns: `repeat(${Math.min(agents.length, 5)}, minmax(0, 1fr))`
+					}}>
+						{loading ? (
+							<div className="demo-agent-card">
+								<div className="demo-agent-top">
+									<div>Loading agents...</div>
 								</div>
 							</div>
-							{/* <div className="demo-pick">
-								<span className="choice">
-									{t("candidates.a")}
-								</span>
-								<span className="label">
-									{t("actions.bet")}
-								</span>
-							</div> */}
-							<div className="demo-roi-display">
-								<span className="demo-roi-label">
-									{t("actions.roi")}
-								</span>
-								<span className="demo-roi-value">+24.5%</span>
-							</div>
-							<div className="demo-note">
-								{t("agents.deepseek.note")}
-							</div>
-
-							<div className="demo-btn-row">
-								<button
-									type="button"
-									className="demo-btn-secondary"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleOpenReport("DeepSeek");
-									}}
+						) : agents.length > 0 ? (
+							agents.map((agent) => (
+								<div
+									key={agent.id}
+									className="demo-agent-card"
+									onClick={() => handleOpenAgentDetail(agent.name)}
 								>
-									{t("actions.report")}
-								</button>
-								<button
-									type="button"
-									className="demo-invest-btn"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleOpenInvest("DeepSeek");
-									}}
-								>
-									{t("actions.invest")}
-								</button>
-							</div>
-						</div>
-
-						{/* Claude */}
-						<div
-							className="demo-agent-card"
-							onClick={() => handleOpenAgentDetail("Claude")}
-						>
-							<div className="demo-agent-top">
-								<div className="demo-avatar">C</div>
-								<div>
-									<div className="demo-agent-name">
-										Claude
+									<div className="demo-agent-top">
+										{agent.avatarUrl ? (
+											<img
+												src={agent.avatarUrl}
+												alt={agent.name}
+												className="demo-avatar"
+												style={{ width: '36px', height: '36px', borderRadius: '10px' }}
+											/>
+										) : (
+											<div className="demo-avatar">
+												{agent.name.charAt(0).toUpperCase()}
+											</div>
+										)}
+										<div>
+											<div className="demo-agent-name">
+												{agent.name}
+											</div>
+											{agent.description && (
+												<div className="demo-persona">
+													{agent.description}
+												</div>
+											)}
+										</div>
 									</div>
-									<div className="demo-persona">
-										{t("agents.claude.persona")}
+									<div className="demo-roi-display">
+										<span className="demo-roi-label">
+											Agent ID
+										</span>
+										<span className="demo-roi-value">#{agent.agentId}</span>
 									</div>
-								</div>
-							</div>
-							{/* <div className="demo-pick">
-								<span className="label">
-									{t("actions.bet")}
-								</span>
-								<span className="choice">
-									{t("candidates.b")}
-								</span>
-							</div> */}
-							<div className="demo-roi-display">
-								<span className="demo-roi-label">
-									{t("actions.roi")}
-								</span>
-								<span className="demo-roi-value">+18.2%</span>
-							</div>
-							<div className="demo-note">
-								{t("agents.claude.note")}
-							</div>
-
-							<div className="demo-btn-row">
-								<button
-									type="button"
-									className="demo-btn-secondary"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleOpenReport("Claude");
-									}}
-								>
-									{t("actions.report")}
-								</button>
-								<button
-									type="button"
-									className="demo-invest-btn"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleOpenInvest("Claude");
-									}}
-								>
-									{t("actions.invest")}
-								</button>
-							</div>
-						</div>
-
-						{/* Grok 4 */}
-						<div
-							className="demo-agent-card"
-							onClick={() => handleOpenAgentDetail("Grok 4")}
-						>
-							<div className="demo-agent-top">
-								<div className="demo-avatar">G</div>
-								<div>
-									<div className="demo-agent-name">
-										Grok 4
+									<div className="demo-note" style={{ fontSize: '11px', opacity: 0.7 }}>
+										{agent.agentPda.substring(0, 32)}...
 									</div>
-									<div className="demo-persona">
-										{t("agents.grok.persona")}
+
+									<div className="demo-btn-row">
+										<button
+											type="button"
+											className="demo-btn-secondary"
+											onClick={(e) => {
+												e.stopPropagation();
+												handleOpenReport(agent.name);
+											}}
+										>
+											{t("actions.report")}
+										</button>
+										<button
+											type="button"
+											className="demo-invest-btn"
+											onClick={(e) => {
+												e.stopPropagation();
+												handleOpenInvest(agent);
+											}}
+										>
+											{t("actions.invest")}
+										</button>
 									</div>
 								</div>
-							</div>
-							{/* <div className="demo-pick">
-								<span className="label">
-									{t("actions.bet")}
-								</span>
-								<span className="choice">
-									{t("candidates.c")}
-								</span>
-							</div> */}
-							<div className="demo-roi-display">
-								<span className="demo-roi-label">
-									{t("actions.roi")}
-								</span>
-								<span className="demo-roi-value">+31.7%</span>
-							</div>
-							<div className="demo-note">
-								{t("agents.grok.note")}
-							</div>
-
-							<div className="demo-btn-row">
-								<button
-									type="button"
-									className="demo-btn-secondary"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleOpenReport("Grok 4");
-									}}
-								>
-									{t("actions.report")}
-								</button>
-								<button
-									type="button"
-									className="demo-invest-btn"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleOpenInvest("Grok 4");
-									}}
-								>
-									{t("actions.invest")}
-								</button>
-							</div>
-						</div>
-
-						{/* Qwen */}
-						<div
-							className="demo-agent-card"
-							onClick={() => handleOpenAgentDetail("Qwen")}
-						>
-							<div className="demo-agent-top">
-								<div className="demo-avatar">Q</div>
-								<div>
-									<div className="demo-agent-name">Qwen</div>
-									<div className="demo-persona">
-										{t("agents.qwen.persona")}
-									</div>
+							))
+						) : (
+							<div className="demo-agent-card">
+								<div className="demo-agent-top">
+									<div>暂无可用 Agent</div>
 								</div>
 							</div>
-							{/* <div className="demo-pick">
-								<span className="label">
-									{t("actions.bet")}
-								</span>
-								<span className="choice">
-									{t("candidates.a")}
-								</span>
-							</div> */}
-							<div className="demo-roi-display">
-								<span className="demo-roi-label">
-									{t("actions.roi")}
-								</span>
-								<span className="demo-roi-value">+22.1%</span>
-							</div>
-							<div className="demo-note">
-								{t("agents.qwen.note")}
-							</div>
-
-							<div className="demo-btn-row">
-								<button
-									type="button"
-									className="demo-btn-secondary"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleOpenReport("Qwen");
-									}}
-								>
-									{t("actions.report")}
-								</button>
-								<button
-									type="button"
-									className="demo-invest-btn"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleOpenInvest("Qwen");
-									}}
-								>
-									{t("actions.invest")}
-								</button>
-							</div>
-						</div>
-
-						{/* GPT */}
-						<div
-							className="demo-agent-card"
-							onClick={() => handleOpenAgentDetail("GPT")}
-						>
-							<div className="demo-agent-top">
-								<div className="demo-avatar">G</div>
-								<div>
-									<div className="demo-agent-name">GPT</div>
-									<div className="demo-persona">
-										{t("agents.gpt.persona")}
-									</div>
-								</div>
-							</div>
-							{/* <div className="demo-pick">
-								<span className="label">
-									{t("actions.bet")}
-								</span>
-								<span className="choice">
-									{t("candidates.b")}
-								</span>
-							</div> */}
-							<div className="demo-roi-display">
-								<span className="demo-roi-label">
-									{t("actions.roi")}
-								</span>
-								<span className="demo-roi-value">+19.8%</span>
-							</div>
-							<div className="demo-note">
-								{t("agents.gpt.note")}
-							</div>
-
-							<div className="demo-btn-row">
-								<button
-									type="button"
-									className="demo-btn-secondary"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleOpenReport("GPT");
-									}}
-								>
-									{t("actions.report")}
-								</button>
-								<button
-									type="button"
-									className="demo-invest-btn"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleOpenInvest("GPT");
-									}}
-								>
-									{t("actions.invest")}
-								</button>
-							</div>
-						</div>
+						)}
 					</div>
 				</section>
 			</main>
@@ -1546,6 +1423,7 @@ export function HomePage() {
 				open={investDialogOpen}
 				onOpenChange={setInvestDialogOpen}
 				agent={investAgent}
+				theme={theme}
 			/>
 		</>
 	);

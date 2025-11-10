@@ -7,12 +7,11 @@ import { Logo } from "@shared/components/Logo";
 import {
 	BotIcon,
 	Building2Icon,
-	CalendarDaysIcon,
-	FileTextIcon,
-	LayersIcon,
-	PackageIcon,
-	PercentCircleIcon,
 	UsersIcon,
+	TrendingUpIcon,
+	FileTextIcon,
+	PercentCircleIcon,
+	PackageIcon,
 	WalletIcon,
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
@@ -71,27 +70,6 @@ export default async function AdminLayout({ children }: PropsWithChildren) {
 											]
 										: []),
 									{
-										title: t("admin.menu.events"),
-										href: "/app/admin/events",
-										icon: (
-											<CalendarDaysIcon className="size-4 opacity-50" />
-										),
-									},
-									{
-										title: t("admin.menu.markets"),
-										href: "/app/admin/markets",
-										icon: (
-											<LayersIcon className="size-4 opacity-50" />
-										),
-									},
-									{
-										title: t("admin.menu.agents"),
-										href: "/app/admin/agents",
-										icon: (
-											<BotIcon className="size-4 opacity-50" />
-										),
-									},
-									{
 										title: t("admin.menu.reports"),
 										href: "/app/admin/reports",
 										icon: (
@@ -117,6 +95,20 @@ export default async function AdminLayout({ children }: PropsWithChildren) {
 										href: "/app/admin/investments",
 										icon: (
 											<WalletIcon className="size-4 opacity-50" />
+										),
+									},
+									{
+										title: "Prediction Themes",
+										href: "/app/admin/themes",
+										icon: (
+											<TrendingUpIcon className="size-4 opacity-50" />
+										),
+									},
+									{
+										title: "AI Agents",
+										href: "/app/admin/agents",
+										icon: (
+											<BotIcon className="size-4 opacity-50" />
 										),
 									},
 								],
