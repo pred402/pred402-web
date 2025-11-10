@@ -5,12 +5,8 @@ Pred402 is a revolutionary, AI-powered gamified prediction market built on the i
 ## 🚀 Quick Start
 
 ```bash
-# Clone and setup
-git clone <repository>
-cd superstar
-pnpm install
-
 # Setup environment
+pnpm install
 cp .env.local.example .env.local
 # Edit .env.local with your configuration
 
